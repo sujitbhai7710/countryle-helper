@@ -16,9 +16,25 @@ export interface CountryData {
   mapsUrl?: string;
 }
 
-// Cached countries data
+// Capital data type
+export interface CapitalData {
+  id: number;
+  capital: string;
+  country: string;
+  continent: string;
+  population: number;
+  surface: number;
+  avgTemperature: number;
+  height: number;
+  coordinates: string;
+  mapsUrl?: string;
+}
+
+// Cached data
 let countriesCache: CountryData[] | null = null;
 let countriesPromise: Promise<CountryData[]> | null = null;
+let capitalsCache: CapitalData[] | null = null;
+let capitalsPromise: Promise<CapitalData[]> | null = null;
 
 // Load countries from static JSON (only needed for Solver/Archive)
 export async function loadCountries(): Promise<CountryData[]> {
@@ -41,6 +57,31 @@ export async function loadCountries(): Promise<CountryData[]> {
   return countriesPromise;
 }
 
+// Load capitals from static JSON
+export async function loadCapitals(): Promise<CapitalData[]> {
+  if (capitalsCache) return capitalsCache;
+  if (capitalsPromise) return capitalsPromise;
+  
+  capitalsPromise = (async () => {
+    try {
+      const response = await fetch(`${BASE_PATH}/capitals.json`);
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      let data = await response.json();
+      // Handle escaped JSON string
+      if (typeof data === 'string') {
+        data = JSON.parse(data);
+      }
+      capitalsCache = (data.capitals || []) as CapitalData[];
+      return capitalsCache;
+    } catch (error) {
+      console.error('Failed to load capitals:', error);
+      return [];
+    }
+  })();
+  
+  return capitalsPromise;
+}
+
 // Fetch today's country - FAST: loads pre-computed answer with full country data
 export async function fetchTodayCountry(): Promise<{
   success: boolean;
@@ -50,13 +91,11 @@ export async function fetchTodayCountry(): Promise<{
   error?: string;
 }> {
   try {
-    // Load the pre-computed answer with complete country data
     const response = await fetch(`${BASE_PATH}/todays-answer.json?t=${Date.now()}`);
     
     if (response.ok) {
       const data = await response.json();
       
-      // If we have complete country data, show it
       if (data.country) {
         return {
           success: true,
@@ -67,7 +106,6 @@ export async function fetchTodayCountry(): Promise<{
       }
     }
     
-    // Fallback if todays-answer.json fails
     return {
       success: false,
       date: '',
@@ -87,6 +125,61 @@ export async function fetchTodayCountry(): Promise<{
   }
 }
 
+// Fetch today's capitale - loads pre-computed answer with full capital data
+export async function fetchTodayCapitale(): Promise<{
+  success: boolean;
+  date: string;
+  gameNumber: number;
+  capital: CapitalData | null;
+  unavailable?: boolean;
+  error?: string;
+}> {
+  try {
+    const response = await fetch(`${BASE_PATH}/todays-capitale.json?t=${Date.now()}`);
+    
+    if (response.ok) {
+      const data = await response.json();
+      
+      if (data.unavailable) {
+        return {
+          success: false,
+          date: data.date,
+          gameNumber: data.gameNumber,
+          capital: null,
+          unavailable: true,
+          error: 'Capitale game is not available',
+        };
+      }
+      
+      if (data.capital) {
+        return {
+          success: true,
+          date: data.date,
+          gameNumber: data.gameNumber,
+          capital: data.capital as CapitalData,
+        };
+      }
+    }
+    
+    return {
+      success: false,
+      date: '',
+      gameNumber: 0,
+      capital: null,
+      error: 'Failed to load today\'s capitale answer',
+    };
+  } catch (error) {
+    console.error('Error fetching today capitale:', error);
+    return {
+      success: false,
+      date: '',
+      gameNumber: 0,
+      capital: null,
+      error: 'Failed to connect',
+    };
+  }
+}
+
 export async function getCountryById(id: number): Promise<CountryData | null> {
   const countries = await loadCountries();
   return countries.find(c => c.id === id) || null;
@@ -97,8 +190,22 @@ export async function getCountryByName(name: string): Promise<CountryData | null
   return countries.find(c => c.country.toLowerCase() === name.toLowerCase()) || null;
 }
 
+export async function getCapitalById(id: number): Promise<CapitalData | null> {
+  const capitals = await loadCapitals();
+  return capitals.find(c => c.id === id) || null;
+}
+
+export async function getCapitalByName(name: string): Promise<CapitalData | null> {
+  const capitals = await loadCapitals();
+  return capitals.find(c => c.capital.toLowerCase() === name.toLowerCase()) || null;
+}
+
 export async function getAllCountries(): Promise<CountryData[]> {
   return loadCountries();
+}
+
+export async function getAllCapitals(): Promise<CapitalData[]> {
+  return loadCapitals();
 }
 
 // Calculate distance between two coordinates using Haversine formula
@@ -153,7 +260,7 @@ export const directionArrows: Record<string, string> = {
 };
 
 // Filter countries based on hints
-export interface Hint {
+export interface CountryHint {
   id: string;
   country: CountryData;
   distance: number;
@@ -163,7 +270,7 @@ export interface Hint {
 
 export function filterCountriesByHints(
   allCountries: CountryData[],
-  hints: Hint[]
+  hints: CountryHint[]
 ): { country: CountryData; score: number }[] {
   if (hints.length === 0) {
     return allCountries.map(c => ({ country: c, score: 0 }));
@@ -176,16 +283,13 @@ export function filterCountriesByHints(
     let matchesAll = true;
 
     for (const hint of hints) {
-      // Calculate actual distance and direction from hint country to candidate
       const actualDistance = calculateDistance(hint.country.coordinates, candidate.coordinates);
       const actualDirection = calculateDirection(hint.country.coordinates, candidate.coordinates);
 
-      // Check distance (allow 10% tolerance)
       const distanceDiff = Math.abs(actualDistance - hint.distance);
-      const distanceTolerance = hint.distance * 0.15; // 15% tolerance
+      const distanceTolerance = hint.distance * 0.15;
       const distanceMatch = distanceDiff <= distanceTolerance;
 
-      // Check direction (allow adjacent directions)
       const directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
       const hintDirIndex = directions.indexOf(hint.direction);
       const actualDirIndex = directions.indexOf(actualDirection);
@@ -193,14 +297,13 @@ export function filterCountriesByHints(
         Math.abs(hintDirIndex - actualDirIndex),
         8 - Math.abs(hintDirIndex - actualDirIndex)
       );
-      const directionMatch = dirDiff <= 1; // Allow 1 step difference
+      const directionMatch = dirDiff <= 1;
 
       if (!distanceMatch && !directionMatch) {
         matchesAll = false;
         break;
       }
 
-      // Calculate score
       if (distanceMatch) {
         totalScore += 100 - (distanceDiff / distanceTolerance) * 50;
       }
@@ -214,6 +317,66 @@ export function filterCountriesByHints(
     }
   }
 
-  // Sort by score descending
+  return results.sort((a, b) => b.score - a.score);
+}
+
+// Filter capitals based on hints
+export interface CapitalHint {
+  id: string;
+  capital: CapitalData;
+  distance: number;
+  direction: string;
+  proximity?: number;
+}
+
+export function filterCapitalsByHints(
+  allCapitals: CapitalData[],
+  hints: CapitalHint[]
+): { capital: CapitalData; score: number }[] {
+  if (hints.length === 0) {
+    return allCapitals.map(c => ({ capital: c, score: 0 }));
+  }
+
+  const results: { capital: CapitalData; score: number }[] = [];
+
+  for (const candidate of allCapitals) {
+    let totalScore = 0;
+    let matchesAll = true;
+
+    for (const hint of hints) {
+      const actualDistance = calculateDistance(hint.capital.coordinates, candidate.coordinates);
+      const actualDirection = calculateDirection(hint.capital.coordinates, candidate.coordinates);
+
+      const distanceDiff = Math.abs(actualDistance - hint.distance);
+      const distanceTolerance = hint.distance * 0.15;
+      const distanceMatch = distanceDiff <= distanceTolerance;
+
+      const directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+      const hintDirIndex = directions.indexOf(hint.direction);
+      const actualDirIndex = directions.indexOf(actualDirection);
+      const dirDiff = Math.min(
+        Math.abs(hintDirIndex - actualDirIndex),
+        8 - Math.abs(hintDirIndex - actualDirIndex)
+      );
+      const directionMatch = dirDiff <= 1;
+
+      if (!distanceMatch && !directionMatch) {
+        matchesAll = false;
+        break;
+      }
+
+      if (distanceMatch) {
+        totalScore += 100 - (distanceDiff / distanceTolerance) * 50;
+      }
+      if (directionMatch) {
+        totalScore += 100 - dirDiff * 25;
+      }
+    }
+
+    if (matchesAll) {
+      results.push({ capital: candidate, score: totalScore / hints.length });
+    }
+  }
+
   return results.sort((a, b) => b.score - a.score);
 }

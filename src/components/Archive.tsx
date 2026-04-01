@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 interface ArchiveEntry {
   date: string;
@@ -19,42 +19,37 @@ export default function Archive() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [days, setDays] = useState(30);
+  const lastDaysRef = useRef(0);
+  const fetchingRef = useRef(false);
 
   useEffect(() => {
-    let mounted = true;
+    // Prevent duplicate fetches
+    if (fetchingRef.current && lastDaysRef.current === days) return;
+    if (lastDaysRef.current === days && archive.length > 0) return;
+    
+    fetchingRef.current = true;
+    lastDaysRef.current = days;
 
-    async function fetchData() {
-      try {
-        const res = await fetch(`/api/archive?days=${days}`);
-        const json = await res.json();
-        
-        if (mounted) {
-          if (json.success && Array.isArray(json.archive)) {
-            setArchive(json.archive);
-            setError('');
-          } else {
-            setError(json.error || 'Failed to load');
-            setArchive([]);
-          }
-        }
-      } catch (e) {
-        if (mounted) {
-          setError('Failed to connect');
+    fetch(`/api/archive?days=${days}`)
+      .then(res => res.json())
+      .then(json => {
+        if (json.success && Array.isArray(json.archive)) {
+          setArchive(json.archive);
+          setError('');
+        } else {
+          setError(json.error || 'Failed to load');
           setArchive([]);
         }
-      } finally {
-        if (mounted) {
-          setLoading(false);
-        }
-      }
-    }
-
-    fetchData();
-
-    return () => {
-      mounted = false;
-    };
-  }, [days]);
+      })
+      .catch(() => {
+        setError('Failed to connect');
+        setArchive([]);
+      })
+      .finally(() => {
+        setLoading(false);
+        fetchingRef.current = false;
+      });
+  }, [days, archive.length]);
 
   return (
     <div>
@@ -65,7 +60,13 @@ export default function Archive() {
           <select
             id="days-select"
             value={days}
-            onChange={(e) => setDays(parseInt(e.target.value, 10))}
+            onChange={(e) => {
+              const newDays = parseInt(e.target.value, 10);
+              if (newDays !== days) {
+                setLoading(true);
+                setDays(newDays);
+              }
+            }}
             className="bg-slate-700 text-white rounded-lg px-3 py-2 border border-slate-600 focus:border-emerald-500 focus:outline-none"
           >
             <option value={7}>7 days</option>

@@ -37,39 +37,29 @@ export default function Solver() {
   const [won, setWon] = useState(false);
   const [error, setError] = useState('');
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const fetchedRef = useRef(false);
 
   useEffect(() => {
-    let mounted = true;
+    // Prevent double fetch
+    if (fetchedRef.current) return;
+    fetchedRef.current = true;
 
-    async function fetchCountries() {
-      try {
-        const res = await fetch('/api/solve');
-        const json = await res.json();
-        
-        if (mounted) {
-          if (json.success && Array.isArray(json.countries)) {
-            setCountries(json.countries);
-            setError('');
-          } else {
-            setError('Failed to load countries');
-          }
+    fetch('/api/solve')
+      .then(res => res.json())
+      .then(json => {
+        if (json.success && Array.isArray(json.countries)) {
+          setCountries(json.countries);
+          setError('');
+        } else {
+          setError('Failed to load countries');
         }
-      } catch (e) {
-        if (mounted) {
-          setError('Failed to connect');
-        }
-      } finally {
-        if (mounted) {
-          setLoadingCountries(false);
-        }
-      }
-    }
-
-    fetchCountries();
-
-    return () => {
-      mounted = false;
-    };
+      })
+      .catch(() => {
+        setError('Failed to connect');
+      })
+      .finally(() => {
+        setLoadingCountries(false);
+      });
   }, []);
 
   useEffect(() => {
@@ -93,32 +83,32 @@ export default function Solver() {
     .filter(c => c.name.toLowerCase().includes(searchTerm.toLowerCase()))
     .slice(0, 10);
 
-  async function handleGuess() {
+  function handleGuess() {
     if (!selectedCountry || won) return;
     
     setLoading(true);
-    try {
-      const res = await fetch('/api/solve', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ guessName: selectedCountry.name })
+    fetch('/api/solve', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ guessName: selectedCountry.name })
+    })
+      .then(res => res.json())
+      .then((result: GuessResult) => {
+        if (result.success) {
+          setGuesses(prev => [result, ...prev]);
+          setSearchTerm('');
+          setSelectedCountry(null);
+          setShowDropdown(false);
+        } else {
+          alert(result.error || 'Failed to process guess');
+        }
+      })
+      .catch(() => {
+        alert('Failed to connect');
+      })
+      .finally(() => {
+        setLoading(false);
       });
-      
-      const result: GuessResult = await res.json();
-      
-      if (result.success) {
-        setGuesses(prev => [result, ...prev]);
-        setSearchTerm('');
-        setSelectedCountry(null);
-        setShowDropdown(false);
-      } else {
-        alert(result.error || 'Failed to process guess');
-      }
-    } catch (e) {
-      alert('Failed to connect');
-    } finally {
-      setLoading(false);
-    }
   }
 
   function resetGame() {

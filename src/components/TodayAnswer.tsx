@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 interface CountryData {
   id: number;
@@ -27,39 +27,29 @@ export default function TodayAnswer() {
   const [data, setData] = useState<TodayResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const fetchedRef = useRef(false);
 
   useEffect(() => {
-    let mounted = true;
+    // Prevent double fetch
+    if (fetchedRef.current) return;
+    fetchedRef.current = true;
 
-    async function fetchData() {
-      try {
-        const res = await fetch('/api/today');
-        const json = await res.json();
-        
-        if (mounted) {
-          if (json.success && json.country) {
-            setData(json);
-            setError('');
-          } else {
-            setError(json.error || 'Failed to load');
-          }
+    fetch('/api/today')
+      .then(res => res.json())
+      .then(json => {
+        if (json.success && json.country) {
+          setData(json);
+          setError('');
+        } else {
+          setError(json.error || 'Failed to load');
         }
-      } catch (e) {
-        if (mounted) {
-          setError('Failed to connect');
-        }
-      } finally {
-        if (mounted) {
-          setLoading(false);
-        }
-      }
-    }
-
-    fetchData();
-
-    return () => {
-      mounted = false;
-    };
+      })
+      .catch(() => {
+        setError('Failed to connect');
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
 
   if (loading) {

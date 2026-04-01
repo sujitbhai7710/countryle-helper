@@ -3,7 +3,6 @@ import {
   getCountryByName, 
   getCountryById, 
   generateClues, 
-  filterPossibleCountries,
   getAllCountries,
   type Country,
   type GameClue

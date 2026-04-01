@@ -61,7 +61,7 @@ async function loadCountries(): Promise<CountryData[]> {
   }
 }
 
-// Fetch today's country from Countryle API (using CORS proxy)
+// Fetch today's country - try pre-computed answer first, then API
 export async function fetchTodayCountry(): Promise<{
   success: boolean;
   date: string;
@@ -72,55 +72,89 @@ export async function fetchTodayCountry(): Promise<{
   const { date, gameNumber } = getDateIST();
   
   try {
-    // Use corsproxy.io to bypass CORS restrictions
+    // First, try to load the pre-computed answer (updated by GitHub Actions daily)
+    try {
+      const answerResponse = await fetch('/todays-answer.json');
+      if (answerResponse.ok) {
+        const answerData = await answerResponse.json();
+        
+        // Check if the answer is for today
+        if (answerData.date === date && answerData.countryId) {
+          const country = await getCountryById(answerData.countryId);
+          if (country) {
+            return {
+              success: true,
+              date,
+              gameNumber,
+              country,
+            };
+          }
+        }
+      }
+    } catch {
+      // Pre-computed answer not available, fall through to API
+    }
+    
+    // Try API via CORS proxy
     const apiUrl = `https://www.countryle.com/hidden-api/get-daily-country-valid.php?date=${date}`;
-    const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(apiUrl)}`;
+    const proxyUrls = [
+      `https://api.allorigins.win/raw?url=${encodeURIComponent(apiUrl)}`,
+      `https://corsproxy.io/?${encodeURIComponent(apiUrl)}`,
+    ];
     
-    const response = await fetch(proxyUrl, {
-      headers: {
-        'Accept': 'application/json',
-      },
-    });
+    let response: Response | null = null;
     
-    if (!response.ok) {
-      throw new Error(`API responded with status ${response.status}`);
+    for (const proxyUrl of proxyUrls) {
+      try {
+        const res = await fetch(proxyUrl);
+        if (res.ok) {
+          response = res;
+          break;
+        }
+      } catch {
+        continue;
+      }
     }
     
-    const data = await response.json();
-    const encryptedId = data.country || data.id || data;
-    
-    let countryId: number;
-    if (typeof encryptedId === 'string') {
-      countryId = decryptCountryId(encryptedId);
-    } else {
-      countryId = parseInt(encryptedId, 10);
+    if (response) {
+      const data = await response.json();
+      const encryptedId = data.country || data.id || data;
+      
+      let countryId: number;
+      if (typeof encryptedId === 'string') {
+        countryId = decryptCountryId(encryptedId);
+      } else {
+        countryId = parseInt(encryptedId, 10);
+      }
+      
+      const country = await getCountryById(countryId);
+      if (country) {
+        return {
+          success: true,
+          date,
+          gameNumber,
+          country,
+        };
+      }
     }
     
-    // Fetch country details from our static data
-    const country = await getCountryById(countryId);
-    
-    if (!country) {
-      return {
-        success: false,
-        date,
-        gameNumber,
-        country: null,
-        error: 'Country not found in database',
-      };
-    }
+    // Fallback - use game number to select a consistent country for the day
+    const countries = await loadCountries();
+    const fallbackIndex = gameNumber % countries.length;
+    const fallbackCountry = countries[fallbackIndex];
     
     return {
       success: true,
       date,
       gameNumber,
-      country,
+      country: fallbackCountry || null,
+      error: 'Using fallback data',
     };
   } catch (error) {
     console.error('Error fetching today country:', error);
     
-    // Return fallback - use a predictable country based on game number
+    // Final fallback
     const countries = await loadCountries();
-    // Use game number to select a consistent country for the day
     const fallbackIndex = gameNumber % countries.length;
     const fallbackCountry = countries[fallbackIndex];
     

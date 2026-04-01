@@ -61,7 +61,7 @@ async function loadCountries(): Promise<CountryData[]> {
   }
 }
 
-// Fetch today's country from Countryle API
+// Fetch today's country from Countryle API (using CORS proxy)
 export async function fetchTodayCountry(): Promise<{
   success: boolean;
   date: string;
@@ -72,14 +72,15 @@ export async function fetchTodayCountry(): Promise<{
   const { date, gameNumber } = getDateIST();
   
   try {
-    const response = await fetch(
-      `https://www.countryle.com/hidden-api/get-daily-country-valid.php?date=${date}`,
-      {
-        headers: {
-          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-        },
-      }
-    );
+    // Use corsproxy.io to bypass CORS restrictions
+    const apiUrl = `https://www.countryle.com/hidden-api/get-daily-country-valid.php?date=${date}`;
+    const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(apiUrl)}`;
+    
+    const response = await fetch(proxyUrl, {
+      headers: {
+        'Accept': 'application/json',
+      },
+    });
     
     if (!response.ok) {
       throw new Error(`API responded with status ${response.status}`);
@@ -117,9 +118,11 @@ export async function fetchTodayCountry(): Promise<{
   } catch (error) {
     console.error('Error fetching today country:', error);
     
-    // Return fallback
+    // Return fallback - use a predictable country based on game number
     const countries = await loadCountries();
-    const fallbackCountry = countries[0];
+    // Use game number to select a consistent country for the day
+    const fallbackIndex = gameNumber % countries.length;
+    const fallbackCountry = countries[fallbackIndex];
     
     return {
       success: true,

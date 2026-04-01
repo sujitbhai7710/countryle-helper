@@ -44,8 +44,3 @@ body {
 .animate-fade-in {
   animation: fadeIn 0.3s ease-out forwards;
 }
-
-/* Prevent hydration issues by hiding content until client-side ready */
-html {
-  visibility: visible;
-}

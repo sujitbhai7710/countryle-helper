@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 
 interface Country {
   id: number;
@@ -37,41 +37,42 @@ export default function Solver() {
   const [won, setWon] = useState(false);
   const [countriesError, setCountriesError] = useState<string | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const hasFetchedCountries = useRef(false);
 
-  const fetchCountries = useCallback(async () => {
-    try {
-      const response = await fetch('/api/solve', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+  // Fetch countries once on mount
+  useEffect(() => {
+    if (hasFetchedCountries.current) return;
+    hasFetchedCountries.current = true;
+
+    const fetchCountries = async () => {
+      try {
+        const response = await fetch('/api/solve');
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const result = await response.json();
+        if (result.success && Array.isArray(result.countries)) {
+          setCountries(result.countries);
+          setCountriesError(null);
+        } else {
+          setCountriesError('Failed to load countries');
+        }
+      } catch (err) {
+        console.error('Failed to fetch countries:', err);
+        setCountriesError(err instanceof Error ? err.message : 'Failed to load countries');
+      } finally {
+        setLoadingCountries(false);
       }
-      
-      const result = await response.json();
-      if (result.success && Array.isArray(result.countries)) {
-        setCountries(result.countries);
-        setCountriesError(null);
-      } else {
-        setCountriesError('Failed to load countries');
-      }
-    } catch (err) {
-      console.error('Failed to fetch countries:', err);
-      setCountriesError(err instanceof Error ? err.message : 'Failed to load countries');
-    } finally {
-      setLoadingCountries(false);
-    }
+    };
+
+    fetchCountries();
   }, []);
 
+  // Check win condition
   useEffect(() => {
-    fetchCountries();
-  }, [fetchCountries]);
-
-  useEffect(() => {
-    if (guesses.some(g => g.isCorrect)) {
+    if (guesses.length > 0 && guesses[0]?.isCorrect) {
       setWon(true);
     }
   }, [guesses]);
@@ -88,9 +89,11 @@ export default function Solver() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const filteredCountries = countries.filter(c =>
-    c.name.toLowerCase().includes(searchTerm.toLowerCase())
-  ).slice(0, 10);
+  const filteredCountries = useMemo(() => {
+    return countries
+      .filter(c => c.name.toLowerCase().includes(searchTerm.toLowerCase()))
+      .slice(0, 10);
+  }, [countries, searchTerm]);
 
   const handleGuess = async () => {
     if (!selectedCountry || won) return;
@@ -156,7 +159,10 @@ export default function Solver() {
       <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-6 text-center">
         <p className="text-red-400 mb-2">Error: {countriesError}</p>
         <button 
-          onClick={fetchCountries}
+          onClick={() => {
+            hasFetchedCountries.current = false;
+            setLoadingCountries(true);
+          }}
           className="mt-4 px-4 py-2 bg-red-500/20 hover:bg-red-500/30 rounded-lg text-red-300 transition-colors"
         >
           Try Again
@@ -252,7 +258,7 @@ export default function Solver() {
           {guesses.map((guess, index) => (
             guess.guess && guess.clues && (
               <div 
-                key={`guess-${index}`}
+                key={`guess-${index}-${guess.guess.id}`}
                 className={`bg-slate-800/50 rounded-2xl border overflow-hidden ${
                   guess.isCorrect ? 'border-emerald-500' : 'border-slate-700/50'
                 }`}

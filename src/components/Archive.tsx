@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 interface ArchiveEntry {
   date: string;
@@ -25,46 +25,50 @@ export default function Archive() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [days, setDays] = useState(30);
-
-  const fetchArchive = useCallback(async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const response = await fetch(`/api/archive?days=${days}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      
-      const result: ArchiveResponse = await response.json();
-      
-      if (result.success && Array.isArray(result.archive)) {
-        setArchive(result.archive);
-        setError(null);
-      } else {
-        setError(result.error || 'Failed to fetch archive');
-        setArchive([]);
-      }
-    } catch (err) {
-      console.error('Error fetching archive:', err);
-      setError(err instanceof Error ? err.message : 'Failed to connect to server');
-      setArchive([]);
-    } finally {
-      setLoading(false);
-    }
-  }, [days]);
+  const lastDaysRef = useRef(30);
+  const hasFetched = useRef(false);
 
   useEffect(() => {
+    // Only fetch if days changed or first mount
+    if (hasFetched.current && lastDaysRef.current === days) return;
+    
+    lastDaysRef.current = days;
+    hasFetched.current = true;
+
+    const fetchArchive = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const response = await fetch(`/api/archive?days=${days}`);
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const result: ArchiveResponse = await response.json();
+        
+        if (result.success && Array.isArray(result.archive)) {
+          setArchive(result.archive);
+          setError(null);
+        } else {
+          setError(result.error || 'Failed to fetch archive');
+          setArchive([]);
+        }
+      } catch (err) {
+        console.error('Error fetching archive:', err);
+        setError(err instanceof Error ? err.message : 'Failed to connect to server');
+        setArchive([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchArchive();
-  }, [fetchArchive]);
+  }, [days]);
 
   const handleDaysChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setDays(parseInt(e.target.value, 10));
+    const newDays = parseInt(e.target.value, 10);
+    setDays(newDays);
   };
 
   return (
@@ -98,7 +102,10 @@ export default function Archive() {
         <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-4 text-center">
           <p className="text-red-400">{error}</p>
           <button 
-            onClick={fetchArchive}
+            onClick={() => {
+              hasFetched.current = false;
+              setDays(days);
+            }}
             className="mt-4 px-4 py-2 bg-red-500/20 hover:bg-red-500/30 rounded-lg text-red-300 transition-colors"
           >
             Try Again

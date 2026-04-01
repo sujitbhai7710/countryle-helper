@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 interface CountryData {
   id: number;
@@ -27,41 +27,48 @@ export default function TodayAnswer() {
   const [data, setData] = useState<TodayResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
-  const fetchTodayAnswer = useCallback(async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const response = await fetch('/api/today', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      
-      const result = await response.json();
-      
-      if (result.success && result.country) {
-        setData(result);
-        setError(null);
-      } else {
-        setError(result.error || 'Failed to fetch today\'s answer');
-      }
-    } catch (err) {
-      console.error('Error fetching today answer:', err);
-      setError(err instanceof Error ? err.message : 'Failed to connect to server');
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+  const hasFetched = useRef(false);
 
   useEffect(() => {
+    // Prevent double fetch in React strict mode
+    if (hasFetched.current) return;
+    hasFetched.current = true;
+
+    const fetchTodayAnswer = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const response = await fetch('/api/today');
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const result = await response.json();
+        
+        if (result.success && result.country) {
+          setData(result);
+          setError(null);
+        } else {
+          setError(result.error || 'Failed to fetch today\'s answer');
+        }
+      } catch (err) {
+        console.error('Error fetching today answer:', err);
+        setError(err instanceof Error ? err.message : 'Failed to connect to server');
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchTodayAnswer();
-  }, [fetchTodayAnswer]);
+  }, []);
+
+  const handleRetry = () => {
+    hasFetched.current = false;
+    setError(null);
+    setLoading(true);
+    // Re-trigger the effect
+  };
 
   if (loading) {
     return (
@@ -77,7 +84,7 @@ export default function TodayAnswer() {
       <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-6 text-center">
         <p className="text-red-400 mb-2">Error: {error}</p>
         <button 
-          onClick={fetchTodayAnswer}
+          onClick={handleRetry}
           className="mt-4 px-4 py-2 bg-red-500/20 hover:bg-red-500/30 rounded-lg text-red-300 transition-colors"
         >
           Try Again
@@ -91,7 +98,7 @@ export default function TodayAnswer() {
       <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-6 text-center">
         <p className="text-amber-400">No data available. Please try again later.</p>
         <button 
-          onClick={fetchTodayAnswer}
+          onClick={handleRetry}
           className="mt-4 px-4 py-2 bg-amber-500/20 hover:bg-amber-500/30 rounded-lg text-amber-300 transition-colors"
         >
           Refresh

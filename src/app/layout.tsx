@@ -12,8 +12,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <html lang="en" suppressHydrationWarning>
+      <body className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" suppressHydrationWarning>
         {children}
       </body>
     </html>

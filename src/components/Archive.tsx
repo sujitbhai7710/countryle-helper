@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { getAllCountries, getDateIST } from '@/lib/clientApi';
 
 interface ArchiveEntry {
   date: string;
@@ -19,37 +20,71 @@ export default function Archive() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [days, setDays] = useState(30);
-  const lastDaysRef = useRef(0);
-  const fetchingRef = useRef(false);
+  const fetchedRef = useRef(false);
 
   useEffect(() => {
-    // Prevent duplicate fetches
-    if (fetchingRef.current && lastDaysRef.current === days) return;
-    if (lastDaysRef.current === days && archive.length > 0) return;
-    
-    fetchingRef.current = true;
-    lastDaysRef.current = days;
+    if (fetchedRef.current) return;
+    fetchedRef.current = true;
 
-    fetch(`/api/archive?days=${days}`)
-      .then(res => res.json())
-      .then(json => {
-        if (json.success && Array.isArray(json.archive)) {
-          setArchive(json.archive);
-          setError('');
-        } else {
-          setError(json.error || 'Failed to load');
-          setArchive([]);
+    async function loadArchive() {
+      try {
+        const countries = await getAllCountries();
+        const now = new Date();
+        const istOffset = 5.5 * 60 * 60 * 1000;
+        const istTime = new Date(now.getTime() + istOffset);
+        const refDate = new Date('2022-11-15');
+        
+        const entries: ArchiveEntry[] = [];
+        
+        for (let i = 1; i <= days; i++) {
+          const targetDate = new Date(istTime.getTime() - i * 24 * 60 * 60 * 1000);
+          const day = String(targetDate.getDate()).padStart(2, '0');
+          const month = String(targetDate.getMonth() + 1).padStart(2, '0');
+          const year = targetDate.getFullYear();
+          const dateStr = `${day}/${month}/${year}`;
+          
+          const gameNumber = Math.floor((targetDate.getTime() - refDate.getTime()) / (24 * 60 * 60 * 1000));
+          const countryIndex = Math.abs(gameNumber) % countries.length;
+          const country = countries[countryIndex];
+          
+          if (country) {
+            entries.push({
+              date: dateStr,
+              displayDate: targetDate.toLocaleDateString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              }),
+              gameNumber,
+              country: {
+                id: country.id,
+                name: country.country,
+                continent: country.continent,
+                hemisphere: country.hemisphere
+              }
+            });
+          }
         }
-      })
-      .catch(() => {
-        setError('Failed to connect');
-        setArchive([]);
-      })
-      .finally(() => {
+        
+        setArchive(entries);
+      } catch (e) {
+        setError('Failed to load archive');
+      } finally {
         setLoading(false);
-        fetchingRef.current = false;
-      });
-  }, [days, archive.length]);
+      }
+    }
+
+    loadArchive();
+  }, [days]);
+
+  const handleDaysChange = (newDays: number) => {
+    if (newDays !== days) {
+      fetchedRef.current = false;
+      setLoading(true);
+      setDays(newDays);
+    }
+  };
 
   return (
     <div>
@@ -60,13 +95,7 @@ export default function Archive() {
           <select
             id="days-select"
             value={days}
-            onChange={(e) => {
-              const newDays = parseInt(e.target.value, 10);
-              if (newDays !== days) {
-                setLoading(true);
-                setDays(newDays);
-              }
-            }}
+            onChange={(e) => handleDaysChange(parseInt(e.target.value, 10))}
             className="bg-slate-700 text-white rounded-lg px-3 py-2 border border-slate-600 focus:border-emerald-500 focus:outline-none"
           >
             <option value={7}>7 days</option>
@@ -107,9 +136,7 @@ export default function Archive() {
                 {archive.map((entry, index) => (
                   <tr
                     key={`${entry.date}-${index}`}
-                    className={`border-t border-slate-700/50 hover:bg-slate-700/30 transition-colors ${
-                      index === 0 ? 'bg-emerald-500/10' : ''
-                    }`}
+                    className="border-t border-slate-700/50 hover:bg-slate-700/30 transition-colors"
                   >
                     <td className="px-4 py-3 text-slate-300 text-sm">{entry.displayDate}</td>
                     <td className="px-4 py-3 text-slate-400 text-sm">{entry.gameNumber}</td>

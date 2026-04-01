@@ -1,12 +1,24 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { fetchTodayCountry, getAllCountries, getCountryByName, generateClues } from '@/lib/clientApi';
 
 interface Country {
   id: number;
   name: string;
   continent: string;
   hemisphere: string;
+}
+
+interface CountryData {
+  id: number;
+  country: string;
+  continent: string;
+  hemisphere: string;
+  population: number;
+  surface: number;
+  avgTemperature: number;
+  coordinates: string;
 }
 
 interface Clue {
@@ -36,30 +48,48 @@ export default function Solver() {
   const [showDropdown, setShowDropdown] = useState(false);
   const [won, setWon] = useState(false);
   const [error, setError] = useState('');
+  const [answerCountry, setAnswerCountry] = useState<CountryData | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const fetchedRef = useRef(false);
 
   useEffect(() => {
-    // Prevent double fetch
     if (fetchedRef.current) return;
     fetchedRef.current = true;
 
-    fetch('/api/solve')
-      .then(res => res.json())
-      .then(json => {
-        if (json.success && Array.isArray(json.countries)) {
-          setCountries(json.countries);
-          setError('');
-        } else {
-          setError('Failed to load countries');
+    async function loadData() {
+      try {
+        const [countriesData, todayData] = await Promise.all([
+          getAllCountries(),
+          fetchTodayCountry()
+        ]);
+        
+        setCountries(countriesData.map(c => ({
+          id: c.id,
+          name: c.country,
+          continent: c.continent,
+          hemisphere: c.hemisphere
+        })));
+        
+        if (todayData.success && todayData.country) {
+          setAnswerCountry({
+            id: todayData.country.id,
+            country: todayData.country.country,
+            continent: todayData.country.continent,
+            hemisphere: todayData.country.hemisphere,
+            population: todayData.country.population,
+            surface: todayData.country.surface,
+            avgTemperature: todayData.country.avgTemperature,
+            coordinates: todayData.country.coordinates
+          });
         }
-      })
-      .catch(() => {
-        setError('Failed to connect');
-      })
-      .finally(() => {
+      } catch (e) {
+        setError('Failed to load data');
+      } finally {
         setLoadingCountries(false);
-      });
+      }
+    }
+
+    loadData();
   }, []);
 
   useEffect(() => {
@@ -83,32 +113,40 @@ export default function Solver() {
     .filter(c => c.name.toLowerCase().includes(searchTerm.toLowerCase()))
     .slice(0, 10);
 
-  function handleGuess() {
-    if (!selectedCountry || won) return;
+  async function handleGuess() {
+    if (!selectedCountry || won || !answerCountry) return;
     
     setLoading(true);
-    fetch('/api/solve', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ guessName: selectedCountry.name })
-    })
-      .then(res => res.json())
-      .then((result: GuessResult) => {
-        if (result.success) {
-          setGuesses(prev => [result, ...prev]);
-          setSearchTerm('');
-          setSelectedCountry(null);
-          setShowDropdown(false);
-        } else {
-          alert(result.error || 'Failed to process guess');
-        }
-      })
-      .catch(() => {
-        alert('Failed to connect');
-      })
-      .finally(() => {
+    
+    try {
+      const guessData = await getCountryByName(selectedCountry.name);
+      
+      if (!guessData) {
+        alert('Country not found');
         setLoading(false);
-      });
+        return;
+      }
+      
+      const clues = generateClues(guessData, answerCountry);
+      const isCorrect = guessData.id === answerCountry.id;
+      
+      const result: GuessResult = {
+        success: true,
+        guess: selectedCountry,
+        answer: { id: answerCountry.id, name: answerCountry.country },
+        clues,
+        isCorrect
+      };
+      
+      setGuesses(prev => [result, ...prev]);
+      setSearchTerm('');
+      setSelectedCountry(null);
+      setShowDropdown(false);
+    } catch (e) {
+      alert('Failed to process guess');
+    } finally {
+      setLoading(false);
+    }
   }
 
   function resetGame() {

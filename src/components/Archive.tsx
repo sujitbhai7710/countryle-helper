@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { getAllCountries, getDateIST } from '@/lib/clientApi';
+import { getAllCountries } from '@/lib/clientApi';
 
 interface ArchiveEntry {
   date: string;

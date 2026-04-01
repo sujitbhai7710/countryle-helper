@@ -3,35 +3,6 @@ import CryptoJS from 'crypto-js';
 const AES_KEY = '4%w!KpB+?FC<P9W*';
 const BASE_PATH = '/countryle-helper';
 
-// Decrypt country ID from Countryle API
-export function decryptCountryId(encryptedId: string): number {
-  try {
-    const bytes = CryptoJS.AES.decrypt(encryptedId, AES_KEY);
-    const decrypted = bytes.toString(CryptoJS.enc.Utf8);
-    return parseInt(decrypted, 10);
-  } catch (error) {
-    console.error('Failed to decrypt country ID:', error);
-    return -1;
-  }
-}
-
-// Get current date in IST format
-export function getDateIST(): { date: string; gameNumber: number } {
-  const now = new Date();
-  const istOffset = 5.5 * 60 * 60 * 1000;
-  const istTime = new Date(now.getTime() + istOffset);
-  
-  const day = String(istTime.getDate()).padStart(2, '0');
-  const month = String(istTime.getMonth() + 1).padStart(2, '0');
-  const year = istTime.getFullYear();
-  
-  const dateStr = `${day}/${month}/${year}`;
-  const refDate = new Date('2022-11-15');
-  const gameNumber = Math.floor((istTime.getTime() - refDate.getTime()) / (24 * 60 * 60 * 1000));
-  
-  return { date: dateStr, gameNumber };
-}
-
 // Country data type
 export interface CountryData {
   id: number;
@@ -78,17 +49,15 @@ export async function fetchTodayCountry(): Promise<{
   country: CountryData | null;
   error?: string;
 }> {
-  const { date, gameNumber } = getDateIST();
-  
   try {
     // Load the pre-computed answer with complete country data
-    const response = await fetch(`${BASE_PATH}/todays-answer.json`);
+    const response = await fetch(`${BASE_PATH}/todays-answer.json?t=${Date.now()}`);
     
     if (response.ok) {
       const data = await response.json();
       
-      // Check if it's today's answer and has complete country data
-      if (data.date === date && data.country) {
+      // If we have complete country data, show it
+      if (data.country) {
         return {
           success: true,
           date: data.date,
@@ -96,24 +65,13 @@ export async function fetchTodayCountry(): Promise<{
           country: data.country as CountryData,
         };
       }
-      
-      // If date doesn't match, the answer is stale
-      if (data.date !== date) {
-        return {
-          success: false,
-          date,
-          gameNumber,
-          country: null,
-          error: 'Answer data is outdated. Please refresh.',
-        };
-      }
     }
     
     // Fallback if todays-answer.json fails
     return {
       success: false,
-      date,
-      gameNumber,
+      date: '',
+      gameNumber: 0,
       country: null,
       error: 'Failed to load today\'s answer',
     };
@@ -121,8 +79,8 @@ export async function fetchTodayCountry(): Promise<{
     console.error('Error fetching today country:', error);
     return {
       success: false,
-      date,
-      gameNumber,
+      date: '',
+      gameNumber: 0,
       country: null,
       error: 'Failed to connect',
     };
@@ -143,91 +101,119 @@ export async function getAllCountries(): Promise<CountryData[]> {
   return loadCountries();
 }
 
-// Generate clues for solver
-export function generateClues(guess: CountryData, answer: CountryData) {
-  const clues = [];
+// Calculate distance between two coordinates using Haversine formula
+export function calculateDistance(coord1: string, coord2: string): number {
+  const [lat1, lon1] = coord1.split(',').map(Number);
+  const [lat2, lon2] = coord2.split(',').map(Number);
   
-  // Continent
-  clues.push({
-    property: 'Continent',
-    guessValue: guess.continent,
-    answerValue: answer.continent,
-    result: guess.continent === answer.continent ? 'Correct!' : 'Different',
-    isCorrect: guess.continent === answer.continent,
-  });
-  
-  // Hemisphere
-  clues.push({
-    property: 'Hemisphere',
-    guessValue: guess.hemisphere,
-    answerValue: answer.hemisphere,
-    result: guess.hemisphere === answer.hemisphere ? 'Correct!' : 'Different',
-    isCorrect: guess.hemisphere === answer.hemisphere,
-  });
-  
-  // Population
-  const popDiff = guess.population - answer.population;
-  const popPct = Math.abs(popDiff / (answer.population || 1));
-  clues.push({
-    property: 'Population',
-    guessValue: guess.population.toLocaleString(),
-    answerValue: answer.population.toLocaleString(),
-    result: popPct < 0.01 ? 'Correct!' : popDiff > 0 ? 'Answer is less' : 'Answer is more',
-    isCorrect: popPct < 0.01,
-  });
-  
-  // Surface
-  const surfDiff = guess.surface - answer.surface;
-  const surfPct = Math.abs(surfDiff / (answer.surface || 1));
-  clues.push({
-    property: 'Surface Area',
-    guessValue: `${guess.surface.toLocaleString()} km²`,
-    answerValue: `${answer.surface.toLocaleString()} km²`,
-    result: surfPct < 0.01 ? 'Correct!' : surfDiff > 0 ? 'Answer is less' : 'Answer is more',
-    isCorrect: surfPct < 0.01,
-  });
-  
-  // Temperature
-  const tempDiff = guess.avgTemperature - answer.avgTemperature;
-  const tempPct = Math.abs(tempDiff / (answer.avgTemperature || 1));
-  clues.push({
-    property: 'Temperature',
-    guessValue: `${guess.avgTemperature.toFixed(1)}°C`,
-    answerValue: `${answer.avgTemperature.toFixed(1)}°C`,
-    result: tempPct < 0.01 ? 'Correct!' : tempDiff > 0 ? 'Answer is less' : 'Answer is more',
-    isCorrect: tempPct < 0.01,
-  });
-  
-  // Direction
-  const guessCoords = parseCoordinates(guess.coordinates);
-  const answerCoords = parseCoordinates(answer.coordinates);
-  const direction = getDirection(guessCoords, answerCoords);
-  clues.push({
-    property: 'Direction',
-    guessValue: `(${guessCoords.lat.toFixed(2)}, ${guessCoords.lng.toFixed(2)})`,
-    answerValue: direction,
-    result: direction,
-    isCorrect: direction === 'Same location area',
-  });
-  
-  return clues;
+  const R = 6371; // Earth's radius in km
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLon = (lon2 - lon1) * Math.PI / 180;
+  const a = 
+    Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * 
+    Math.sin(dLon/2) * Math.sin(dLon/2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  return Math.round(R * c);
 }
 
-function parseCoordinates(coords: string): { lat: number; lng: number } {
-  const parts = coords.split(',').map(p => parseFloat(p.trim()));
-  return { lat: parts[0] || 0, lng: parts[1] || 0 };
+// Calculate direction from one coordinate to another
+export function calculateDirection(coord1: string, coord2: string): string {
+  const [lat1, lon1] = coord1.split(',').map(Number);
+  const [lat2, lon2] = coord2.split(',').map(Number);
+  
+  const dLat = lat2 - lat1;
+  const dLon = lon2 - lon1;
+  
+  // Calculate angle
+  const angle = Math.atan2(dLon, dLat) * 180 / Math.PI;
+  
+  // Convert to compass direction
+  if (angle >= -22.5 && angle < 22.5) return 'N';
+  if (angle >= 22.5 && angle < 67.5) return 'NE';
+  if (angle >= 67.5 && angle < 112.5) return 'E';
+  if (angle >= 112.5 && angle < 157.5) return 'SE';
+  if (angle >= 157.5 || angle < -157.5) return 'S';
+  if (angle >= -157.5 && angle < -112.5) return 'SW';
+  if (angle >= -112.5 && angle < -67.5) return 'W';
+  if (angle >= -67.5 && angle < -22.5) return 'NW';
+  return 'N';
 }
 
-function getDirection(guess: { lat: number; lng: number }, answer: { lat: number; lng: number }): string {
-  const directions: string[] = [];
-  
-  if (Math.abs(guess.lat - answer.lat) >= 5) {
-    directions.push(guess.lat > answer.lat ? 'South' : 'North');
+// Direction arrow mapping
+export const directionArrows: Record<string, string> = {
+  'N': '⬆️ N',
+  'NE': '↗️ NE',
+  'E': '➡️ E',
+  'SE': '↘️ SE',
+  'S': '⬇️ S',
+  'SW': '↙️ SW',
+  'W': '⬅️ W',
+  'NW': '↖️ NW',
+};
+
+// Filter countries based on hints
+export interface Hint {
+  id: string;
+  country: CountryData;
+  distance: number;
+  direction: string;
+  proximity?: number;
+}
+
+export function filterCountriesByHints(
+  allCountries: CountryData[],
+  hints: Hint[]
+): { country: CountryData; score: number }[] {
+  if (hints.length === 0) {
+    return allCountries.map(c => ({ country: c, score: 0 }));
   }
-  
-  if (Math.abs(guess.lng - answer.lng) >= 5) {
-    directions.push(guess.lng > answer.lng ? 'West' : 'East');
+
+  const results: { country: CountryData; score: number }[] = [];
+
+  for (const candidate of allCountries) {
+    let totalScore = 0;
+    let matchesAll = true;
+
+    for (const hint of hints) {
+      // Calculate actual distance and direction from hint country to candidate
+      const actualDistance = calculateDistance(hint.country.coordinates, candidate.coordinates);
+      const actualDirection = calculateDirection(hint.country.coordinates, candidate.coordinates);
+
+      // Check distance (allow 10% tolerance)
+      const distanceDiff = Math.abs(actualDistance - hint.distance);
+      const distanceTolerance = hint.distance * 0.15; // 15% tolerance
+      const distanceMatch = distanceDiff <= distanceTolerance;
+
+      // Check direction (allow adjacent directions)
+      const directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+      const hintDirIndex = directions.indexOf(hint.direction);
+      const actualDirIndex = directions.indexOf(actualDirection);
+      const dirDiff = Math.min(
+        Math.abs(hintDirIndex - actualDirIndex),
+        8 - Math.abs(hintDirIndex - actualDirIndex)
+      );
+      const directionMatch = dirDiff <= 1; // Allow 1 step difference
+
+      if (!distanceMatch && !directionMatch) {
+        matchesAll = false;
+        break;
+      }
+
+      // Calculate score
+      if (distanceMatch) {
+        totalScore += 100 - (distanceDiff / distanceTolerance) * 50;
+      }
+      if (directionMatch) {
+        totalScore += 100 - dirDiff * 25;
+      }
+    }
+
+    if (matchesAll) {
+      results.push({ country: candidate, score: totalScore / hints.length });
+    }
   }
-  
-  return directions.length === 0 ? 'Same location area' : `Go ${directions.join('')}`;
+
+  // Sort by score descending
+  return results.sort((a, b) => b.score - a.score);
 }

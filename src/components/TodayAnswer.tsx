@@ -22,7 +22,7 @@ export default function TodayAnswer() {
     fetchTodayCountry()
       .then(result => {
         setData(result);
-        if (!result.success) {
+        if (!result.success || !result.country) {
           setError(result.error || 'Failed to load');
         }
       })
@@ -47,6 +47,12 @@ export default function TodayAnswer() {
     return (
       <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-6 text-center">
         <p className="text-red-400 mb-2">Error: {error || 'No data available'}</p>
+        <button 
+          onClick={() => window.location.reload()} 
+          className="mt-2 px-4 py-2 bg-red-500/20 rounded-lg text-red-300 hover:bg-red-500/30 transition"
+        >
+          Retry
+        </button>
       </div>
     );
   }

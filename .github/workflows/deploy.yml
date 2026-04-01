@@ -33,7 +33,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Fetch today's answer
+      - name: Fetch today's answer with full country data
         run: |
           node -e "
           const CryptoJS = require('crypto-js');
@@ -73,7 +73,7 @@ jobs:
 
           const url = \`https://www.countryle.com/hidden-api/get-daily-country-valid.php?date=\${date}\`;
 
-          return new Promise((resolve, reject) => {
+          return new Promise((resolve) => {
             https.get(url, (res) => {
               let data = '';
               res.on('data', chunk => data += chunk);
@@ -88,26 +88,36 @@ jobs:
                   const country = countries.find(c => c.id === countryId);
                   
                   if (country) {
+                    // Save COMPLETE country data for instant loading
                     const answer = {
                       date,
                       gameNumber,
-                      countryId,
-                      countryName: country.country,
-                      updated: new Date().toISOString()
+                      updated: new Date().toISOString(),
+                      country: {
+                        id: country.id,
+                        country: country.country,
+                        continent: country.continent,
+                        hemisphere: country.hemisphere,
+                        population: country.population,
+                        surface: country.surface,
+                        avgTemperature: country.avgTemperature,
+                        coordinates: country.coordinates,
+                        mapsUrl: country.mapsUrl
+                      }
                     };
                     
                     fs.writeFileSync('public/todays-answer.json', JSON.stringify(answer, null, 2));
-                    console.log('Saved todays answer:', answer.countryName);
+                    console.log('Saved complete answer:', country.country);
                   }
                   resolve();
                 } catch (e) {
                   console.error('Error:', e.message);
-                  resolve(); // Continue even if fetch fails
+                  resolve();
                 }
               });
             }).on('error', e => {
               console.error('Request error:', e.message);
-              resolve(); // Continue even if fetch fails
+              resolve();
             });
           });
           "

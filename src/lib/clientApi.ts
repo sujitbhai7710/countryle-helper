@@ -1,6 +1,7 @@
 import CryptoJS from 'crypto-js';
 
 const AES_KEY = '4%w!KpB+?FC<P9W*';
+const BASE_PATH = '/countryle-helper';
 
 // Decrypt country ID from Countryle API
 export function decryptCountryId(encryptedId: string): number {
@@ -44,14 +45,12 @@ export interface CountryData {
   mapsUrl?: string;
 }
 
-// Base path for static files (matches Next.js basePath)
-const BASE_PATH = '/countryle-helper';
-
-// Load countries from static JSON
+// Cached countries data
 let countriesCache: CountryData[] | null = null;
 let countriesPromise: Promise<CountryData[]> | null = null;
 
-async function loadCountries(): Promise<CountryData[]> {
+// Load countries from static JSON (only needed for Solver/Archive)
+export async function loadCountries(): Promise<CountryData[]> {
   if (countriesCache) return countriesCache;
   if (countriesPromise) return countriesPromise;
   
@@ -61,7 +60,6 @@ async function loadCountries(): Promise<CountryData[]> {
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const data = await response.json();
       countriesCache = (data.countries || []) as CountryData[];
-      console.log('Countries loaded:', countriesCache.length);
       return countriesCache;
     } catch (error) {
       console.error('Failed to load countries:', error);
@@ -72,7 +70,7 @@ async function loadCountries(): Promise<CountryData[]> {
   return countriesPromise;
 }
 
-// Fetch today's country - try pre-computed answer first, then API
+// Fetch today's country - FAST: loads pre-computed answer with full country data
 export async function fetchTodayCountry(): Promise<{
   success: boolean;
   date: string;
@@ -83,99 +81,50 @@ export async function fetchTodayCountry(): Promise<{
   const { date, gameNumber } = getDateIST();
   
   try {
-    // First, try to load the pre-computed answer (updated by GitHub Actions daily)
-    try {
-      const answerResponse = await fetch(`${BASE_PATH}/todays-answer.json`);
-      if (answerResponse.ok) {
-        const answerData = await answerResponse.json();
-        console.log('Answer loaded:', answerData.countryName);
-        
-        // Check if the answer is for today
-        if (answerData.date === date && answerData.countryId) {
-          const country = await getCountryById(answerData.countryId);
-          if (country) {
-            return {
-              success: true,
-              date,
-              gameNumber,
-              country,
-            };
-          }
-        }
-      }
-    } catch {
-      // Pre-computed answer not available, fall through to API
-    }
+    // Load the pre-computed answer with complete country data
+    const response = await fetch(`${BASE_PATH}/todays-answer.json`);
     
-    // Try API via CORS proxy
-    const apiUrl = `https://www.countryle.com/hidden-api/get-daily-country-valid.php?date=${date}`;
-    const proxyUrls = [
-      `https://api.allorigins.win/raw?url=${encodeURIComponent(apiUrl)}`,
-      `https://corsproxy.io/?${encodeURIComponent(apiUrl)}`,
-    ];
-    
-    let response: Response | null = null;
-    
-    for (const proxyUrl of proxyUrls) {
-      try {
-        const res = await fetch(proxyUrl);
-        if (res.ok) {
-          response = res;
-          break;
-        }
-      } catch {
-        continue;
-      }
-    }
-    
-    if (response) {
+    if (response.ok) {
       const data = await response.json();
-      const encryptedId = data.country || data.id || data;
       
-      let countryId: number;
-      if (typeof encryptedId === 'string') {
-        countryId = decryptCountryId(encryptedId);
-      } else {
-        countryId = parseInt(encryptedId, 10);
-      }
-      
-      const country = await getCountryById(countryId);
-      if (country) {
+      // Check if it's today's answer and has complete country data
+      if (data.date === date && data.country) {
         return {
           success: true,
+          date: data.date,
+          gameNumber: data.gameNumber,
+          country: data.country as CountryData,
+        };
+      }
+      
+      // If date doesn't match, the answer is stale
+      if (data.date !== date) {
+        return {
+          success: false,
           date,
           gameNumber,
-          country,
+          country: null,
+          error: 'Answer data is outdated. Please refresh.',
         };
       }
     }
     
-    // Fallback - use game number to select a consistent country for the day
-    const countries = await loadCountries();
-    const fallbackIndex = gameNumber % countries.length;
-    const fallbackCountry = countries[fallbackIndex];
-    
+    // Fallback if todays-answer.json fails
     return {
-      success: true,
+      success: false,
       date,
       gameNumber,
-      country: fallbackCountry || null,
-      error: 'Using fallback data',
+      country: null,
+      error: 'Failed to load today\'s answer',
     };
   } catch (error) {
     console.error('Error fetching today country:', error);
-    
-    // Final fallback
-    const countries = await loadCountries();
-    const fallbackIndex = gameNumber % countries.length;
-    const fallbackCountry = countries[fallbackIndex];
-    
     return {
-      success: true,
+      success: false,
       date,
       gameNumber,
-      country: fallbackCountry || null,
-      error: 'Using fallback data',
+      country: null,
+      error: 'Failed to connect',
     };
   }
 }

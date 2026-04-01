@@ -44,21 +44,32 @@ export interface CountryData {
   mapsUrl?: string;
 }
 
+// Base path for static files (matches Next.js basePath)
+const BASE_PATH = '/countryle-helper';
+
 // Load countries from static JSON
 let countriesCache: CountryData[] | null = null;
+let countriesPromise: Promise<CountryData[]> | null = null;
 
 async function loadCountries(): Promise<CountryData[]> {
   if (countriesCache) return countriesCache;
+  if (countriesPromise) return countriesPromise;
   
-  try {
-    const response = await fetch('/countries.json');
-    const data = await response.json();
-    countriesCache = (data.countries || []) as CountryData[];
-    return countriesCache;
-  } catch (error) {
-    console.error('Failed to load countries:', error);
-    return [];
-  }
+  countriesPromise = (async () => {
+    try {
+      const response = await fetch(`${BASE_PATH}/countries.json`);
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const data = await response.json();
+      countriesCache = (data.countries || []) as CountryData[];
+      console.log('Countries loaded:', countriesCache.length);
+      return countriesCache;
+    } catch (error) {
+      console.error('Failed to load countries:', error);
+      return [];
+    }
+  })();
+  
+  return countriesPromise;
 }
 
 // Fetch today's country - try pre-computed answer first, then API
@@ -74,9 +85,10 @@ export async function fetchTodayCountry(): Promise<{
   try {
     // First, try to load the pre-computed answer (updated by GitHub Actions daily)
     try {
-      const answerResponse = await fetch('/todays-answer.json');
+      const answerResponse = await fetch(`${BASE_PATH}/todays-answer.json`);
       if (answerResponse.ok) {
         const answerData = await answerResponse.json();
+        console.log('Answer loaded:', answerData.countryName);
         
         // Check if the answer is for today
         if (answerData.date === date && answerData.countryId) {

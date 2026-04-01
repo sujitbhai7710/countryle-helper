@@ -33,7 +33,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Fetch today's Country and Capitale answers
+      - name: Fetch today's Country answer
         run: |
           node -e "
           const CryptoJS = require('crypto-js');
@@ -92,20 +92,9 @@ jobs:
             const { date, gameNumber } = getDateIST();
             console.log('Date:', date, 'Game #:', gameNumber);
 
-            // Load countries and capitals data
+            // Load countries data
             const countriesData = JSON.parse(fs.readFileSync('public/countries.json', 'utf8'));
             const countries = countriesData.countries || [];
-            
-            let capitalsData = { capitals: [] };
-            try {
-              const capitalsJson = fs.readFileSync('public/capitals.json', 'utf8');
-              // Handle escaped JSON string
-              const parsed = JSON.parse(capitalsJson);
-              capitalsData = typeof parsed === 'string' ? JSON.parse(parsed) : parsed;
-            } catch (e) {
-              console.log('Capitals file not found or invalid');
-            }
-            const capitals = capitalsData.capitals || [];
 
             // Fetch Country answer
             console.log('\\n=== Fetching Country answer ===');
@@ -143,63 +132,6 @@ jobs:
               }
             } catch (e) {
               console.error('Country fetch error:', e.message);
-            }
-
-            // Fetch Capitale answer
-            console.log('\\n=== Fetching Capitale answer ===');
-            const capitaleUrl = \`https://capitale.countryle.com/hidden-api/get-daily-capital-valid.php?date=\${date}\`;
-            
-            try {
-              const capitaleResponse = await fetchUrl(capitaleUrl);
-              if (capitaleResponse && capitaleResponse.capital) {
-                const capitalId = typeof capitaleResponse.capital === 'string' 
-                  ? decryptId(capitaleResponse.capital) 
-                  : parseInt(capitaleResponse.capital, 10);
-                console.log('Capital ID:', capitalId);
-                
-                const capital = capitals.find(c => c.id === capitalId);
-                if (capital) {
-                  const capitaleAnswer = {
-                    date,
-                    gameNumber: capitaleResponse.number || gameNumber,
-                    updated: new Date().toISOString(),
-                    capital: {
-                      id: capital.id,
-                      capital: capital.capital,
-                      country: capital.country,
-                      continent: capital.continent,
-                      population: capital.population,
-                      surface: capital.surface,
-                      avgTemperature: capital.avgTemperature,
-                      height: capital.height,
-                      coordinates: capital.coordinates,
-                      mapsUrl: capital.mapsUrl
-                    }
-                  };
-                  fs.writeFileSync('public/todays-capitale.json', JSON.stringify(capitaleAnswer, null, 2));
-                  console.log('Saved Capitale answer:', capital.capital, '-', capital.country);
-                }
-              } else {
-                console.log('Capitale API returned null - game may not be active');
-                // Save empty placeholder to indicate we tried
-                fs.writeFileSync('public/todays-capitale.json', JSON.stringify({
-                  date,
-                  gameNumber,
-                  updated: new Date().toISOString(),
-                  unavailable: true,
-                  capital: null
-                }, null, 2));
-              }
-            } catch (e) {
-              console.error('Capitale fetch error:', e.message);
-              // Save error state
-              fs.writeFileSync('public/todays-capitale.json', JSON.stringify({
-                date,
-                gameNumber,
-                updated: new Date().toISOString(),
-                error: e.message,
-                capital: null
-              }, null, 2));
             }
 
             console.log('\\n=== Done ===');

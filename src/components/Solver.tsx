@@ -4,23 +4,29 @@ import { useState, useEffect, useRef } from 'react';
 import { 
   getAllCountries, 
   filterCountriesByHints,
-  calculateDistance,
+  getHemisphereDiff,
+  getContinentHit,
+  getTemperatureDiff,
+  getPopulationDiff,
   calculateDirection,
-  directionArrows,
+  directionLabels,
+  directionOptions,
   formatPopulation,
+  formatTemperature,
   type CountryData,
   type CountryHint,
-  type DiffType
+  type DiffType,
+  type DirectionType
 } from '@/lib/clientApi';
 
 // Color coding for diff types
-const diffColors: Record<DiffType, { bg: string; text: string; arrow: string }> = {
-  LESS: { bg: 'bg-blue-500/20', text: 'text-blue-400', arrow: '⬆️⬆️' },
-  LITTLE_LESS: { bg: 'bg-blue-500/10', text: 'text-blue-300', arrow: '⬆️' },
-  EQUAL: { bg: 'bg-green-500/20', text: 'text-green-400', arrow: '✓' },
-  LITTLE_MORE: { bg: 'bg-orange-500/10', text: 'text-orange-300', arrow: '⬇️' },
-  MORE: { bg: 'bg-orange-500/20', text: 'text-orange-400', arrow: '⬇️⬇️' },
-  DIFFERENT: { bg: 'bg-red-500/20', text: 'text-red-400', arrow: '✗' },
+const diffColors: Record<DiffType, { bg: string; text: string; arrow: string; label: string }> = {
+  LESS: { bg: 'bg-red-500/20', text: 'text-red-400', arrow: '⬇️', label: 'Much less' },
+  LITTLE_LESS: { bg: 'bg-orange-500/20', text: 'text-orange-400', arrow: '⬇️', label: 'A bit less' },
+  EQUAL: { bg: 'bg-green-500/20', text: 'text-green-400', arrow: '✓', label: 'Equal' },
+  LITTLE_MORE: { bg: 'bg-orange-500/20', text: 'text-orange-400', arrow: '⬆️', label: 'A bit more' },
+  MORE: { bg: 'bg-red-500/20', text: 'text-red-400', arrow: '⬆️', label: 'Much more' },
+  DIFFERENT: { bg: 'bg-red-500/20', text: 'text-red-400', arrow: '✗', label: 'Different' },
 };
 
 export default function Solver() {
@@ -31,17 +37,14 @@ export default function Solver() {
   // Form state
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCountry, setSelectedCountry] = useState<CountryData | null>(null);
-  const [distance, setDistance] = useState('');
-  const [direction, setDirection] = useState('N');
   const [showDropdown, setShowDropdown] = useState(false);
   
-  // Extended hints
-  const [populationDiff, setPopulationDiff] = useState<DiffType | ''>('');
-  const [temperatureDiff, setTemperatureDiff] = useState<DiffType | ''>('');
-  const [surfaceDiff, setSurfaceDiff] = useState<DiffType | ''>('');
-  const [hemisphereDiff, setHemisphereDiff] = useState<DiffType | ''>('');
-  const [continentHit, setContinentHit] = useState<boolean | ''>('');
-  const [showExtended, setShowExtended] = useState(false);
+  // The 5 Countryle hints
+  const [hemisphereDiff, setHemisphereDiff] = useState<DiffType>('EQUAL');
+  const [continentHit, setContinentHit] = useState<boolean>(true);
+  const [avgTemperatureDiff, setAvgTemperatureDiff] = useState<DiffType>('EQUAL');
+  const [populationDiff, setPopulationDiff] = useState<DiffType>('EQUAL');
+  const [coordinatesDiff, setCoordinatesDiff] = useState<DirectionType>('N');
   
   // Results
   const [filteredResults, setFilteredResults] = useState<{ country: CountryData; score: number }[]>([]);
@@ -85,18 +88,16 @@ export default function Solver() {
     .slice(0, 8);
 
   function addHint() {
-    if (!selectedCountry || !distance) return;
+    if (!selectedCountry) return;
     
     const newHint: CountryHint = {
       id: Date.now().toString(),
       country: selectedCountry,
-      distance: parseInt(distance),
-      direction,
-      populationDiff: populationDiff || undefined,
-      avgTemperatureDiff: temperatureDiff || undefined,
-      surfaceDiff: surfaceDiff || undefined,
-      hemisphereDiff: hemisphereDiff || undefined,
-      continentHit: continentHit === '' ? undefined : continentHit,
+      hemisphereDiff,
+      continentHit,
+      avgTemperatureDiff,
+      populationDiff,
+      coordinatesDiff,
     };
     
     setHints(prev => [...prev, newHint]);
@@ -104,13 +105,11 @@ export default function Solver() {
     // Reset form
     setSearchTerm('');
     setSelectedCountry(null);
-    setDistance('');
-    setDirection('N');
-    setPopulationDiff('');
-    setTemperatureDiff('');
-    setSurfaceDiff('');
-    setHemisphereDiff('');
-    setContinentHit('');
+    setHemisphereDiff('EQUAL');
+    setContinentHit(true);
+    setAvgTemperatureDiff('EQUAL');
+    setPopulationDiff('EQUAL');
+    setCoordinatesDiff('N');
     setShowDropdown(false);
   }
 
@@ -122,14 +121,11 @@ export default function Solver() {
     setHints([]);
     setSearchTerm('');
     setSelectedCountry(null);
-    setDistance('');
-    setDirection('N');
-    setPopulationDiff('');
-    setTemperatureDiff('');
-    setSurfaceDiff('');
-    setHemisphereDiff('');
-    setContinentHit('');
-    setShowExtended(false);
+    setHemisphereDiff('EQUAL');
+    setContinentHit(true);
+    setAvgTemperatureDiff('EQUAL');
+    setPopulationDiff('EQUAL');
+    setCoordinatesDiff('N');
   }
 
   if (loading) {
@@ -194,145 +190,173 @@ export default function Solver() {
             </div>
           </div>
 
-          {/* Distance and Direction */}
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">
-                Distance (km)
-              </label>
-              <input
-                type="number"
-                value={distance}
-                onChange={(e) => setDistance(e.target.value)}
-                placeholder="e.g. 1383"
-                className="w-full bg-slate-700 text-white rounded-xl px-4 py-3 border border-slate-600 focus:border-emerald-500 focus:outline-none placeholder-slate-400"
-              />
+          {/* Show country info when selected */}
+          {selectedCountry && (
+            <div className="bg-slate-700/30 rounded-xl p-4 text-sm">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                <div>
+                  <span className="text-slate-400">Continent:</span>
+                  <span className="ml-2 text-white">{selectedCountry.continent}</span>
+                </div>
+                <div>
+                  <span className="text-slate-400">Hemisphere:</span>
+                  <span className="ml-2 text-white">{selectedCountry.hemisphere}</span>
+                </div>
+                <div>
+                  <span className="text-slate-400">Temperature:</span>
+                  <span className="ml-2 text-white">{formatTemperature(selectedCountry.avgTemperature)}</span>
+                </div>
+                <div>
+                  <span className="text-slate-400">Population:</span>
+                  <span className="ml-2 text-white">{formatPopulation(selectedCountry.population)}</span>
+                </div>
+                <div>
+                  <span className="text-slate-400">Surface:</span>
+                  <span className="ml-2 text-white">{selectedCountry.surface.toLocaleString()} km²</span>
+                </div>
+                <div>
+                  <span className="text-slate-400">Coordinates:</span>
+                  <span className="ml-2 text-white">{selectedCountry.coordinates}</span>
+                </div>
+              </div>
             </div>
-            <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">
-                Direction
-              </label>
-              <select
-                value={direction}
-                onChange={(e) => setDirection(e.target.value)}
-                className="w-full bg-slate-700 text-white rounded-xl px-4 py-3 border border-slate-600 focus:border-emerald-500 focus:outline-none"
-              >
-                {Object.entries(directionArrows).map(([key, label]) => (
-                  <option key={key} value={key}>{label}</option>
-                ))}
-              </select>
-            </div>
-          </div>
+          )}
 
-          {/* Extended Hints Toggle */}
-          <button
-            onClick={() => setShowExtended(!showExtended)}
-            className="text-left text-sm text-slate-400 hover:text-white transition flex items-center gap-2"
-          >
-            {showExtended ? '▼' : '▶'} Additional clues (population, temperature, etc.)
-          </button>
-
-          {/* Extended Hints */}
-          {showExtended && (
-            <div className="grid gap-4 p-4 bg-slate-700/30 rounded-xl">
-              {/* Population */}
-              <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">
-                  Population {selectedCountry && <span className="text-slate-500">(yours: {formatPopulation(selectedCountry.population)})</span>}
-                </label>
-                <select
-                  value={populationDiff}
-                  onChange={(e) => setPopulationDiff(e.target.value as DiffType | '')}
-                  className="w-full bg-slate-700 text-white rounded-lg px-3 py-2 border border-slate-600 focus:border-emerald-500 focus:outline-none"
-                >
-                  <option value="">-- Not specified --</option>
-                  <option value="LESS">⬆️⬆️ Much smaller (blue)</option>
-                  <option value="LITTLE_LESS">⬆️ A bit smaller (light blue)</option>
-                  <option value="EQUAL">✓ Equal (green)</option>
-                  <option value="LITTLE_MORE">⬇️ A bit larger (light orange)</option>
-                  <option value="MORE">⬇️⬇️ Much larger (orange)</option>
-                </select>
-              </div>
-
-              {/* Temperature */}
-              <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">
-                  Avg. Temperature {selectedCountry && <span className="text-slate-500">(yours: {selectedCountry.avgTemperature.toFixed(1)}°C)</span>}
-                </label>
-                <select
-                  value={temperatureDiff}
-                  onChange={(e) => setTemperatureDiff(e.target.value as DiffType | '')}
-                  className="w-full bg-slate-700 text-white rounded-lg px-3 py-2 border border-slate-600 focus:border-emerald-500 focus:outline-none"
-                >
-                  <option value="">-- Not specified --</option>
-                  <option value="LESS">⬆️⬆️ Much colder</option>
-                  <option value="LITTLE_LESS">⬆️ A bit colder</option>
-                  <option value="EQUAL">✓ Equal</option>
-                  <option value="LITTLE_MORE">⬇️ A bit warmer</option>
-                  <option value="MORE">⬇️⬇️ Much warmer</option>
-                </select>
-              </div>
-
-              {/* Surface */}
-              <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">
-                  Surface Area {selectedCountry && <span className="text-slate-500">(yours: {selectedCountry.surface.toLocaleString()} km²)</span>}
-                </label>
-                <select
-                  value={surfaceDiff}
-                  onChange={(e) => setSurfaceDiff(e.target.value as DiffType | '')}
-                  className="w-full bg-slate-700 text-white rounded-lg px-3 py-2 border border-slate-600 focus:border-emerald-500 focus:outline-none"
-                >
-                  <option value="">-- Not specified --</option>
-                  <option value="LESS">⬆️⬆️ Much smaller</option>
-                  <option value="LITTLE_LESS">⬆️ A bit smaller</option>
-                  <option value="EQUAL">✓ Equal</option>
-                  <option value="LITTLE_MORE">⬇️ A bit larger</option>
-                  <option value="MORE">⬇️⬇️ Much larger</option>
-                </select>
-              </div>
-
+          {/* The 5 Countryle Hints */}
+          <div className="border-t border-slate-700 pt-4 mt-2">
+            <h3 className="text-white font-medium mb-4">Enter hints from Countryle:</h3>
+            
+            <div className="grid md:grid-cols-2 gap-4">
               {/* Hemisphere */}
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2">
-                  Hemisphere {selectedCountry && <span className="text-slate-500">(yours: {selectedCountry.hemisphere})</span>}
+                  Hemisphere {selectedCountry && <span className="text-slate-500">({selectedCountry.hemisphere})</span>}
                 </label>
-                <select
-                  value={hemisphereDiff}
-                  onChange={(e) => setHemisphereDiff(e.target.value as DiffType | '')}
-                  className="w-full bg-slate-700 text-white rounded-lg px-3 py-2 border border-slate-600 focus:border-emerald-500 focus:outline-none"
-                >
-                  <option value="">-- Not specified --</option>
-                  <option value="EQUAL">✓ Same</option>
-                  <option value="DIFFERENT">✗ Different</option>
-                </select>
+                <div className="flex gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setHemisphereDiff('EQUAL')}
+                    className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition ${
+                      hemisphereDiff === 'EQUAL' 
+                        ? 'bg-green-500/30 text-green-400 border border-green-500' 
+                        : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                    }`}
+                  >
+                    🟢 Same
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setHemisphereDiff('DIFFERENT')}
+                    className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition ${
+                      hemisphereDiff === 'DIFFERENT' 
+                        ? 'bg-red-500/30 text-red-400 border border-red-500' 
+                        : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                    }`}
+                  >
+                    🔴 Different
+                  </button>
+                </div>
               </div>
 
               {/* Continent */}
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2">
-                  Continent {selectedCountry && <span className="text-slate-500">(yours: {selectedCountry.continent})</span>}
+                  Continent {selectedCountry && <span className="text-slate-500">({selectedCountry.continent})</span>}
+                </label>
+                <div className="flex gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setContinentHit(true)}
+                    className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition ${
+                      continentHit === true 
+                        ? 'bg-green-500/30 text-green-400 border border-green-500' 
+                        : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                    }`}
+                  >
+                    🟢 Same
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setContinentHit(false)}
+                    className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition ${
+                      continentHit === false 
+                        ? 'bg-red-500/30 text-red-400 border border-red-500' 
+                        : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                    }`}
+                  >
+                    🔴 Different
+                  </button>
+                </div>
+              </div>
+
+              {/* Temperature */}
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">
+                  Avg. Temperature {selectedCountry && <span className="text-slate-500">({formatTemperature(selectedCountry.avgTemperature)})</span>}
                 </label>
                 <select
-                  value={continentHit === '' ? '' : continentHit ? 'true' : 'false'}
-                  onChange={(e) => setContinentHit(e.target.value === '' ? '' : e.target.value === 'true')}
+                  value={avgTemperatureDiff}
+                  onChange={(e) => setAvgTemperatureDiff(e.target.value as DiffType)}
                   className="w-full bg-slate-700 text-white rounded-lg px-3 py-2 border border-slate-600 focus:border-emerald-500 focus:outline-none"
                 >
-                  <option value="">-- Not specified --</option>
-                  <option value="true">✓ Same continent (green)</option>
-                  <option value="false">✗ Different continent (red)</option>
+                  <option value="MORE">⬆️ Much hotter (red)</option>
+                  <option value="LITTLE_MORE">⬆️ A bit hotter (orange)</option>
+                  <option value="EQUAL">✓ Same (green)</option>
+                  <option value="LITTLE_LESS">⬇️ A bit colder (orange)</option>
+                  <option value="LESS">⬇️ Much colder (red)</option>
                 </select>
               </div>
+
+              {/* Population */}
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">
+                  Population {selectedCountry && <span className="text-slate-500">({formatPopulation(selectedCountry.population)})</span>}
+                </label>
+                <select
+                  value={populationDiff}
+                  onChange={(e) => setPopulationDiff(e.target.value as DiffType)}
+                  className="w-full bg-slate-700 text-white rounded-lg px-3 py-2 border border-slate-600 focus:border-emerald-500 focus:outline-none"
+                >
+                  <option value="MORE">⬆️ Much larger (red)</option>
+                  <option value="LITTLE_MORE">⬆️ A bit larger (orange)</option>
+                  <option value="EQUAL">✓ Same (green)</option>
+                  <option value="LITTLE_LESS">⬇️ A bit smaller (orange)</option>
+                  <option value="LESS">⬇️ Much smaller (red)</option>
+                </select>
+              </div>
+
+              {/* Coordinates Direction */}
+              <div className="md:col-span-2">
+                <label className="block text-sm font-medium text-slate-300 mb-2">
+                  Direction to Target {selectedCountry && <span className="text-slate-500">({selectedCountry.coordinates})</span>}
+                </label>
+                <div className="grid grid-cols-4 md:grid-cols-8 gap-2">
+                  {directionOptions.map((dir) => (
+                    <button
+                      key={dir}
+                      type="button"
+                      onClick={() => setCoordinatesDiff(dir)}
+                      className={`py-2 px-2 rounded-lg text-sm font-medium transition ${
+                        coordinatesDiff === dir 
+                          ? 'bg-blue-500/30 text-blue-400 border border-blue-500' 
+                          : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                      }`}
+                    >
+                      {directionLabels[dir]}
+                    </button>
+                  ))}
+                </div>
+              </div>
             </div>
-          )}
+          </div>
 
           {/* Buttons */}
           <div className="flex gap-3">
             <button
               onClick={addHint}
-              disabled={!selectedCountry || !distance}
+              disabled={!selectedCountry}
               className={`flex-1 py-3 rounded-xl font-semibold transition-all ${
-                selectedCountry && distance
+                selectedCountry
                   ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white hover:shadow-lg hover:shadow-emerald-500/25'
                   : 'bg-slate-600 text-slate-400 cursor-not-allowed'
               }`}
@@ -380,34 +404,21 @@ export default function Solver() {
                     </button>
                   </div>
                   <div className="flex flex-wrap gap-2 text-xs">
-                    <span className="px-2 py-1 bg-slate-600/50 rounded">
-                      {hint.distance}km {directionArrows[hint.direction]}
+                    <span className={`px-2 py-1 rounded ${hint.hemisphereDiff === 'EQUAL' ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'}`}>
+                      Hem: {hint.hemisphereDiff === 'EQUAL' ? '✓' : '✗'}
                     </span>
-                    {hint.populationDiff && (
-                      <span className={`px-2 py-1 rounded ${diffColors[hint.populationDiff].bg} ${diffColors[hint.populationDiff].text}`}>
-                        Pop: {diffColors[hint.populationDiff].arrow}
-                      </span>
-                    )}
-                    {hint.avgTemperatureDiff && (
-                      <span className={`px-2 py-1 rounded ${diffColors[hint.avgTemperatureDiff].bg} ${diffColors[hint.avgTemperatureDiff].text}`}>
-                        Temp: {diffColors[hint.avgTemperatureDiff].arrow}
-                      </span>
-                    )}
-                    {hint.surfaceDiff && (
-                      <span className={`px-2 py-1 rounded ${diffColors[hint.surfaceDiff].bg} ${diffColors[hint.surfaceDiff].text}`}>
-                        Area: {diffColors[hint.surfaceDiff].arrow}
-                      </span>
-                    )}
-                    {hint.hemisphereDiff && (
-                      <span className={`px-2 py-1 rounded ${diffColors[hint.hemisphereDiff].bg} ${diffColors[hint.hemisphereDiff].text}`}>
-                        Hem: {diffColors[hint.hemisphereDiff].arrow}
-                      </span>
-                    )}
-                    {hint.continentHit !== undefined && (
-                      <span className={`px-2 py-1 rounded ${hint.continentHit ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'}`}>
-                        Cont: {hint.continentHit ? '✓' : '✗'}
-                      </span>
-                    )}
+                    <span className={`px-2 py-1 rounded ${hint.continentHit ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'}`}>
+                      Cont: {hint.continentHit ? '✓' : '✗'}
+                    </span>
+                    <span className={`px-2 py-1 rounded ${diffColors[hint.avgTemperatureDiff].bg} ${diffColors[hint.avgTemperatureDiff].text}`}>
+                      Temp: {diffColors[hint.avgTemperatureDiff].arrow}
+                    </span>
+                    <span className={`px-2 py-1 rounded ${diffColors[hint.populationDiff].bg} ${diffColors[hint.populationDiff].text}`}>
+                      Pop: {diffColors[hint.populationDiff].arrow}
+                    </span>
+                    <span className="px-2 py-1 rounded bg-blue-500/20 text-blue-400">
+                      Dir: {directionLabels[hint.coordinatesDiff]}
+                    </span>
                   </div>
                 </div>
               ))}
@@ -459,10 +470,18 @@ export default function Solver() {
         <h4 className="text-white font-semibold mb-3">How to Use This Solver</h4>
         <ol className="text-slate-400 text-sm space-y-2 list-decimal list-inside">
           <li>Make a guess in the actual Countryle game</li>
-          <li>Enter the country you guessed, the distance (km), and direction arrow</li>
-          <li>Click &quot;Additional clues&quot; to add population, temperature, etc. hints</li>
-          <li>Use the color coding: 🟢 Green = equal, 🔵 Blue = smaller, 🟠 Orange = larger</li>
+          <li>Select the country you guessed from the dropdown</li>
+          <li>Enter the 5 hints shown by Countryle:
+            <ul className="list-disc list-inside ml-4 mt-1 text-slate-500">
+              <li><strong>Hemisphere:</strong> 🟢 Same or 🔴 Different</li>
+              <li><strong>Continent:</strong> 🟢 Same or 🔴 Different</li>
+              <li><strong>Temperature:</strong> ⬆️ Hotter or ⬇️ Colder</li>
+              <li><strong>Population:</strong> ⬆️ Larger or ⬇️ Smaller</li>
+              <li><strong>Direction:</strong> The compass direction to the target</li>
+            </ul>
+          </li>
           <li>Click &quot;Add Clue&quot; to filter - matching countries appear on the right</li>
+          <li>Repeat with more guesses to narrow down the answer</li>
         </ol>
       </div>
     </div>

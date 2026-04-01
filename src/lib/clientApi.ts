@@ -21,6 +21,7 @@ export interface CountryData {
   rankingFifa?: number;
   footballMatches?: number;
   mapsUrl?: string;
+  density?: number;
 }
 
 // Cached countries data
@@ -107,72 +108,118 @@ export async function getAllCountries(): Promise<CountryData[]> {
 
 // ========== COMPARISON LOGIC (Matches Countryle exactly) ==========
 
-// Difference types
+// Difference types - matches Countryle's L1 enum
 export type DiffType = 'LESS' | 'LITTLE_LESS' | 'EQUAL' | 'LITTLE_MORE' | 'MORE' | 'DIFFERENT';
 
-// Get percentage difference (for population, temperature, surface, PIB, co2, coastline, altitude)
-// Thresholds: closeThreshold=5%, farThreshold=15%
-export function getPercentageDiff(guessedValue: number, targetValue: number, closeThreshold = 5, farThreshold = 15): DiffType {
-  const lowerClose = targetValue * (1 - closeThreshold / 100);
-  const upperClose = targetValue * (1 + closeThreshold / 100);
-  const lowerFar = targetValue * (1 - farThreshold / 100);
-  const upperFar = targetValue * (1 + farThreshold / 100);
-  
-  if (guessedValue > upperFar) return 'LESS';       // Guessed much more than target
-  if (guessedValue > upperClose) return 'LITTLE_LESS'; // Guessed a bit more
-  if (guessedValue < lowerFar) return 'MORE';       // Guessed much less
-  if (guessedValue < lowerClose) return 'LITTLE_MORE'; // Guessed a bit less
+// Coordinate direction type
+export type DirectionType = 'N' | 'NE' | 'E' | 'SE' | 'S' | 'SW' | 'W' | 'NW' | 'EQUAL';
+
+// Temperature difference - EXACT Countryle formula
+// getTemperatureDiff(e,i){
+//   return Number(e)-Number(i)>3?L1.LESS:      // guessed hotter -> target is colder
+//         Number(e)-Number(i)>1?L1.LITTLE_LESS:
+//         Number(i)-Number(e)>3?L1.MORE:       // guessed colder -> target is hotter
+//         Number(i)-Number(e)>1?L1.LITTLE_MORE:
+//         L1.EQUAL
+// }
+export function getTemperatureDiff(guessedTemp: number, targetTemp: number): DiffType {
+  const diff = guessedTemp - targetTemp;
+  if (diff > 3) return 'LESS';        // Guessed hotter → target is colder (show down arrow)
+  if (diff > 1) return 'LITTLE_LESS';
+  if (-diff > 3) return 'MORE';       // Guessed colder → target is hotter (show up arrow)
+  if (-diff > 1) return 'LITTLE_MORE';
   return 'EQUAL';
 }
 
-// Get number difference (for renewable energy, FIFA ranking, football matches)
-export function getNumberDiff(guessedValue: number, targetValue: number, closeThreshold: number, farThreshold: number): DiffType {
-  if (guessedValue > targetValue + farThreshold) return 'LESS';
-  if (guessedValue > targetValue + closeThreshold) return 'LITTLE_LESS';
-  if (guessedValue < targetValue - farThreshold) return 'MORE';
-  if (guessedValue < targetValue - closeThreshold) return 'LITTLE_MORE';
+// Population difference - EXACT Countryle formula (percentage-based)
+// getPercentageDiff(e,i,r,a) with r=5 (closeThreshold), a=15 (farThreshold)
+export function getPopulationDiff(guessedPop: number, targetPop: number): DiffType {
+  const closeThreshold = 5;
+  const farThreshold = 15;
+  
+  const lowerClose = targetPop * (1 - closeThreshold / 100);
+  const upperClose = targetPop * (1 + closeThreshold / 100);
+  const lowerFar = targetPop * (1 - farThreshold / 100);
+  const upperFar = targetPop * (1 + farThreshold / 100);
+  
+  if (guessedPop > upperFar) return 'LESS';        // Guessed more pop → target has less
+  if (guessedPop > upperClose) return 'LITTLE_LESS';
+  if (guessedPop < lowerFar) return 'MORE';        // Guessed less pop → target has more
+  if (guessedPop < lowerClose) return 'LITTLE_MORE';
   return 'EQUAL';
 }
 
-// Calculate distance between two coordinates using Haversine formula
-export function calculateDistance(coord1: string, coord2: string): number {
-  const [lat1, lon1] = coord1.split(',').map(Number);
-  const [lat2, lon2] = coord2.split(',').map(Number);
+// Surface area difference - same formula as population (percentage-based)
+export function getSurfaceDiff(guessedSurface: number, targetSurface: number): DiffType {
+  const closeThreshold = 5;
+  const farThreshold = 15;
   
-  const R = 6371; // Earth's radius in km
-  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const lowerClose = targetSurface * (1 - closeThreshold / 100);
+  const upperClose = targetSurface * (1 + closeThreshold / 100);
+  const lowerFar = targetSurface * (1 - farThreshold / 100);
+  const upperFar = targetSurface * (1 + farThreshold / 100);
+  
+  if (guessedSurface > upperFar) return 'LESS';
+  if (guessedSurface > upperClose) return 'LITTLE_LESS';
+  if (guessedSurface < lowerFar) return 'MORE';
+  if (guessedSurface < lowerClose) return 'LITTLE_MORE';
+  return 'EQUAL';
+}
+
+// Rhumb line bearing calculation - EXACT Countryle formula
+// Used to calculate direction from one coordinate to another
+export function getRhumbLineBearing(lat1: number, lon1: number, lat2: number, lon2: number): number {
   const dLon = (lon2 - lon1) * Math.PI / 180;
-  const a = 
-    Math.sin(dLat/2) * Math.sin(dLat/2) +
-    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * 
-    Math.sin(dLon/2) * Math.sin(dLon/2);
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-  return Math.round(R * c);
+  const lat1Rad = lat1 * Math.PI / 180;
+  const lat2Rad = lat2 * Math.PI / 180;
+  
+  const dPhi = Math.log(Math.tan(Math.PI / 4 + lat2Rad / 2) / Math.tan(Math.PI / 4 + lat1Rad / 2));
+  
+  let bearing = Math.atan2(dLon, dPhi) * 180 / Math.PI;
+  bearing = (bearing + 360) % 360; // Normalize to 0-360
+  
+  return bearing;
 }
 
-// Calculate direction from one coordinate to another (rhumb line bearing)
-export function calculateDirection(coord1: string, coord2: string): string {
+// Direction from bearing - EXACT Countryle formula
+// getCoordinatesDiff uses bearing ranges
+export function getDirectionFromBearing(bearing: number, sameCoords: boolean = false): DirectionType {
+  if (sameCoords) return 'EQUAL';
+  
+  if (bearing >= 337.5 || bearing < 22.5) return 'N';
+  if (bearing >= 22.5 && bearing < 67.5) return 'NE';
+  if (bearing >= 67.5 && bearing < 112.5) return 'E';
+  if (bearing >= 112.5 && bearing < 157.5) return 'SE';
+  if (bearing >= 157.5 && bearing < 202.5) return 'S';
+  if (bearing >= 202.5 && bearing < 247.5) return 'SW';
+  if (bearing >= 247.5 && bearing < 292.5) return 'W';
+  if (bearing >= 292.5 && bearing < 337.5) return 'NW';
+  return 'EQUAL';
+}
+
+// Calculate direction from one country to another
+export function calculateDirection(coord1: string, coord2: string): DirectionType {
   const [lat1, lon1] = coord1.split(',').map(Number);
   const [lat2, lon2] = coord2.split(',').map(Number);
   
-  const dLat = lat2 - lat1;
-  const dLon = lon2 - lon1;
+  if (lat1 === lat2 && lon1 === lon2) return 'EQUAL';
   
-  const angle = Math.atan2(dLon, dLat) * 180 / Math.PI;
-  
-  if (angle >= -22.5 && angle < 22.5) return 'N';
-  if (angle >= 22.5 && angle < 67.5) return 'NE';
-  if (angle >= 67.5 && angle < 112.5) return 'E';
-  if (angle >= 112.5 && angle < 157.5) return 'SE';
-  if (angle >= 157.5 || angle < -157.5) return 'S';
-  if (angle >= -157.5 && angle < -112.5) return 'SW';
-  if (angle >= -112.5 && angle < -67.5) return 'W';
-  if (angle >= -67.5 && angle < -22.5) return 'NW';
-  return 'N';
+  const bearing = getRhumbLineBearing(lat1, lon1, lat2, lon2);
+  return getDirectionFromBearing(bearing);
 }
 
-// Direction arrow mapping
-export const directionArrows: Record<string, string> = {
+// Hemisphere difference
+export function getHemisphereDiff(guessed: string, target: string): DiffType {
+  return guessed === target ? 'EQUAL' : 'DIFFERENT';
+}
+
+// Continent match
+export function getContinentHit(guessed: string, target: string): boolean {
+  return guessed === target;
+}
+
+// Direction display mapping
+export const directionLabels: Record<DirectionType, string> = {
   'N': '⬆️ N',
   'NE': '↗️ NE',
   'E': '➡️ E',
@@ -181,21 +228,22 @@ export const directionArrows: Record<string, string> = {
   'SW': '↙️ SW',
   'W': '⬅️ W',
   'NW': '↖️ NW',
+  'EQUAL': '🎯',
 };
+
+export const directionOptions: DirectionType[] = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
 
 // ========== HINT TYPES ==========
 
 export interface CountryHint {
   id: string;
   country: CountryData;
-  distance: number;
-  direction: string;
-  // Difference hints
-  populationDiff?: DiffType;
-  avgTemperatureDiff?: DiffType;
-  surfaceDiff?: DiffType;
-  hemisphereDiff?: DiffType;
-  continentHit?: boolean;
+  // The 5 main Countryle hints
+  hemisphereDiff: DiffType;      // EQUAL or DIFFERENT
+  continentHit: boolean;          // true or false
+  avgTemperatureDiff: DiffType;  // MORE, LITTLE_MORE, EQUAL, LITTLE_LESS, LESS
+  populationDiff: DiffType;       // MORE, LITTLE_MORE, EQUAL, LITTLE_LESS, LESS
+  coordinatesDiff: DirectionType; // N, NE, E, SE, S, SW, W, NW, EQUAL
 }
 
 // ========== FILTERING LOGIC ==========
@@ -216,87 +264,51 @@ export function filterCountriesByHints(
 
     for (const hint of hints) {
       let hintScore = 0;
-      
-      // Check distance (allow 15% tolerance)
-      const actualDistance = calculateDistance(hint.country.coordinates, candidate.coordinates);
-      const distanceTolerance = hint.distance * 0.15;
-      const distanceDiff = Math.abs(actualDistance - hint.distance);
-      const distanceMatch = distanceDiff <= distanceTolerance;
 
-      // Check direction (allow adjacent directions)
-      const actualDirection = calculateDirection(hint.country.coordinates, candidate.coordinates);
-      const directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
-      const hintDirIndex = directions.indexOf(hint.direction);
-      const actualDirIndex = directions.indexOf(actualDirection);
-      const dirDiff = Math.min(
-        Math.abs(hintDirIndex - actualDirIndex),
-        8 - Math.abs(hintDirIndex - actualDirIndex)
-      );
-      const directionMatch = dirDiff <= 1;
-
-      // If we only have distance/direction
-      if (!hint.populationDiff && !hint.avgTemperatureDiff) {
-        if (!distanceMatch && !directionMatch) {
-          matchesAll = false;
-          break;
-        }
-        if (distanceMatch) hintScore += 50;
-        if (directionMatch) hintScore += 50;
-      } else {
-        // Check population diff
-        if (hint.populationDiff) {
-          const expectedDiff = getPercentageDiff(hint.country.population, candidate.population);
-          if (expectedDiff !== hint.populationDiff) {
-            matchesAll = false;
-            break;
-          }
-          hintScore += 20;
-        }
-
-        // Check temperature diff
-        if (hint.avgTemperatureDiff) {
-          const expectedDiff = getPercentageDiff(hint.country.avgTemperature, candidate.avgTemperature);
-          if (expectedDiff !== hint.avgTemperatureDiff) {
-            matchesAll = false;
-            break;
-          }
-          hintScore += 20;
-        }
-
-        // Check surface diff
-        if (hint.surfaceDiff) {
-          const expectedDiff = getPercentageDiff(hint.country.surface, candidate.surface);
-          if (expectedDiff !== hint.surfaceDiff) {
-            matchesAll = false;
-            break;
-          }
-          hintScore += 15;
-        }
-
-        // Check hemisphere
-        if (hint.hemisphereDiff) {
-          const expectedDiff = hint.country.hemisphere === candidate.hemisphere ? 'EQUAL' : 'DIFFERENT';
-          if (expectedDiff !== hint.hemisphereDiff) {
-            matchesAll = false;
-            break;
-          }
-          hintScore += 10;
-        }
-
-        // Check continent
-        if (hint.continentHit !== undefined) {
-          const hit = hint.country.continent === candidate.continent;
-          if (hit !== hint.continentHit) {
-            matchesAll = false;
-            break;
-          }
-          hintScore += 15;
-        }
-
-        // Distance and direction
-        if (distanceMatch) hintScore += 10;
-        if (directionMatch) hintScore += 10;
+      // 1. Check hemisphere (must match exactly)
+      const expectedHemDiff = getHemisphereDiff(hint.country.hemisphere, candidate.hemisphere);
+      if (expectedHemDiff !== hint.hemisphereDiff) {
+        matchesAll = false;
+        break;
       }
+      hintScore += 20;
+
+      // 2. Check continent (must match exactly)
+      const expectedContHit = getContinentHit(hint.country.continent, candidate.continent);
+      if (expectedContHit !== hint.continentHit) {
+        matchesAll = false;
+        break;
+      }
+      hintScore += 20;
+
+      // 3. Check temperature (must match exactly)
+      const expectedTempDiff = getTemperatureDiff(hint.country.avgTemperature, candidate.avgTemperature);
+      if (expectedTempDiff !== hint.avgTemperatureDiff) {
+        matchesAll = false;
+        break;
+      }
+      hintScore += 20;
+
+      // 4. Check population (must match exactly)
+      const expectedPopDiff = getPopulationDiff(hint.country.population, candidate.population);
+      if (expectedPopDiff !== hint.populationDiff) {
+        matchesAll = false;
+        break;
+      }
+      hintScore += 20;
+
+      // 5. Check direction (allow adjacent directions for some tolerance)
+      const expectedDir = calculateDirection(hint.country.coordinates, candidate.coordinates);
+      const directions: DirectionType[] = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+      const hintIdx = directions.indexOf(hint.coordinatesDiff);
+      const actualIdx = directions.indexOf(expectedDir);
+      const dirDiff = Math.min(Math.abs(hintIdx - actualIdx), 8 - Math.abs(hintIdx - actualIdx));
+      
+      if (dirDiff > 1) { // Allow 1 step deviation (adjacent directions)
+        matchesAll = false;
+        break;
+      }
+      hintScore += dirDiff === 0 ? 20 : 10;
 
       totalScore += hintScore;
     }
@@ -315,4 +327,9 @@ export function formatPopulation(num: number): string {
   if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
   if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
   return num.toString();
+}
+
+// Format temperature
+export function formatTemperature(temp: number): string {
+  return `${temp.toFixed(1)}°C`;
 }

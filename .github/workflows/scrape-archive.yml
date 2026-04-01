@@ -1,0 +1,337 @@
+name: Scrape Archive & Update Daily
+
+on:
+  workflow_dispatch:
+    inputs:
+      full_scrape:
+        description: 'Run full archive scrape (true) or only update today (false)'
+        required: true
+        default: 'false'
+  schedule:
+    # Run daily at 18:30 UTC (12:00 AM IST)
+    - cron: '30 18 * * *'
+  push:
+    branches: ['master']
+    paths:
+      - 'src/**'
+      - 'public/**'
+      - '.github/workflows/scrape-archive.yml'
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
+
+jobs:
+  scrape-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Scrape Archive & Update Daily
+        run: |
+          node -e "
+          const CryptoJS = require('crypto-js');
+          const fs = require('fs');
+          const https = require('https');
+
+          const AES_KEY = '4%w!KpB+?FC<P9W*';
+
+          // ========== UTILITY FUNCTIONS ==========
+
+          function decryptId(encryptedId) {
+            try {
+              const bytes = CryptoJS.AES.decrypt(encryptedId, AES_KEY);
+              const decrypted = bytes.toString(CryptoJS.enc.Utf8);
+              return parseInt(decrypted, 10);
+            } catch (error) {
+              return -1;
+            }
+          }
+
+          function getDateFromGameNumber(gameNumber) {
+            // Game #1 was on 2022-11-15
+            const startDate = new Date('2022-11-15');
+            const targetDate = new Date(startDate.getTime() + (gameNumber - 1) * 24 * 60 * 60 * 1000);
+            return targetDate;
+          }
+
+          function getGameNumberFromDate(date) {
+            const startDate = new Date('2022-11-15');
+            const diffTime = date.getTime() - startDate.getTime();
+            const diffDays = Math.floor(diffTime / (24 * 60 * 60 * 1000));
+            return diffDays + 1;
+          }
+
+          function formatDateForAPI(date) {
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const year = date.getFullYear();
+            return \`\${day}/\${month}/\${year}\`;
+          }
+
+          function formatDateForDisplay(date) {
+            return date.toISOString().split('T')[0];
+          }
+
+          function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+          }
+
+          function fetchUrl(url) {
+            return new Promise((resolve, reject) => {
+              const timeout = setTimeout(() => {
+                reject(new Error('Request timeout'));
+              }, 15000);
+
+              https.get(url, (res) => {
+                let data = '';
+                res.on('data', chunk => data += chunk);
+                res.on('end', () => {
+                  clearTimeout(timeout);
+                  try {
+                    if (data && data !== 'null' && data !== '') {
+                      resolve(JSON.parse(data));
+                    } else {
+                      resolve(null);
+                    }
+                  } catch (e) {
+                    resolve(null);
+                  }
+                });
+              }).on('error', (err) => {
+                clearTimeout(timeout);
+                reject(err);
+              });
+            });
+          }
+
+          // ========== MAIN SCRAPING LOGIC ==========
+
+          async function main() {
+            console.log('========================================');
+            console.log('COUNTRYLE ARCHIVE SCRAPER');
+            console.log('========================================\\n');
+
+            // Load countries data
+            const countriesData = JSON.parse(fs.readFileSync('public/countries.json', 'utf8'));
+            const countries = countriesData.countries || [];
+            console.log(\`Loaded \${countries.length} countries\\n\`);
+
+            // Determine current game number
+            const today = new Date();
+            const todayIST = new Date(today.getTime() + 5.5 * 60 * 60 * 1000);
+            const currentGameNumber = getGameNumberFromDate(todayIST);
+            console.log(\`Current date (IST): \${formatDateForDisplay(todayIST)}\`);
+            console.log(\`Current game number: #\${currentGameNumber}\\n\`);
+
+            // Check if full scrape is needed
+            const fullScrape = process.env.FULL_SCRAPE === 'true';
+            console.log(\`Full scrape mode: \${fullScrape}\\n\`);
+
+            // Load existing archive or create new one
+            let archive = {};
+            const archivePath = 'public/archive.json';
+            
+            if (fs.existsSync(archivePath)) {
+              try {
+                archive = JSON.parse(fs.readFileSync(archivePath, 'utf8'));
+                console.log(\`Existing archive loaded with \${Object.keys(archive).length} entries\\n\`);
+              } catch (e) {
+                console.log('Creating new archive...\\n');
+                archive = {};
+              }
+            }
+
+            // Determine range to scrape
+            let startGame = 1;
+            let endGame = currentGameNumber;
+
+            if (!fullScrape) {
+              // Only scrape last 7 days + today if not full scrape
+              startGame = Math.max(1, currentGameNumber - 7);
+              console.log(\`Quick update: Scraping games #\${startGame} to #\${endGame}\\n\`);
+            } else {
+              // Full scrape - find missing games
+              console.log(\`Full scrape: Games #\${startGame} to #\${endGame}\\n\`);
+            }
+
+            // ========== SCRAPING LOOP ==========
+
+            let successCount = 0;
+            let failCount = 0;
+            let skippedCount = 0;
+            const totalGames = endGame - startGame + 1;
+            const startTime = Date.now();
+
+            for (let gameNum = startGame; gameNum <= endGame; gameNum++) {
+              const progress = ((gameNum - startGame + 1) / totalGames * 100).toFixed(1);
+              const date = getDateFromGameNumber(gameNum);
+              const dateStr = formatDateForAPI(date);
+              const displayDate = formatDateForDisplay(date);
+              const key = displayDate;
+
+              // Skip if already in archive and not forcing full scrape of that range
+              if (archive[key] && !fullScrape) {
+                skippedCount++;
+                continue;
+              }
+
+              const url = \`https://www.countryle.com/hidden-api/get-daily-country-valid.php?date=\${dateStr}\`;
+              
+              try {
+                const response = await fetchUrl(url);
+                
+                if (response && response.country) {
+                  const countryId = typeof response.country === 'string' 
+                    ? decryptId(response.country) 
+                    : parseInt(response.country, 10);
+
+                  if (countryId > 0) {
+                    const country = countries.find(c => c.id === countryId);
+                    
+                    if (country) {
+                      archive[key] = {
+                        gameNumber: gameNum,
+                        date: displayDate,
+                        apiDate: dateStr,
+                        country: {
+                          id: country.id,
+                          country: country.country,
+                          continent: country.continent,
+                          hemisphere: country.hemisphere,
+                          population: country.population,
+                          avgTemperature: country.avgTemperature,
+                          surface: country.surface,
+                          coordinates: country.coordinates,
+                          density: country.density,
+                          PIB: country.PIB,
+                          percentOfRenewableE: country.percentOfRenewableE,
+                          co2Total: country.co2Total,
+                          coastlineLength: country.coastlineLength,
+                          maxAltitude: country.maxAltitude,
+                          mapsUrl: country.mapsUrl
+                        },
+                        scrapedAt: new Date().toISOString()
+                      };
+                      
+                      successCount++;
+                      console.log(\`[\${progress}%] Game #\${gameNum} (\${displayDate}): \${country.country} (ID: \${countryId}) - \${country.continent} - Pop: \${country.population?.toLocaleString()}\`);
+                    } else {
+                      failCount++;
+                      console.log(\`[\${progress}%] Game #\${gameNum} (\${displayDate}): Country ID \${countryId} not found in database\`);
+                    }
+                  } else {
+                    failCount++;
+                    console.log(\`[\${progress}%] Game #\${gameNum} (\${displayDate}): Failed to decrypt\`);
+                  }
+                } else {
+                  // No data for this date (future date or API issue)
+                  if (gameNum < currentGameNumber) {
+                    failCount++;
+                    console.log(\`[\${progress}%] Game #\${gameNum} (\${displayDate}): No data returned\`);
+                  }
+                }
+              } catch (err) {
+                failCount++;
+                console.log(\`[\${progress}%] Game #\${gameNum} (\${displayDate}): Error - \${err.message}\`);
+              }
+
+              // Rate limiting - 1.8 second delay between requests
+              // This ensures ~2000 requests in 60 minutes (safe margin)
+              if (gameNum < endGame) {
+                await sleep(1800);
+              }
+
+              // Save progress every 50 games
+              if ((gameNum - startGame + 1) % 50 === 0) {
+                fs.writeFileSync(archivePath, JSON.stringify(archive, null, 2));
+                console.log(\`  >> Progress saved (\${Object.keys(archive).length} entries in archive)\`);
+              }
+            }
+
+            // ========== FINAL SAVE ==========
+
+            // Save archive
+            fs.writeFileSync(archivePath, JSON.stringify(archive, null, 2));
+            console.log(\`\\n========================================\`);
+            console.log(\`Archive saved: \${Object.keys(archive).length} total entries\`);
+            console.log(\`========================================\\n\`);
+
+            // ========== UPDATE TODAY'S ANSWER ==========
+
+            const todayKey = formatDateForDisplay(todayIST);
+            const todayEntry = archive[todayKey];
+            
+            if (todayEntry) {
+              const todayAnswer = {
+                date: todayEntry.date,
+                gameNumber: todayEntry.gameNumber,
+                updated: new Date().toISOString(),
+                country: todayEntry.country
+              };
+              fs.writeFileSync('public/todays-answer.json', JSON.stringify(todayAnswer, null, 2));
+              console.log(\`Today's answer updated: \${todayEntry.country.country} (Game #\${todayEntry.gameNumber})\\n\`);
+            } else {
+              console.log('Warning: Could not update today.json - no data for today\\n');
+            }
+
+            // ========== SUMMARY ==========
+
+            const elapsed = ((Date.now() - startTime) / 1000 / 60).toFixed(1);
+            console.log('========================================');
+            console.log('SCRAPING SUMMARY');
+            console.log('========================================');
+            console.log(\`Total games processed: \${totalGames}\`);
+            console.log(\`Successful: \${successCount}\`);
+            console.log(\`Failed: \${failCount}\`);
+            console.log(\`Skipped (already cached): \${skippedCount}\`);
+            console.log(\`Time elapsed: \${elapsed} minutes\`);
+            console.log(\`Archive entries: \${Object.keys(archive).length}\`);
+            console.log('========================================');
+          }
+
+          main().catch(err => {
+            console.error('Fatal error:', err);
+            process.exit(1);
+          });
+          "
+        env:
+          FULL_SCRAPE: ${{ github.event.inputs.full_scrape || 'false' }}
+
+      - name: Commit Archive Changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add public/archive.json public/todays-answer.json || true
+          git diff --quiet && git diff --staged --quiet || git commit -m "Update archive: $(date '+%Y-%m-%d %H:%M')" || true
+          git push || true
+
+      - name: Build with Next.js
+        run: npm run build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./out
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -3,6 +3,7 @@ const nextConfig = {
   reactStrictMode: false,
   output: 'export',
   trailingSlash: true,
+  basePath: '/countryle-helper',
   images: {
     unoptimized: true,
   },

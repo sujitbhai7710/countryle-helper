@@ -1,55 +1,6 @@
 {
-  "_comment": "Archive data will be populated by GitHub Actions workflow",
-  "_lastUpdated": null,
-  "_totalEntries": 0,
-  "2026-03-31": {
-    "gameNumber": 1233,
-    "date": "2026-03-31",
-    "apiDate": "31/03/2026",
-    "country": {
-      "id": 177,
-      "country": "Tajikistan",
-      "continent": "ASIA",
-      "hemisphere": "North Hemisphere",
-      "population": 9749625,
-      "avgTemperature": 3.75,
-      "surface": 139960,
-      "coordinates": "38.861034, 71.276093",
-      "density": 69.66,
-      "PIB": 897.09,
-      "percentOfRenewableE": 38.56,
-      "co2Total": 9420,
-      "coastlineLength": 0,
-      "maxAltitude": 7495,
-      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3182401.2546577137!2d69.00506453758082!3d38.83672667735311!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38b176737abcb3cd%3A0x25c331844f1988b5!2sTajikistan!5e0!3m2!1sen!2ses!4v1647080624104!5m2!1sen!2ses"
-    },
-    "scrapedAt": "2026-04-01T20:56:09.188Z"
-  },
-  "2026-04-01": {
-    "gameNumber": 1234,
-    "date": "2026-04-01",
-    "apiDate": "01/04/2026",
-    "country": {
-      "id": 48,
-      "country": "Denmark",
-      "continent": "EUROPE",
-      "hemisphere": "North Hemisphere",
-      "population": 5856733,
-      "avgTemperature": 8.76,
-      "surface": 40000,
-      "coordinates": "56.26392, 9.501785",
-      "density": 146.42,
-      "PIB": 67803.05,
-      "percentOfRenewableE": 37.52,
-      "co2Total": 29700,
-      "coastlineLength": 7314,
-      "maxAltitude": 170,
-      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2272205.8506523613!2d9.300610183277165!3d56.209805063652375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x464b27b6ee945ffb%3A0x528743d0c3e092cd!2sDenmark!5e0!3m2!1sen!2ses!4v1647079427088!5m2!1sen!2ses"
-    },
-    "scrapedAt": "2026-04-01T20:56:11.179Z"
-  },
   "2026-04-02": {
-    "gameNumber": 1235,
+    "gameNumber": 1504,
     "date": "2026-04-02",
     "apiDate": "02/04/2026",
     "country": {
@@ -69,6 +20,52 @@
       "maxAltitude": 915,
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7630487.525505382!2d-15.445004539944431!3d20.959582450837335!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xe80b8c314b3394f%3A0x83220bebd6be534e!2sMauritania!5e0!3m2!1sen!2ses!4v1647079935847!5m2!1sen!2ses"
     },
-    "scrapedAt": "2026-04-01T20:56:13.089Z"
+    "scrapedAt": "2026-04-01T22:00:29.176Z"
+  },
+  "2026-04-01": {
+    "gameNumber": 1503,
+    "date": "2026-04-01",
+    "apiDate": "01/04/2026",
+    "country": {
+      "id": 48,
+      "country": "Denmark",
+      "continent": "EUROPE",
+      "hemisphere": "North Hemisphere",
+      "population": 5856733,
+      "avgTemperature": 8.76,
+      "surface": 40000,
+      "coordinates": "56.26392, 9.501785",
+      "density": 146.42,
+      "PIB": 67803.05,
+      "percentOfRenewableE": 37.52,
+      "co2Total": 29700,
+      "coastlineLength": 7314,
+      "maxAltitude": 170,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2272205.8506523613!2d9.300610183277165!3d56.209805063652375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x464b27b6ee945ffb%3A0x528743d0c3e092cd!2sDenmark!5e0!3m2!1sen!2ses!4v1647079427088!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-04-01T22:00:29.374Z"
+  },
+  "2026-03-31": {
+    "gameNumber": 1502,
+    "date": "2026-03-31",
+    "apiDate": "31/03/2026",
+    "country": {
+      "id": 177,
+      "country": "Tajikistan",
+      "continent": "ASIA",
+      "hemisphere": "North Hemisphere",
+      "population": 9749625,
+      "avgTemperature": 3.75,
+      "surface": 139960,
+      "coordinates": "38.861034, 71.276093",
+      "density": 69.66,
+      "PIB": 897.09,
+      "percentOfRenewableE": 38.56,
+      "co2Total": 9420,
+      "coastlineLength": 0,
+      "maxAltitude": 7495,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3182401.2546577137!2d69.00506453758082!3d38.83672667735311!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38b176737abcb3cd%3A0x25c331844f1988b5!2sTajikistan!5e0!3m2!1sen!2ses!4v1647080624104!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-04-01T22:00:29.571Z"
   }
 }

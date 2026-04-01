@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 interface Country {
   id: number;
@@ -35,82 +35,76 @@ export default function Solver() {
   const [loadingCountries, setLoadingCountries] = useState(true);
   const [showDropdown, setShowDropdown] = useState(false);
   const [won, setWon] = useState(false);
-  const [countriesError, setCountriesError] = useState<string | null>(null);
+  const [error, setError] = useState('');
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const hasFetchedCountries = useRef(false);
 
-  // Fetch countries once on mount
   useEffect(() => {
-    if (hasFetchedCountries.current) return;
-    hasFetchedCountries.current = true;
+    let mounted = true;
 
-    const fetchCountries = async () => {
+    async function fetchCountries() {
       try {
-        const response = await fetch('/api/solve');
+        const res = await fetch('/api/solve');
+        const json = await res.json();
         
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+        if (mounted) {
+          if (json.success && Array.isArray(json.countries)) {
+            setCountries(json.countries);
+            setError('');
+          } else {
+            setError('Failed to load countries');
+          }
         }
-        
-        const result = await response.json();
-        if (result.success && Array.isArray(result.countries)) {
-          setCountries(result.countries);
-          setCountriesError(null);
-        } else {
-          setCountriesError('Failed to load countries');
+      } catch (e) {
+        if (mounted) {
+          setError('Failed to connect');
         }
-      } catch (err) {
-        console.error('Failed to fetch countries:', err);
-        setCountriesError(err instanceof Error ? err.message : 'Failed to load countries');
       } finally {
-        setLoadingCountries(false);
+        if (mounted) {
+          setLoadingCountries(false);
+        }
       }
-    };
+    }
 
     fetchCountries();
+
+    return () => {
+      mounted = false;
+    };
   }, []);
 
-  // Check win condition
   useEffect(() => {
     if (guesses.length > 0 && guesses[0]?.isCorrect) {
       setWon(true);
     }
   }, [guesses]);
 
-  // Close dropdown when clicking outside
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
+    function handleClickOutside(event: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setShowDropdown(false);
       }
-    };
+    }
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const filteredCountries = useMemo(() => {
-    return countries
-      .filter(c => c.name.toLowerCase().includes(searchTerm.toLowerCase()))
-      .slice(0, 10);
-  }, [countries, searchTerm]);
+  const filteredCountries = countries
+    .filter(c => c.name.toLowerCase().includes(searchTerm.toLowerCase()))
+    .slice(0, 10);
 
-  const handleGuess = async () => {
+  async function handleGuess() {
     if (!selectedCountry || won) return;
     
     setLoading(true);
     try {
-      const response = await fetch('/api/solve', {
+      const res = await fetch('/api/solve', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ guessName: selectedCountry.name })
       });
       
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      
-      const result: GuessResult = await response.json();
+      const result: GuessResult = await res.json();
       
       if (result.success) {
         setGuesses(prev => [result, ...prev]);
@@ -120,31 +114,19 @@ export default function Solver() {
       } else {
         alert(result.error || 'Failed to process guess');
       }
-    } catch (err) {
-      console.error('Guess error:', err);
-      alert(err instanceof Error ? err.message : 'Failed to connect to server');
+    } catch (e) {
+      alert('Failed to connect');
     } finally {
       setLoading(false);
     }
-  };
+  }
 
-  const resetGame = () => {
+  function resetGame() {
     setGuesses([]);
     setWon(false);
     setSearchTerm('');
     setSelectedCountry(null);
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
-    setShowDropdown(true);
-  };
-
-  const handleCountrySelect = (country: Country) => {
-    setSelectedCountry(country);
-    setSearchTerm(country.name);
-    setShowDropdown(false);
-  };
+  }
 
   if (loadingCountries) {
     return (
@@ -154,25 +136,16 @@ export default function Solver() {
     );
   }
 
-  if (countriesError) {
+  if (error) {
     return (
       <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-6 text-center">
-        <p className="text-red-400 mb-2">Error: {countriesError}</p>
-        <button 
-          onClick={() => {
-            hasFetchedCountries.current = false;
-            setLoadingCountries(true);
-          }}
-          className="mt-4 px-4 py-2 bg-red-500/20 hover:bg-red-500/30 rounded-lg text-red-300 transition-colors"
-        >
-          Try Again
-        </button>
+        <p className="text-red-400 mb-2">Error: {error}</p>
       </div>
     );
   }
 
   return (
-    <div className="animate-fade-in">
+    <div>
       <div className="mb-6">
         <h2 className="text-2xl font-bold text-white mb-2">Countryle Solver</h2>
         <p className="text-slate-400 text-sm">Make guesses and get hints to find today&apos;s country!</p>
@@ -185,7 +158,10 @@ export default function Solver() {
             <input
               type="text"
               value={searchTerm}
-              onChange={handleInputChange}
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+                setShowDropdown(true);
+              }}
               onFocus={() => setShowDropdown(true)}
               placeholder="Type a country name..."
               className="w-full bg-slate-700 text-white rounded-xl px-4 py-3 border border-slate-600 focus:border-emerald-500 focus:outline-none placeholder-slate-400"
@@ -193,12 +169,16 @@ export default function Solver() {
             />
             
             {showDropdown && searchTerm && !won && (
-              <div className="absolute top-full left-0 right-0 mt-2 bg-slate-700 rounded-xl border border-slate-600 shadow-xl z-10 max-h-60 overflow-y-auto custom-scrollbar">
+              <div className="absolute top-full left-0 right-0 mt-2 bg-slate-700 rounded-xl border border-slate-600 shadow-xl z-10 max-h-60 overflow-y-auto">
                 {filteredCountries.length > 0 ? (
                   filteredCountries.map(country => (
                     <button
                       key={country.id}
-                      onClick={() => handleCountrySelect(country)}
+                      onClick={() => {
+                        setSelectedCountry(country);
+                        setSearchTerm(country.name);
+                        setShowDropdown(false);
+                      }}
                       className="w-full px-4 py-3 text-left text-white hover:bg-slate-600 transition-colors flex justify-between items-center"
                     >
                       <span>{country.name}</span>
@@ -216,7 +196,7 @@ export default function Solver() {
             onClick={handleGuess}
             disabled={!selectedCountry || loading || won}
             className={`px-6 py-3 rounded-xl font-semibold transition-all ${
-              won 
+              won
                 ? 'bg-slate-600 text-slate-400 cursor-not-allowed'
                 : selectedCountry && !loading
                   ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white hover:shadow-lg hover:shadow-emerald-500/25'
@@ -240,7 +220,7 @@ export default function Solver() {
           <div className="text-4xl mb-3">🎉</div>
           <h3 className="text-2xl font-bold text-white mb-2">Congratulations!</h3>
           <p className="text-emerald-300">You found today&apos;s country: <strong>{guesses[0].answer.name}</strong></p>
-          <p className="text-slate-400 mt-2">Solved in {guesses.length} guess{guesses.length > 1 ? 's' : ''}!</p>
+          <p className="text-slate-400 mt-2">Solved in {guesses.length} guess{guesses.length > 1 ? 'es' : ''}!</p>
           <button
             onClick={resetGame}
             className="mt-4 px-6 py-2 bg-emerald-500/20 hover:bg-emerald-500/30 rounded-lg text-emerald-300 transition-colors"
@@ -257,8 +237,8 @@ export default function Solver() {
           
           {guesses.map((guess, index) => (
             guess.guess && guess.clues && (
-              <div 
-                key={`guess-${index}-${guess.guess.id}`}
+              <div
+                key={`guess-${index}`}
                 className={`bg-slate-800/50 rounded-2xl border overflow-hidden ${
                   guess.isCorrect ? 'border-emerald-500' : 'border-slate-700/50'
                 }`}
@@ -277,7 +257,7 @@ export default function Solver() {
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-slate-700/30">
                   {guess.clues.map((clue, clueIndex) => (
-                    <div key={`clue-${clueIndex}`} className="bg-slate-800/50 px-4 py-3">
+                    <div key={clueIndex} className="bg-slate-800/50 px-4 py-3">
                       <div className="text-slate-400 text-xs mb-1">{clue.property}</div>
                       <div className="flex items-center justify-between">
                         <span className="text-white text-sm">{clue.guessValue}</span>

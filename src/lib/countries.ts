@@ -1,4 +1,3 @@
-import 'server-only';
 import fs from 'fs';
 import path from 'path';
 
@@ -6,20 +5,12 @@ export interface Country {
   id: number;
   country: string;
   continent: string;
-  percentOfRenewableE: number;
-  co2Total: number;
-  coastlineLength: number;
-  maxAltitude: number;
-  population: number;
-  avgTemperature: number;
-  surface: number;
-  density: number;
-  PIB: number;
-  rankingFifa: number;
-  footballMatches: number;
-  coordinates: string;
   hemisphere: string;
-  mapsUrl: string;
+  population: number;
+  surface: number;
+  avgTemperature: number;
+  coordinates: string;
+  mapsUrl?: string;
 }
 
 export interface CountriesData {
@@ -27,7 +18,6 @@ export interface CountriesData {
   countries: Country[];
 }
 
-// Global cache for countries data
 let cachedCountries: CountriesData | null = null;
 
 export function getCountriesData(): CountriesData {
@@ -36,7 +26,6 @@ export function getCountriesData(): CountriesData {
   }
   
   try {
-    // Try the main path first
     const countriesPath = path.join(process.cwd(), 'countries.json');
     
     if (!fs.existsSync(countriesPath)) {
@@ -44,19 +33,8 @@ export function getCountriesData(): CountriesData {
       return { updatedDate: '', countries: [] };
     }
     
-    let fileContent = fs.readFileSync(countriesPath, 'utf-8');
-    
-    // The JSON file is a string containing escaped JSON, need to parse it twice
-    // First character is a quote, so we need to handle this special format
-    if (fileContent.startsWith('"')) {
-      try {
-        fileContent = JSON.parse(fileContent);
-      } catch (e) {
-        console.error('Failed to parse outer JSON:', e);
-      }
-    }
-    
-    const data = JSON.parse(fileContent);
+    const fileContent = fs.readFileSync(countriesPath, 'utf-8');
+    const data: CountriesData = JSON.parse(fileContent);
     
     if (!data || !data.countries || !Array.isArray(data.countries)) {
       console.error('Invalid countries data structure');
@@ -71,14 +49,14 @@ export function getCountriesData(): CountriesData {
   }
 }
 
-export function getCountryById(id: number): Country | undefined {
+export function getCountryById(id: number): Country | null {
   const data = getCountriesData();
-  return data.countries.find(c => c.id === id);
+  return data.countries.find(c => c.id === id) || null;
 }
 
-export function getCountryByName(name: string): Country | undefined {
+export function getCountryByName(name: string): Country | null {
   const data = getCountriesData();
-  return data.countries.find(c => c.country.toLowerCase() === name.toLowerCase());
+  return data.countries.find(c => c.country.toLowerCase() === name.toLowerCase()) || null;
 }
 
 export function getAllCountries(): Country[] {
@@ -88,14 +66,14 @@ export function getAllCountries(): Country[] {
 
 export function parseCoordinates(coords: string): { lat: number; lng: number } {
   const parts = coords.split(',').map(p => parseFloat(p.trim()));
-  return { lat: parts[0], lng: parts[1] };
+  return { lat: parts[0] || 0, lng: parts[1] || 0 };
 }
 
 export type ComparisonResult = 'EQUAL' | 'MORE' | 'LESS' | 'LITTLE_MORE' | 'LITTLE_LESS';
 
 export function compareValues(guessValue: number, answerValue: number, threshold: number = 0.1): ComparisonResult {
   const diff = guessValue - answerValue;
-  const percentageDiff = Math.abs(diff / answerValue);
+  const percentageDiff = Math.abs(diff / (answerValue || 1));
   
   if (percentageDiff < 0.01) {
     return 'EQUAL';
@@ -212,26 +190,4 @@ export function generateClues(guess: Country, answer: Country): GameClue[] {
   });
   
   return clues;
-}
-
-export function filterPossibleCountries(guesses: Array<{ guess: Country; clues: GameClue[] }>): Country[] {
-  const allCountries = getAllCountries();
-  
-  if (guesses.length === 0) {
-    return allCountries;
-  }
-  
-  return allCountries.filter(country => {
-    return guesses.every(({ guess, clues }) => {
-      // Check each clue to see if the country matches the constraints
-      for (const clue of clues) {
-        if (clue.isCorrect) {
-          // If the clue was correct, the answer country must have the same property
-          if (clue.property === 'Continent' && country.continent !== guess.continent) return false;
-          if (clue.property === 'Hemisphere' && country.hemisphere !== guess.hemisphere) return false;
-        }
-      }
-      return true;
-    });
-  });
 }

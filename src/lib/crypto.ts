@@ -1,4 +1,3 @@
-import 'server-only';
 import CryptoJS from 'crypto-js';
 
 const AES_KEY = '4%w!KpB+?FC<P9W*';

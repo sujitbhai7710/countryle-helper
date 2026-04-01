@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState, useRef } from 'react';
+import { useState, useEffect } from 'react';
 
 interface ArchiveEntry {
   date: string;
@@ -14,65 +14,50 @@ interface ArchiveEntry {
   };
 }
 
-interface ArchiveResponse {
-  success: boolean;
-  archive: ArchiveEntry[];
-  error?: string;
-}
-
 export default function Archive() {
   const [archive, setArchive] = useState<ArchiveEntry[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState('');
   const [days, setDays] = useState(30);
-  const lastDaysRef = useRef(30);
-  const hasFetched = useRef(false);
 
   useEffect(() => {
-    // Only fetch if days changed or first mount
-    if (hasFetched.current && lastDaysRef.current === days) return;
-    
-    lastDaysRef.current = days;
-    hasFetched.current = true;
+    let mounted = true;
 
-    const fetchArchive = async () => {
-      setLoading(true);
-      setError(null);
+    async function fetchData() {
       try {
-        const response = await fetch(`/api/archive?days=${days}`);
+        const res = await fetch(`/api/archive?days=${days}`);
+        const json = await res.json();
         
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+        if (mounted) {
+          if (json.success && Array.isArray(json.archive)) {
+            setArchive(json.archive);
+            setError('');
+          } else {
+            setError(json.error || 'Failed to load');
+            setArchive([]);
+          }
         }
-        
-        const result: ArchiveResponse = await response.json();
-        
-        if (result.success && Array.isArray(result.archive)) {
-          setArchive(result.archive);
-          setError(null);
-        } else {
-          setError(result.error || 'Failed to fetch archive');
+      } catch (e) {
+        if (mounted) {
+          setError('Failed to connect');
           setArchive([]);
         }
-      } catch (err) {
-        console.error('Error fetching archive:', err);
-        setError(err instanceof Error ? err.message : 'Failed to connect to server');
-        setArchive([]);
       } finally {
-        setLoading(false);
+        if (mounted) {
+          setLoading(false);
+        }
       }
-    };
+    }
 
-    fetchArchive();
+    fetchData();
+
+    return () => {
+      mounted = false;
+    };
   }, [days]);
 
-  const handleDaysChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const newDays = parseInt(e.target.value, 10);
-    setDays(newDays);
-  };
-
   return (
-    <div className="animate-fade-in">
+    <div>
       <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
         <h2 className="text-2xl font-bold text-white">Previous Answers</h2>
         <div className="flex items-center gap-2">
@@ -80,7 +65,7 @@ export default function Archive() {
           <select
             id="days-select"
             value={days}
-            onChange={handleDaysChange}
+            onChange={(e) => setDays(parseInt(e.target.value, 10))}
             className="bg-slate-700 text-white rounded-lg px-3 py-2 border border-slate-600 focus:border-emerald-500 focus:outline-none"
           >
             <option value={7}>7 days</option>
@@ -101,21 +86,12 @@ export default function Archive() {
       {error && !loading && (
         <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-4 text-center">
           <p className="text-red-400">{error}</p>
-          <button 
-            onClick={() => {
-              hasFetched.current = false;
-              setDays(days);
-            }}
-            className="mt-4 px-4 py-2 bg-red-500/20 hover:bg-red-500/30 rounded-lg text-red-300 transition-colors"
-          >
-            Try Again
-          </button>
         </div>
       )}
 
       {!loading && !error && archive.length > 0 && (
         <div className="bg-slate-800/50 rounded-2xl border border-slate-700/50 overflow-hidden">
-          <div className="max-h-[500px] overflow-y-auto custom-scrollbar">
+          <div className="max-h-[500px] overflow-y-auto">
             <table className="w-full">
               <thead className="bg-slate-700/50 sticky top-0">
                 <tr>
@@ -128,7 +104,7 @@ export default function Archive() {
               </thead>
               <tbody>
                 {archive.map((entry, index) => (
-                  <tr 
+                  <tr
                     key={`${entry.date}-${index}`}
                     className={`border-t border-slate-700/50 hover:bg-slate-700/30 transition-colors ${
                       index === 0 ? 'bg-emerald-500/10' : ''
@@ -144,8 +120,8 @@ export default function Archive() {
                     </td>
                     <td className="px-4 py-3">
                       <span className={`px-2 py-1 rounded text-xs ${
-                        entry.country.hemisphere === 'North Hemisphere' 
-                          ? 'bg-blue-500/20 text-blue-300' 
+                        entry.country.hemisphere === 'North Hemisphere'
+                          ? 'bg-blue-500/20 text-blue-300'
                           : 'bg-orange-500/20 text-orange-300'
                       }`}>
                         {entry.country.hemisphere}

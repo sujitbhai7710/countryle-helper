@@ -2,20 +2,20 @@ import { NextResponse } from 'next/server';
 import { getCountryById, getAllCountries } from '@/lib/countries';
 import { decryptCountryId } from '@/lib/crypto';
 
-// Helper to get date in IST format
-function formatDateIST(date: Date): string {
+// Helper to get date in JST format
+function formatDateJST(date: Date): string {
   const day = String(date.getDate()).padStart(2, '0');
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const year = date.getFullYear();
   return `${day}/${month}/${year}`;
 }
 
-// Helper to get date N days ago in IST
+// Helper to get date N days ago in JST (Japan Standard Time = UTC+9)
 function getDateDaysAgo(daysAgo: number): { date: string; displayDate: string } {
   const now = new Date();
-  const istOffset = 5.5 * 60 * 60 * 1000;
-  const istTime = new Date(now.getTime() + istOffset);
-  const targetDate = new Date(istTime.getTime() - daysAgo * 24 * 60 * 60 * 1000);
+  const jstOffset = 9 * 60 * 60 * 1000;
+  const jstTime = new Date(now.getTime() + jstOffset);
+  const targetDate = new Date(jstTime.getTime() - daysAgo * 24 * 60 * 60 * 1000);
   
   const displayDate = targetDate.toLocaleDateString('en-US', {
     weekday: 'long',
@@ -24,7 +24,7 @@ function getDateDaysAgo(daysAgo: number): { date: string; displayDate: string } 
     day: 'numeric'
   });
   
-  return { date: formatDateIST(targetDate), displayDate };
+  return { date: formatDateJST(targetDate), displayDate };
 }
 
 export async function GET(request: Request) {

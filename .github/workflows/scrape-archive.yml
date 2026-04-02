@@ -8,8 +8,8 @@ on:
         required: true
         default: 'false'
   schedule:
-    # Run daily at 18:30 UTC (12:00 AM IST)
-    - cron: '30 18 * * *'
+    # Run daily at 15:00 UTC (00:00 JST - midnight Japan time)
+    - cron: '0 15 * * *'
   push:
     branches: ['master']
     paths:
@@ -135,11 +135,12 @@ jobs:
             const countries = countriesData.countries || [];
             console.log(\`Loaded \${countries.length} countries\\n\`);
 
-            // Determine current game number
+            // Determine current game number using Japan timezone (JST = UTC+9)
             const today = new Date();
-            const todayIST = new Date(today.getTime() + 5.5 * 60 * 60 * 1000);
-            const currentGameNumber = getGameNumberFromDate(todayIST);
-            console.log(\`Current date (IST): \${formatDateForDisplay(todayIST)}\`);
+            const JST_OFFSET = 9 * 60 * 60 * 1000; // UTC+9
+            const todayJST = new Date(today.getTime() + JST_OFFSET);
+            const currentGameNumber = getGameNumberFromDate(todayJST);
+            console.log(\`Current date (JST): \${formatDateForDisplay(todayJST)}\`);
             console.log(\`Current game number: #\${currentGameNumber}\\n\`);
 
             // Check if full scrape is needed
@@ -277,7 +278,7 @@ jobs:
 
             // ========== UPDATE TODAY'S ANSWER ==========
 
-            const todayKey = formatDateForDisplay(todayIST);
+            const todayKey = formatDateForDisplay(todayJST);
             const todayEntry = archive[todayKey];
             
             if (todayEntry) {

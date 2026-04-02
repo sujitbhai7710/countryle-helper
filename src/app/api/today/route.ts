@@ -2,29 +2,29 @@ import { NextResponse } from 'next/server';
 import { getCountryById, getAllCountries } from '@/lib/countries';
 import { decryptCountryId } from '@/lib/crypto';
 
-// Helper to get current date in IST (UTC+5:30)
-function getDateIST(): { date: string; gameNumber: number } {
+// Helper to get current date in JST (Japan Standard Time = UTC+9)
+function getDateJST(): { date: string; gameNumber: number } {
   const now = new Date();
-  // IST is UTC+5:30
-  const istOffset = 5.5 * 60 * 60 * 1000;
-  const istTime = new Date(now.getTime() + istOffset);
+  // JST is UTC+9
+  const jstOffset = 9 * 60 * 60 * 1000;
+  const jstTime = new Date(now.getTime() + jstOffset);
   
-  const day = String(istTime.getDate()).padStart(2, '0');
-  const month = String(istTime.getMonth() + 1).padStart(2, '0');
-  const year = istTime.getFullYear();
+  const day = String(jstTime.getDate()).padStart(2, '0');
+  const month = String(jstTime.getMonth() + 1).padStart(2, '0');
+  const year = jstTime.getFullYear();
   
   const dateStr = `${day}/${month}/${year}`;
   
   // Calculate game number based on days since a reference date
   const refDate = new Date('2022-11-15');
-  const gameNumber = Math.floor((istTime.getTime() - refDate.getTime()) / (24 * 60 * 60 * 1000));
+  const gameNumber = Math.floor((jstTime.getTime() - refDate.getTime()) / (24 * 60 * 60 * 1000));
   
   return { date: dateStr, gameNumber };
 }
 
 export async function GET() {
   try {
-    const { date, gameNumber } = getDateIST();
+    const { date, gameNumber } = getDateJST();
     
     // Fetch the daily answer from the Countryle API
     const response = await fetch(
@@ -107,8 +107,8 @@ export async function GET() {
     
     return NextResponse.json({
       success: true,
-      date: getDateIST().date,
-      gameNumber: getDateIST().gameNumber,
+      date: getDateJST().date,
+      gameNumber: getDateJST().gameNumber,
       country: {
         id: country.id,
         name: country.country,

@@ -56,7 +56,7 @@ export default function Home() {
         {/* Footer */}
         <footer className="mt-12 text-center text-slate-500 text-sm">
           <p>Countryle Helper is not affiliated with countryle.com</p>
-          <p className="mt-1">Daily answers update at 12:00 AM IST</p>
+          <p className="mt-1">Daily answers update at 00:00 JST (Japan Time)</p>
         </footer>
       </div>
     </main>

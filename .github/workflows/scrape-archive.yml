@@ -11,7 +11,7 @@ on:
     # Run daily at 15:00 UTC (00:00 JST - midnight Japan time)
     - cron: '0 15 * * *'
   push:
-    branches: ['master']
+    branches: ['main']
     paths:
       - 'src/**'
       - 'public/**'

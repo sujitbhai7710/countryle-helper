@@ -2186,5 +2186,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3881262.563783534!2d101.61532569024925!3d18.196340841556687!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31149057b0824589%3A0xec592481f99cd81!2sLaos!5e0!3m2!1sen!2ses!4v1647079801766!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-04-09T16:15:52.619Z"
+  },
+  "2026-04-11": {
+    "gameNumber": 1244,
+    "date": "2026-04-11",
+    "apiDate": "11/04/2026",
+    "country": {
+      "id": 47,
+      "country": "Croatia",
+      "continent": "EUROPE",
+      "hemisphere": "North Hemisphere",
+      "population": 3899000,
+      "avgTemperature": 11.66,
+      "surface": 56590,
+      "coordinates": "45.167, 15.5",
+      "density": 68.9,
+      "PIB": 17398.77,
+      "percentOfRenewableE": 31.6,
+      "co2Total": 16520,
+      "coastlineLength": 5835,
+      "maxAltitude": 1830,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2917793.335522435!2d14.163873674260152!3d44.4248015401076!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133441080add95ed%3A0xa0f3c024e1661b7f!2sCroatia!5e0!3m2!1sen!2ses!4v1647079419565!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-04-10T15:45:31.180Z"
   }
 }

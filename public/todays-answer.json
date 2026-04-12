@@ -1,22 +1,22 @@
 {
-  "date": "2026-04-11",
-  "gameNumber": 1244,
-  "updated": "2026-04-10T15:45:31.205Z",
+  "date": "2026-04-13",
+  "gameNumber": 1246,
+  "updated": "2026-04-12T15:32:05.209Z",
   "country": {
-    "id": 47,
-    "country": "Croatia",
+    "id": 59,
+    "country": "Estonia",
     "continent": "EUROPE",
     "hemisphere": "North Hemisphere",
-    "population": 3899000,
-    "avgTemperature": 11.66,
-    "surface": 56590,
-    "coordinates": "45.167, 15.5",
-    "density": 68.9,
-    "PIB": 17398.77,
-    "percentOfRenewableE": 31.6,
-    "co2Total": 16520,
-    "coastlineLength": 5835,
-    "maxAltitude": 1830,
-    "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2917793.335522435!2d14.163873674260152!3d44.4248015401076!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133441080add95ed%3A0xa0f3c024e1661b7f!2sCroatia!5e0!3m2!1sen!2ses!4v1647079419565!5m2!1sen!2ses"
+    "population": 1329254,
+    "avgTemperature": 6.31,
+    "surface": 43470,
+    "coordinates": "58.595272, 25.013607",
+    "density": 30.58,
+    "PIB": 27280.66,
+    "percentOfRenewableE": 31.29,
+    "co2Total": 10180,
+    "coastlineLength": 3794,
+    "maxAltitude": 318,
+    "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1063838.9229039708!2d23.811296196778176!3d58.61553401372797!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4692949c82a04bfd%3A0x40ea9fba4fb425c3!2sEstonia!5e0!3m2!1sen!2ses!4v1647079507942!5m2!1sen!2ses"
   }
 }

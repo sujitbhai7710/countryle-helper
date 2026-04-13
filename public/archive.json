@@ -2255,5 +2255,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1063838.9229039708!2d23.811296196778176!3d58.61553401372797!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4692949c82a04bfd%3A0x40ea9fba4fb425c3!2sEstonia!5e0!3m2!1sen!2ses!4v1647079507942!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-04-12T15:32:05.208Z"
+  },
+  "2026-04-14": {
+    "gameNumber": 1247,
+    "date": "2026-04-14",
+    "apiDate": "14/04/2026",
+    "country": {
+      "id": 21,
+      "country": "Benin",
+      "continent": "AFRICA",
+      "hemisphere": "North Hemisphere",
+      "population": 12451031,
+      "avgTemperature": 27.93,
+      "surface": 112760,
+      "coordinates": "9.5, 2.31583",
+      "density": 110.42,
+      "PIB": 1428.45,
+      "percentOfRenewableE": 46.47,
+      "co2Total": 7300,
+      "coastlineLength": 121,
+      "maxAltitude": 658,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4031868.0680384752!2d0.06534011580199442!3d9.300342705810872!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1023542b047a5695%3A0xecb277f8cb622ef5!2sBenin!5e0!3m2!1sen!2ses!4v1647079232542!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-04-13T16:09:18.122Z"
   }
 }

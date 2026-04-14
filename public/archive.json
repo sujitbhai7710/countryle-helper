@@ -2278,5 +2278,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4031868.0680384752!2d0.06534011580199442!3d9.300342705810872!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1023542b047a5695%3A0xecb277f8cb622ef5!2sBenin!5e0!3m2!1sen!2ses!4v1647079232542!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-04-13T16:09:18.122Z"
+  },
+  "2026-04-15": {
+    "gameNumber": 1248,
+    "date": "2026-04-15",
+    "apiDate": "15/04/2026",
+    "country": {
+      "id": 139,
+      "country": "Paraguay",
+      "continent": "AMERICA",
+      "hemisphere": "South Hemisphere",
+      "population": 7219641,
+      "avgTemperature": 23.73,
+      "surface": 397300,
+      "coordinates": "-23.442503, -58.443832",
+      "density": 18.17,
+      "PIB": 5400.1,
+      "percentOfRenewableE": 60.09,
+      "co2Total": 8210,
+      "coastlineLength": 0,
+      "maxAltitude": 842,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3749025.2131224675!2d-60.6924056080332!3d-23.418679408846238!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x945c083490f13d63%3A0xb3faff611d582ef3!2sParaguay!5e0!3m2!1sen!2ses!4v1647080099821!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-04-14T16:04:38.288Z"
   }
 }

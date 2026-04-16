@@ -2324,5 +2324,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7455625.5004867995!2d40.58087753419506!3d24.15622198243252!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15e7b33fe7952a41%3A0x5960504bc21ab69b!2sSaudi%20Arabia!5e0!3m2!1sen!2ses!4v1647079127994!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-04-15T16:02:31.945Z"
+  },
+  "2026-04-17": {
+    "gameNumber": 1250,
+    "date": "2026-04-17",
+    "apiDate": "17/04/2026",
+    "country": {
+      "id": 127,
+      "country": "Nicaragua",
+      "continent": "AMERICA",
+      "hemisphere": "North Hemisphere",
+      "population": 6702379,
+      "avgTemperature": 25.29,
+      "surface": 120340,
+      "coordinates": "13.0, -85.0",
+      "density": 55.7,
+      "PIB": 2090.75,
+      "percentOfRenewableE": 50.71,
+      "co2Total": 5240,
+      "coastlineLength": 910,
+      "maxAltitude": 2107,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1991495.6725803998!2d-86.13893315458546!3d12.866513895025829!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f10c200ceff22cd%3A0xc8faa7e53fac15b5!2sNicaragua!5e0!3m2!1sen!2ses!4v1647080010557!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-04-16T16:18:51.676Z"
   }
 }

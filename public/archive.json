@@ -2347,5 +2347,51 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1991495.6725803998!2d-86.13893315458546!3d12.866513895025829!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f10c200ceff22cd%3A0xc8faa7e53fac15b5!2sNicaragua!5e0!3m2!1sen!2ses!4v1647080010557!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-04-16T16:18:51.676Z"
+  },
+  "2026-04-18": {
+    "gameNumber": 1251,
+    "date": "2026-04-18",
+    "apiDate": "18/04/2026",
+    "country": {
+      "id": 144,
+      "country": "Qatar",
+      "continent": "ASIA",
+      "hemisphere": "North Hemisphere",
+      "population": 2930524,
+      "avgTemperature": 28.02,
+      "surface": 11610,
+      "coordinates": "25.354826, 51.183884",
+      "density": 252.41,
+      "PIB": 61276,
+      "percentOfRenewableE": 0.04,
+      "co2Total": 91970,
+      "coastlineLength": 563,
+      "maxAltitude": 103,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d923095.8094637265!2d50.657312067047144!3d25.34304864545675!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e45c534ffdce87f%3A0x1cfa88cf812b4032!2sQatar!5e0!3m2!1sen!2ses!4v1647080136563!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-04-18T15:33:35.345Z"
+  },
+  "2026-04-19": {
+    "gameNumber": 1252,
+    "date": "2026-04-19",
+    "apiDate": "19/04/2026",
+    "country": {
+      "id": 167,
+      "country": "Sri Lanka",
+      "continent": "ASIA",
+      "hemisphere": "North Hemisphere",
+      "population": 22156000,
+      "avgTemperature": 27.28,
+      "surface": 62710,
+      "coordinates": "7.873054, 80.771797",
+      "density": 353.31,
+      "PIB": 3814.72,
+      "percentOfRenewableE": 49.91,
+      "co2Total": 23780,
+      "coastlineLength": 1340,
+      "maxAltitude": 2524,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2023613.8833504391!2d79.58500105149612!3d7.856199228806639!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae2593cf65a1e9d%3A0xe13da4b400e2d38c!2sSri%20Lanka!5e0!3m2!1sen!2ses!4v1647080549197!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-04-18T15:33:37.257Z"
   }
 }

@@ -2485,5 +2485,51 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1375058.1687174921!2d12.224807357118587!3d47.691013172003146!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476d079b259d2a7f%3A0x1012d47bdde4c1af!2sAustria!5e0!3m2!1sen!2ses!4v1647079172851!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-04-22T16:06:48.257Z"
+  },
+  "2026-04-24": {
+    "gameNumber": 1257,
+    "date": "2026-04-24",
+    "apiDate": "24/04/2026",
+    "country": {
+      "id": 168,
+      "country": "South Africa",
+      "continent": "AFRICA",
+      "hemisphere": "South Hemisphere",
+      "population": 60041996,
+      "avgTemperature": 18.28,
+      "surface": 1213090,
+      "coordinates": "-29.0, 24.0",
+      "density": 49.5,
+      "PIB": 6994.21,
+      "percentOfRenewableE": 10.5,
+      "co2Total": 439640.01,
+      "coastlineLength": 2798,
+      "maxAltitude": 3450,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13500753.055318115!2d18.254588433439572!3d-34.29744702312605!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1c34a689d9ee1251%3A0xe85d630c1fa4e8a0!2sSouth%20Africa!5e0!3m2!1sen!2ses!4v1647080556890!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-04-24T16:01:51.564Z"
+  },
+  "2026-04-25": {
+    "gameNumber": 1258,
+    "date": "2026-04-25",
+    "apiDate": "25/04/2026",
+    "country": {
+      "id": 112,
+      "country": "Maldives",
+      "continent": "ASIA",
+      "hemisphere": "North Hemisphere",
+      "population": 543620,
+      "avgTemperature": 27.8,
+      "surface": 300,
+      "coordinates": "3.202778, 73.22068",
+      "density": 1812.07,
+      "PIB": 8994.64,
+      "percentOfRenewableE": 1.11,
+      "co2Total": 2110,
+      "coastlineLength": 644,
+      "maxAltitude": 2,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4079557.8924133824!2d70.99625159852167!3d3.109716176026007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x24b599bfaafb7bbd%3A0x414509e181956289!2sMaldives!5e0!3m2!1sen!2ses!4v1647079898412!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-04-24T16:01:53.490Z"
   }
 }

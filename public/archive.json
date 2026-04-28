@@ -2600,5 +2600,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1251822.1204774154!2d4.158471178899413!3d52.207682091756446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c609c3db87e4bb%3A0xb3a175ceffbd0a9f!2sNetherlands!5e0!3m2!1sen!2ses!4v1647080055497!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-04-27T16:23:20.684Z"
+  },
+  "2026-04-29": {
+    "gameNumber": 1262,
+    "date": "2026-04-29",
+    "apiDate": "29/04/2026",
+    "country": {
+      "id": 134,
+      "country": "Pakistan",
+      "continent": "ASIA",
+      "hemisphere": "North Hemisphere",
+      "population": 225199929,
+      "avgTemperature": 20.75,
+      "surface": 770880,
+      "coordinates": "30.0, 70.0",
+      "density": 292.13,
+      "PIB": 1537.94,
+      "percentOfRenewableE": 43.36,
+      "co2Total": 190570.01,
+      "coastlineLength": 1046,
+      "maxAltitude": 8611,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7056191.330678863!2d64.8565139235987!3d30.282503685809377!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38db52d2f8fd751f%3A0x46b7a1f7e614925c!2sPakistan!5e0!3m2!1sen!2ses!4v1647080063218!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-04-28T16:48:50.291Z"
   }
 }

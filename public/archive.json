@@ -2623,5 +2623,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7056191.330678863!2d64.8565139235987!3d30.282503685809377!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38db52d2f8fd751f%3A0x46b7a1f7e614925c!2sPakistan!5e0!3m2!1sen!2ses!4v1647080063218!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-04-28T16:48:50.291Z"
+  },
+  "2026-04-30": {
+    "gameNumber": 1263,
+    "date": "2026-04-30",
+    "apiDate": "30/04/2026",
+    "country": {
+      "id": 147,
+      "country": "Czech Republic",
+      "continent": "EUROPE",
+      "hemisphere": "North Hemisphere",
+      "population": 10703446,
+      "avgTemperature": 8.73,
+      "surface": 77230,
+      "coordinates": "49.75, 15.5",
+      "density": 138.59,
+      "PIB": 26378.5,
+      "percentOfRenewableE": 15.85,
+      "co2Total": 96290,
+      "coastlineLength": 0,
+      "maxAltitude": 1602,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1318577.2925906884!2d14.353985657210321!3d49.79835734894561!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470b948fd7dd8243%3A0xf8661c75d3db586f!2sCzechia!5e0!3m2!1sen!2ses!4v1647080158669!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-04-29T16:25:44.382Z"
   }
 }

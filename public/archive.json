@@ -2646,5 +2646,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1318577.2925906884!2d14.353985657210321!3d49.79835734894561!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470b948fd7dd8243%3A0xf8661c75d3db586f!2sCzechia!5e0!3m2!1sen!2ses!4v1647080158669!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-04-29T16:25:44.382Z"
+  },
+  "2026-05-01": {
+    "gameNumber": 1264,
+    "date": "2026-05-01",
+    "apiDate": "01/05/2026",
+    "country": {
+      "id": 58,
+      "country": "United States of America",
+      "continent": "AMERICA",
+      "hemisphere": "North Hemisphere",
+      "population": 331893745,
+      "avgTemperature": 7.63,
+      "surface": 9147420,
+      "coordinates": "38.0, -97.0",
+      "density": 36.28,
+      "PIB": 69287.54,
+      "percentOfRenewableE": 10.42,
+      "co2Total": 4817720.21,
+      "coastlineLength": 19924,
+      "maxAltitude": 6194,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13007091.428135525!2d-104.65547132645155!3d37.258159203388786!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54eab584e432360b%3A0x1c3bb99243deb742!2sUnited%20States!5e0!3m2!1sen!2ses!4v1647079500614!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-04-30T16:15:41.230Z"
   }
 }

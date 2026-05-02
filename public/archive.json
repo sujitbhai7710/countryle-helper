@@ -2692,5 +2692,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2418943.0417264155!2d25.735534742327555!3d53.69600786699022!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46da2584e2ad4881%3A0xa1d181ec8c10!2sBelarus!5e0!3m2!1sen!2ses!4v1647079239992!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-05-01T15:52:55.353Z"
+  },
+  "2026-05-03": {
+    "gameNumber": 1266,
+    "date": "2026-05-03",
+    "apiDate": "03/05/2026",
+    "country": {
+      "id": 92,
+      "country": "Jordan",
+      "continent": "ASIA",
+      "hemisphere": "North Hemisphere",
+      "population": 10269022,
+      "avgTemperature": 19.42,
+      "surface": 88780,
+      "coordinates": "31.5487, 36.74705",
+      "density": 115.67,
+      "PIB": 4405.84,
+      "percentOfRenewableE": 8.17,
+      "co2Total": 24630,
+      "coastlineLength": 26,
+      "maxAltitude": 1854,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3492421.038619641!2d34.879316978883445!3d31.260396319158513!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15006f476664de99%3A0x8d285b0751264e99!2sJordan!5e0!3m2!1sen!2ses!4v1647079750387!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-05-02T15:41:14.195Z"
   }
 }

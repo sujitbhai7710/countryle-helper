@@ -2715,5 +2715,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3492421.038619641!2d34.879316978883445!3d31.260396319158513!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15006f476664de99%3A0x8d285b0751264e99!2sJordan!5e0!3m2!1sen!2ses!4v1647079750387!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-05-02T15:41:14.195Z"
+  },
+  "2026-05-04": {
+    "gameNumber": 1267,
+    "date": "2026-05-04",
+    "apiDate": "04/05/2026",
+    "country": {
+      "id": 1,
+      "country": "Afghanistan",
+      "continent": "ASIA",
+      "hemisphere": "North Hemisphere",
+      "population": 39835428,
+      "avgTemperature": 13.57,
+      "surface": 652860,
+      "coordinates": "33.93911, 67.709953",
+      "density": 61.02,
+      "PIB": 516.75,
+      "percentOfRenewableE": 18.51,
+      "co2Total": 6080,
+      "coastlineLength": 0,
+      "maxAltitude": 7492,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6785928.96038457!2d63.212960353101806!3d33.852501358536244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38d16eb6f8ff026d%3A0xf3b5460dbe96da78!2sAfghanistan!5e0!3m2!1sen!2ses!4v1647079083264!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-05-03T15:41:56.125Z"
   }
 }

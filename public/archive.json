@@ -2761,5 +2761,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3747577.9521531174!2d117.84065408938449!3d23.469693599953835!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346ef3065c07572f%3A0xe711f004bf9c5469!2sTaiwan!5e0!3m2!1sen!2ses!4v1647080803272!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-05-04T16:28:14.990Z"
+  },
+  "2026-05-06": {
+    "gameNumber": 1269,
+    "date": "2026-05-06",
+    "apiDate": "06/05/2026",
+    "country": {
+      "id": 101,
+      "country": "Latvia",
+      "continent": "EUROPE",
+      "hemisphere": "North Hemisphere",
+      "population": 1883162,
+      "avgTemperature": 6.86,
+      "surface": 62190,
+      "coordinates": "56.879635, 24.603189",
+      "density": 30.28,
+      "PIB": 20642.17,
+      "percentOfRenewableE": 41.52,
+      "co2Total": 7570,
+      "coastlineLength": 498,
+      "maxAltitude": 312,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1116311.9177719112!2d23.42315738712806!3d56.87515535941829!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46e930677b8a9afd%3A0xcfcd68f2fc10!2sLatvia!5e0!3m2!1sen!2ses!4v1647079816544!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-05-05T16:21:09.842Z"
   }
 }

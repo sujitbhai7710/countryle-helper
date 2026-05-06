@@ -2784,5 +2784,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1116311.9177719112!2d23.42315738712806!3d56.87515535941829!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46e930677b8a9afd%3A0xcfcd68f2fc10!2sLatvia!5e0!3m2!1sen!2ses!4v1647079816544!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-05-05T16:21:09.842Z"
+  },
+  "2026-05-07": {
+    "gameNumber": 1270,
+    "date": "2026-05-07",
+    "apiDate": "07/05/2026",
+    "country": {
+      "id": 54,
+      "country": "Eritrea",
+      "continent": "AFRICA",
+      "hemisphere": "North Hemisphere",
+      "population": 3213969,
+      "avgTemperature": 26.92,
+      "surface": 101000,
+      "coordinates": "15.179384, 39.782334",
+      "density": 31.82,
+      "PIB": 642.5,
+      "percentOfRenewableE": 73.67,
+      "co2Total": 880,
+      "coastlineLength": 2234,
+      "maxAltitude": 3018,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3943086.030990954!2d37.588360413170854!3d15.176459858536504!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x166d5a3f9dba8565%3A0x17c208f02f120efa!2sEritrea!5e0!3m2!1sen!2ses!4v1647079471122!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-05-06T16:24:36.519Z"
   }
 }

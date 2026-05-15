@@ -2991,5 +2991,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13007091.428135525!2d-104.65547132645155!3d37.258159203388786!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54eab584e432360b%3A0x1c3bb99243deb742!2sUnited%20States!5e0!3m2!1sen!2ses!4v1647079500614!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-05-14T16:57:31.326Z"
+  },
+  "2026-05-16": {
+    "gameNumber": 1279,
+    "date": "2026-05-16",
+    "apiDate": "16/05/2026",
+    "country": {
+      "id": 45,
+      "country": "Côte d'Ivoire",
+      "continent": "AFRICA",
+      "hemisphere": "North Hemisphere",
+      "population": 27053629,
+      "avgTemperature": 26.76,
+      "surface": 318000,
+      "coordinates": "7.539989, -5.54708",
+      "density": 85.07,
+      "PIB": 2578.76,
+      "percentOfRenewableE": 62.46,
+      "co2Total": 10830,
+      "coastlineLength": 515,
+      "maxAltitude": 1752,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4050984.81097847!2d-7.792160925661643!3d7.460843121428211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xf961387b049a067%3A0x1f91e627cb9ee40!2sC%C3%B4te%20d'Ivoire!5e0!3m2!1sen!2suk!4v1654785010145!5m2!1sen!2suk\\ width=\\600\\ height=\\450\\ style=\\border:0;\\ allowfullscreen=\\\\ loading=\\lazy\\ referrerpolicy=\\no-referrer-when-downgrade"
+    },
+    "scrapedAt": "2026-05-15T16:48:35.655Z"
   }
 }

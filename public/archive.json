@@ -3060,5 +3060,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6139263.794998224!2d60.08558283374456!3d41.29390738728788!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8b20a5d676b1%3A0xca0a6dad7e841e20!2sUzbekistan!5e0!3m2!1sen!2ses!4v1647080714165!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-05-17T15:55:04.418Z"
+  },
+  "2026-05-19": {
+    "gameNumber": 1282,
+    "date": "2026-05-19",
+    "apiDate": "19/05/2026",
+    "country": {
+      "id": 109,
+      "country": "Madagascar",
+      "continent": "AFRICA",
+      "hemisphere": "South Hemisphere",
+      "population": 28427333,
+      "avgTemperature": 22.65,
+      "surface": 581800,
+      "coordinates": "-20.0, 47.0",
+      "density": 48.86,
+      "PIB": 514.91,
+      "percentOfRenewableE": 82.77,
+      "co2Total": 4120,
+      "coastlineLength": 4828,
+      "maxAltitude": 2876,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7736498.452263687!2d42.3732149183659!3d-18.771969942156492!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x21d1a4e3ea238545%3A0x5244e3c1977b1388!2sMadagascar!5e0!3m2!1sen!2ses!4v1647079876182!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-05-18T17:28:01.020Z"
   }
 }

@@ -3152,5 +3152,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29614728.187283624!2d115.21681053142235!3d-25.031388721602095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2b2bfd076787c5df%3A0x538267a1955b1352!2sAustralia!5e0!3m2!1sen!2ses!4v1647079165414!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-05-21T17:29:17.530Z"
+  },
+  "2026-05-23": {
+    "gameNumber": 1286,
+    "date": "2026-05-23",
+    "apiDate": "23/05/2026",
+    "country": {
+      "id": 200,
+      "country": "North Korea",
+      "continent": "ASIA",
+      "hemisphere": "North Hemisphere",
+      "population": 25887045,
+      "avgTemperature": 6.19,
+      "surface": 120540,
+      "coordinates": "40.339852, 127.510093",
+      "density": 212.93,
+      "PIB": 683,
+      "percentOfRenewableE": 11.31,
+      "co2Total": 56040,
+      "coastlineLength": 2495,
+      "maxAltitude": 2744,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3116918.3312867642!2d125.18124876012453!3d40.278736594930216!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357e02dae64f4337%3A0x3a0b871c3e1d861c!2sNorth%20Korea!5e0!3m2!1sen!2ses!4v1647080795839!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-05-22T17:05:00.857Z"
   }
 }

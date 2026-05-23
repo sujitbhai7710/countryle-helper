@@ -3175,5 +3175,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3116918.3312867642!2d125.18124876012453!3d40.278736594930216!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357e02dae64f4337%3A0x3a0b871c3e1d861c!2sNorth%20Korea!5e0!3m2!1sen!2ses!4v1647080795839!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-05-22T17:05:00.857Z"
+  },
+  "2026-05-24": {
+    "gameNumber": 1287,
+    "date": "2026-05-24",
+    "apiDate": "24/05/2026",
+    "country": {
+      "id": 4,
+      "country": "Andorra",
+      "continent": "EUROPE",
+      "hemisphere": "North Hemisphere",
+      "population": 77354,
+      "avgTemperature": 9.18,
+      "surface": 470,
+      "coordinates": "42.546245, 1.601554",
+      "density": 164.58,
+      "PIB": 43047.69,
+      "percentOfRenewableE": 18.4,
+      "co2Total": 500,
+      "coastlineLength": 0,
+      "maxAltitude": 2942,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d188135.46424250645!2d1.4576107821004833!3d42.54219784308796!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a5f52e989ef095%3A0x7c93ed778ea7f92!2sAndorra!5e0!3m2!1sen!2ses!4v1647079105598!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-05-23T15:59:24.099Z"
   }
 }

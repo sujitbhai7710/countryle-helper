@@ -1,22 +1,22 @@
 {
-  "date": "2026-05-24",
-  "gameNumber": 1287,
-  "updated": "2026-05-23T15:59:24.114Z",
+  "date": "2026-05-25",
+  "gameNumber": 1288,
+  "updated": "2026-05-24T15:57:56.234Z",
   "country": {
-    "id": 4,
-    "country": "Andorra",
-    "continent": "EUROPE",
+    "id": 113,
+    "country": "Mali",
+    "continent": "AFRICA",
     "hemisphere": "North Hemisphere",
-    "population": 77354,
-    "avgTemperature": 9.18,
-    "surface": 470,
-    "coordinates": "42.546245, 1.601554",
-    "density": 164.58,
-    "PIB": 43047.69,
-    "percentOfRenewableE": 18.4,
-    "co2Total": 500,
+    "population": 20855724,
+    "avgTemperature": 28.83,
+    "surface": 1220190,
+    "coordinates": "17.0, -4.0",
+    "density": 17.09,
+    "PIB": 917.91,
+    "percentOfRenewableE": 76.64,
+    "co2Total": 5830,
     "coastlineLength": 0,
-    "maxAltitude": 2942,
-    "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d188135.46424250645!2d1.4576107821004833!3d42.54219784308796!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a5f52e989ef095%3A0x7c93ed778ea7f92!2sAndorra!5e0!3m2!1sen!2ses!4v1647079105598!5m2!1sen!2ses"
+    "maxAltitude": 1155,
+    "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7791944.731089675!2d-8.481159689372104!3d17.523711960687823!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xe143e881b1073cf%3A0xbb3a5be2a0bdcf80!2sMali!5e0!3m2!1sen!2ses!4v1647079906042!5m2!1sen!2ses"
   }
 }

@@ -3221,5 +3221,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7791944.731089675!2d-8.481159689372104!3d17.523711960687823!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xe143e881b1073cf%3A0xbb3a5be2a0bdcf80!2sMali!5e0!3m2!1sen!2ses!4v1647079906042!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-05-24T15:57:56.220Z"
+  },
+  "2026-05-26": {
+    "gameNumber": 1289,
+    "date": "2026-05-26",
+    "apiDate": "26/05/2026",
+    "country": {
+      "id": 182,
+      "country": "Tunisia",
+      "continent": "AFRICA",
+      "hemisphere": "North Hemisphere",
+      "population": 11935764,
+      "avgTemperature": 20.34,
+      "surface": 155360,
+      "coordinates": "33.886917, 9.537499",
+      "density": 76.83,
+      "PIB": 3924.34,
+      "percentOfRenewableE": 12.2,
+      "co2Total": 29910,
+      "coastlineLength": 1148,
+      "maxAltitude": 1544,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3392601.3600377804!2d7.317581819222426!3d33.86164183355558!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x125595448316a4e1%3A0x3a84333aaa019bef!2sTunisia!5e0!3m2!1sen!2ses!4v1647080661512!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-05-25T17:04:41.482Z"
   }
 }

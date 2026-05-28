@@ -3267,5 +3267,51 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2917793.335522435!2d14.163873674260152!3d44.4248015401076!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133441080add95ed%3A0xa0f3c024e1661b7f!2sCroatia!5e0!3m2!1sen!2ses!4v1647079419565!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-05-26T17:54:11.052Z"
+  },
+  "2026-05-28": {
+    "gameNumber": 1291,
+    "date": "2026-05-28",
+    "apiDate": "28/05/2026",
+    "country": {
+      "id": 181,
+      "country": "Trinidad and Tobago",
+      "continent": "AMERICA",
+      "hemisphere": "North Hemisphere",
+      "population": 1403374,
+      "avgTemperature": 26.37,
+      "surface": 5130,
+      "coordinates": "11.0, -61.0",
+      "density": 273.56,
+      "PIB": 15243.12,
+      "percentOfRenewableE": 0.43,
+      "co2Total": 17190,
+      "coastlineLength": 362,
+      "maxAltitude": 940,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1003646.8883086552!2d-61.77215348493472!3d10.696200116389846!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c3607976350b6c5%3A0xff082855c639f127!2sTrinidad%20and%20Tobago!5e0!3m2!1sen!2ses!4v1647080654116!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-05-28T18:07:08.563Z"
+  },
+  "2026-05-29": {
+    "gameNumber": 1292,
+    "date": "2026-05-29",
+    "apiDate": "29/05/2026",
+    "country": {
+      "id": 132,
+      "country": "Oman",
+      "continent": "ASIA",
+      "hemisphere": "North Hemisphere",
+      "population": 5223376,
+      "avgTemperature": 26.04,
+      "surface": 309500,
+      "coordinates": "21.0, 57.0",
+      "density": 16.88,
+      "PIB": 16439.3,
+      "percentOfRenewableE": 1,
+      "co2Total": 76030,
+      "coastlineLength": 2092,
+      "maxAltitude": 2980,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7608487.683139182!2d51.65812282101421!3d21.38668054710774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3dd69f66a9d59bbf%3A0x3a064c7665b1a817!2sOman!5e0!3m2!1sen!2ses!4v1647080048042!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-05-28T18:07:10.511Z"
   }
 }

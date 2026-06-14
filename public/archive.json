@@ -3612,5 +3612,51 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7003707.788002276!2d17.09414451386952!3d64.62358367936854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4681cadf4b32f6dd%3A0x146d63c75a810!2sFinland!5e0!3m2!1sen!2ses!4v1647079537241!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-06-12T17:35:04.908Z"
+  },
+  "2026-06-14": {
+    "gameNumber": 1308,
+    "date": "2026-06-14",
+    "apiDate": "14/06/2026",
+    "country": {
+      "id": 65,
+      "country": "Gabon",
+      "continent": "AFRICA",
+      "hemisphere": "South Hemisphere",
+      "population": 2278829,
+      "avgTemperature": 25.36,
+      "surface": 257670,
+      "coordinates": "-0.803689, 11.609444",
+      "density": 8.84,
+      "PIB": 8016.99,
+      "percentOfRenewableE": 89.88,
+      "co2Total": 5250,
+      "coastlineLength": 885,
+      "maxAltitude": 1070,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4085043.8002193184!2d9.229849129696651!3d-0.9230371699644782!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x107f3b8a5438f3ed%3A0x7b0cc30e36786b15!2sGabon!5e0!3m2!1sen!2ses!4v1647079551844!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-06-14T16:18:35.015Z"
+  },
+  "2026-06-15": {
+    "gameNumber": 1309,
+    "date": "2026-06-15",
+    "apiDate": "15/06/2026",
+    "country": {
+      "id": 44,
+      "country": "South Korea",
+      "continent": "ASIA",
+      "hemisphere": "North Hemisphere",
+      "population": 51744876,
+      "avgTemperature": 11.4,
+      "surface": 100210,
+      "coordinates": "36.42098, 128.05297",
+      "density": 516.71,
+      "PIB": 31489.12,
+      "percentOfRenewableE": 3.36,
+      "co2Total": 610789.98,
+      "coastlineLength": 2413,
+      "maxAltitude": 1950,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3313735.828815473!2d125.63021738241716!3d35.798211241456215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x356455ebcb11ba9b%3A0x91249b00ba88db4b!2sSouth%20Korea!5e0!3m2!1sen!2ses!4v1647079397553!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-06-14T16:18:36.930Z"
   }
 }

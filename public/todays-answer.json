@@ -1,22 +1,22 @@
 {
-  "date": "2026-06-17",
-  "gameNumber": 1311,
-  "updated": "2026-06-16T18:52:56.391Z",
+  "date": "2026-06-18",
+  "gameNumber": 1312,
+  "updated": "2026-06-17T17:47:38.392Z",
   "country": {
-    "id": 152,
-    "country": "Romania",
+    "id": 141,
+    "country": "Poland",
     "continent": "EUROPE",
     "hemisphere": "North Hemisphere",
-    "population": 19115146,
-    "avgTemperature": 9.86,
-    "surface": 230080,
-    "coordinates": "45.943161, 24.96676",
-    "density": 83.08,
-    "PIB": 14861.91,
-    "percentOfRenewableE": 23.54,
-    "co2Total": 73950,
-    "coastlineLength": 225,
-    "maxAltitude": 2544,
-    "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2842180.7755606077!2d22.777565033954506!3d45.91996304256223!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1ff26958976c3%3A0x84ef4f92a804b194!2sRomania!5e0!3m2!1sen!2ses!4v1647080195514!5m2!1sen!2ses"
+    "population": 37781024,
+    "avgTemperature": 8.85,
+    "surface": 306220,
+    "coordinates": "52.02049, 19.60152",
+    "density": 123.38,
+    "PIB": 17840.92,
+    "percentOfRenewableE": 12.18,
+    "co2Total": 295130,
+    "coastlineLength": 440,
+    "maxAltitude": 2499,
+    "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2519124.3694409877!2d16.892226444211815!3d51.93245069347277!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47009964a4640bbb%3A0x97573ca49cc55ea!2sPoland!5e0!3m2!1sen!2ses!4v1647080114481!5m2!1sen!2ses"
   }
 }

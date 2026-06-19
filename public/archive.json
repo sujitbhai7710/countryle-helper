@@ -3750,5 +3750,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7745098.068610952!2d31.311552239904657!3d-18.583676735176674!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x18d4aceae6fd4ac5%3A0x12bbbfb9ae16a115!2sMozambique!5e0!3m2!1sen!2ses!4v1647079980529!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-06-18T17:57:09.549Z"
+  },
+  "2026-06-20": {
+    "gameNumber": 1314,
+    "date": "2026-06-20",
+    "apiDate": "20/06/2026",
+    "country": {
+      "id": 197,
+      "country": "Cuba",
+      "continent": "AMERICA",
+      "hemisphere": "North Hemisphere",
+      "population": 11317498,
+      "avgTemperature": 25.83,
+      "surface": 106649,
+      "coordinates": "21.521757, -77.781167",
+      "density": 106.12,
+      "PIB": 9477.85,
+      "percentOfRenewableE": 21.54,
+      "co2Total": 25910,
+      "coastlineLength": 3735,
+      "maxAltitude": 1974,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3801282.965941551!2d-81.80671912140546!3d21.50026102863088!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88cd49070f7a4cb5%3A0x798cf7529110a41a!2sCuba!5e0!3m2!1sen!2ses!4v1647080773531!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-06-19T17:14:43.288Z"
   }
 }

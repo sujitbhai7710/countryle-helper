@@ -3796,5 +3796,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3441879.790716665!2d-58.02788970522463!3d-32.600567049475025!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9575073afb5fde09%3A0x4a5596616016524a!2sUruguay!5e0!3m2!1sen!2ses!4v1647080706670!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-06-20T16:14:07.038Z"
+  },
+  "2026-06-22": {
+    "gameNumber": 1316,
+    "date": "2026-06-22",
+    "apiDate": "22/06/2026",
+    "country": {
+      "id": 135,
+      "country": "Palau",
+      "continent": "OCEANIA",
+      "hemisphere": "North Hemisphere",
+      "population": 18174,
+      "avgTemperature": 28.04,
+      "surface": 460,
+      "coordinates": "7.51498, 134.58252",
+      "density": 39.51,
+      "PIB": 14243.86,
+      "percentOfRenewableE": 0.29,
+      "co2Total": 250,
+      "coastlineLength": 1519,
+      "maxAltitude": 242,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4067207.148122281!2d130.80011266562153!3d5.434890692705333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x328445b4a2af0399%3A0x12ed1edd39a1ebbb!2sPalau!5e0!3m2!1sen!2ses!4v1647080070581!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-06-21T16:27:08.034Z"
   }
 }

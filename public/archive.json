@@ -3819,5 +3819,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4067207.148122281!2d130.80011266562153!3d5.434890692705333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x328445b4a2af0399%3A0x12ed1edd39a1ebbb!2sPalau!5e0!3m2!1sen!2ses!4v1647080070581!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-06-21T16:27:08.034Z"
+  },
+  "2026-06-23": {
+    "gameNumber": 1317,
+    "date": "2026-06-23",
+    "apiDate": "23/06/2026",
+    "country": {
+      "id": 3,
+      "country": "Germany",
+      "continent": "EUROPE",
+      "hemisphere": "North Hemisphere",
+      "population": 83129285,
+      "avgTemperature": 9.63,
+      "surface": 349380,
+      "coordinates": "51.165691, 10.451526",
+      "density": 237.93,
+      "PIB": 50801.79,
+      "percentOfRenewableE": 17.17,
+      "co2Total": 657400.02,
+      "coastlineLength": 2389,
+      "maxAltitude": 2963,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5132292.028192923!2d5.96961110137079!3d51.089971211931115!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479a721ec2b1be6b%3A0x75e85d6b8e91e55b!2sGermany!5e0!3m2!1sen!2ses!4v1647079098207!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-06-22T18:42:57.017Z"
   }
 }

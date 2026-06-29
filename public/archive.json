@@ -3980,5 +3980,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11246543.818516811!2d94.86430558350008!3d46.51329167421848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3627050669aa6d4b%3A0xe0dd213937e6e096!2sMongolia!5e0!3m2!1sen!2ses!4v1647079965535!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-06-28T16:06:23.673Z"
+  },
+  "2026-06-30": {
+    "gameNumber": 1324,
+    "date": "2026-06-30",
+    "apiDate": "30/06/2026",
+    "country": {
+      "id": 140,
+      "country": "Peru",
+      "continent": "AMERICA",
+      "hemisphere": "South Hemisphere",
+      "population": 33359416,
+      "avgTemperature": 19.7,
+      "surface": 1280000,
+      "coordinates": "-9.189967, -75.015152",
+      "density": 26.06,
+      "PIB": 6692.25,
+      "percentOfRenewableE": 27.12,
+      "co2Total": 56750,
+      "coastlineLength": 2414,
+      "maxAltitude": 6768,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8065680.799537858!2d-79.51541525537779!3d-9.215584319207675!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c850c05914f5%3A0xf29e011279210648!2sPeru!5e0!3m2!1sen!2ses!4v1647080107158!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-06-29T17:31:40.637Z"
   }
 }

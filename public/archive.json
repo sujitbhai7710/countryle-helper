@@ -4072,5 +4072,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15472155.590828497!2d87.64503767892688!3d18.78113374818352!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x305652a7714e2907%3A0xba7b0ee41c622b11!2sMyanmar%20(Burma)!5e0!3m2!1sen!2ses!4v1647079247449!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-07-02T16:46:39.771Z"
+  },
+  "2026-07-04": {
+    "gameNumber": 1328,
+    "date": "2026-07-04",
+    "apiDate": "04/07/2026",
+    "country": {
+      "id": 29,
+      "country": "Bulgaria",
+      "continent": "EUROPE",
+      "hemisphere": "North Hemisphere",
+      "population": 6899125,
+      "avgTemperature": 11.31,
+      "surface": 108560,
+      "coordinates": "42.733883, 25.48583",
+      "density": 63.55,
+      "PIB": 11634.97,
+      "percentOfRenewableE": 19.34,
+      "co2Total": 39140,
+      "coastlineLength": 354,
+      "maxAltitude": 2925,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1500792.4739478403!2d24.422267165178898!3d42.719910185916326!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40a8fec1c85bf089%3A0xa01269bf4c10!2sBulgaria!5e0!3m2!1sen!2ses!4v1647079292095!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-07-03T16:21:47.684Z"
   }
 }

@@ -4187,5 +4187,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3214002.542515103!2d22.23894142044829!3d38.124509696745044!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x135b4ac711716c63%3A0x363a1775dc9a2d1d!2sGreece!5e0!3m2!1sen!2ses!4v1647079588897!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-07-07T17:08:31.206Z"
+  },
+  "2026-07-09": {
+    "gameNumber": 1333,
+    "date": "2026-07-09",
+    "apiDate": "09/07/2026",
+    "country": {
+      "id": 87,
+      "country": "Solomon Islands",
+      "continent": "OCEANIA",
+      "hemisphere": "South Hemisphere",
+      "population": 703995,
+      "avgTemperature": 25.61,
+      "surface": 27990,
+      "coordinates": "-9.64571, 160.156194",
+      "density": 25.15,
+      "PIB": 2336.97,
+      "percentOfRenewableE": 48.39,
+      "co2Total": 360,
+      "coastlineLength": 5313,
+      "maxAltitude": 2335,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4031038.589931302!2d159.32777148153758!3d-9.372047931237994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x68d351e0555009d1%3A0xb44cc0a017442980!2sSolomon%20Islands!5e0!3m2!1sen!2ses!4v1647079713726!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-07-08T16:26:53.251Z"
   }
 }

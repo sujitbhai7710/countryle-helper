@@ -4279,5 +4279,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7958458.952064481!2d23.358772628302155!3d-13.10132241281702!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1940f4a5fcfc0b71%3A0xf19ff9ac7e583e45!2sZambia!5e0!3m2!1sen!2ses!4v1647080758633!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-07-11T15:50:36.996Z"
+  },
+  "2026-07-13": {
+    "gameNumber": 1337,
+    "date": "2026-07-13",
+    "apiDate": "13/07/2026",
+    "country": {
+      "id": 103,
+      "country": "Liberia",
+      "continent": "AFRICA",
+      "hemisphere": "North Hemisphere",
+      "population": 5180208,
+      "avgTemperature": 25.69,
+      "surface": 96320,
+      "coordinates": "6.428055, -9.429499",
+      "density": 53.78,
+      "PIB": 673.09,
+      "percentOfRenewableE": 87.24,
+      "co2Total": 1180,
+      "coastlineLength": 579,
+      "maxAltitude": 1440,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2030017.8829685757!2d-10.573679510462684!3d6.409625685530326!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xf09f803d4a9fcc1%3A0x7fd3286b32d16373!2sLiberia!5e0!3m2!1sen!2ses!4v1647079831197!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-07-12T15:54:51.291Z"
   }
 }

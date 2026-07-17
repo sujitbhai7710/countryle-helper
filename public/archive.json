@@ -4371,5 +4371,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13007091.428135525!2d-104.65547132645155!3d37.258159203388786!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54eab584e432360b%3A0x1c3bb99243deb742!2sUnited%20States!5e0!3m2!1sen!2ses!4v1647079500614!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-07-16T16:13:43.507Z"
+  },
+  "2026-07-18": {
+    "gameNumber": 1342,
+    "date": "2026-07-18",
+    "apiDate": "18/07/2026",
+    "country": {
+      "id": 111,
+      "country": "Malawi",
+      "continent": "AFRICA",
+      "hemisphere": "South Hemisphere",
+      "population": 19647681,
+      "avgTemperature": 22.51,
+      "surface": 94280,
+      "coordinates": "-13.5, 34.0",
+      "density": 208.4,
+      "PIB": 642.66,
+      "percentOfRenewableE": 73.02,
+      "co2Total": 1450,
+      "coastlineLength": 0,
+      "maxAltitude": 3002,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976999.629905863!2d32.0515860135482!3d-13.238573005630037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x18d85bdd9313c0d7%3A0x44a32e1729668543!2sMalawi!5e0!3m2!1sen!2ses!4v1647079890990!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-07-17T16:10:22.713Z"
   }
 }

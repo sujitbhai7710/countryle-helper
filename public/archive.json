@@ -4394,5 +4394,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976999.629905863!2d32.0515860135482!3d-13.238573005630037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x18d85bdd9313c0d7%3A0x44a32e1729668543!2sMalawi!5e0!3m2!1sen!2ses!4v1647079890990!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-07-17T16:10:22.713Z"
+  },
+  "2026-07-19": {
+    "gameNumber": 1343,
+    "date": "2026-07-19",
+    "apiDate": "19/07/2026",
+    "country": {
+      "id": 14,
+      "country": "Azerbaijan",
+      "continent": "ASIA",
+      "hemisphere": "North Hemisphere",
+      "population": 10145212,
+      "avgTemperature": 12.93,
+      "surface": 82670,
+      "coordinates": "40.143105, 47.576927",
+      "density": 122.72,
+      "PIB": 5384.04,
+      "percentOfRenewableE": 1.62,
+      "co2Total": 35510,
+      "coastlineLength": 0,
+      "maxAltitude": 4485,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1560952.3471105073!2d46.633498210662836!3d40.17045236253296!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40307cd91aa21ddf%3A0xe6c9526b3e83cd08!2sAzerbaijan!5e0!3m2!1sen!2ses!4v1647079180363!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-07-18T15:51:21.990Z"
   }
 }

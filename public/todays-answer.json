@@ -1,22 +1,22 @@
 {
-  "date": "2026-07-20",
-  "gameNumber": 1344,
-  "updated": "2026-07-19T15:52:34.838Z",
+  "date": "2026-07-21",
+  "gameNumber": 1345,
+  "updated": "2026-07-20T16:21:00.704Z",
   "country": {
-    "id": 41,
-    "country": "Cyprus",
+    "id": 79,
+    "country": "Hungary",
     "continent": "EUROPE",
     "hemisphere": "North Hemisphere",
-    "population": 1215588,
-    "avgTemperature": 19.63,
-    "surface": 9240,
-    "coordinates": "35.126413, 33.429859",
-    "density": 131.56,
-    "PIB": 30798.48,
-    "percentOfRenewableE": 12.05,
-    "co2Total": 7190,
-    "coastlineLength": 648,
-    "maxAltitude": 1951,
-    "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d834960.2136608994!2d32.864778489632705!3d35.16750949682931!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14de1767ca494d55%3A0x324c3c807fc4146e!2sCyprus!5e0!3m2!1sen!2ses!4v1647079373852!5m2!1sen!2ses"
+    "population": 9709886,
+    "avgTemperature": 11.15,
+    "surface": 91260,
+    "coordinates": "47.162494, 19.503304",
+    "density": 106.4,
+    "PIB": 18772.67,
+    "percentOfRenewableE": 13.64,
+    "co2Total": 46380,
+    "coastlineLength": 0,
+    "maxAltitude": 1014,
+    "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1389112.4783504691!2d18.38396900863668!3d47.15569394740406!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4741837bdf37e4c3%3A0xc4290c1e1010!2sHungary!5e0!3m2!1sen!2ses!4v1647079655078!5m2!1sen!2ses"
   }
 }

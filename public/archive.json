@@ -4532,5 +4532,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3943086.030990954!2d37.588360413170854!3d15.176459858536504!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x166d5a3f9dba8565%3A0x17c208f02f120efa!2sEritrea!5e0!3m2!1sen!2ses!4v1647079471122!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-07-23T16:23:13.692Z"
+  },
+  "2026-07-25": {
+    "gameNumber": 1349,
+    "date": "2026-07-25",
+    "apiDate": "25/07/2026",
+    "country": {
+      "id": 191,
+      "country": "Venezuela",
+      "continent": "AMERICA",
+      "hemisphere": "North Hemisphere",
+      "population": 28704947,
+      "avgTemperature": 25.86,
+      "surface": 882050,
+      "coordinates": "8.0, -66.0",
+      "density": 32.54,
+      "PIB": 16055.65,
+      "percentOfRenewableE": 15.62,
+      "co2Total": 112340,
+      "coastlineLength": 2800,
+      "maxAltitude": 5007,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8116390.7568443185!2d-71.11080141948122!3d6.636810085583464!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c2853cb36cbd801%3A0xdca0f2587cd54dd3!2sVenezuela!5e0!3m2!1sen!2ses!4v1647080728904!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-07-24T16:33:57.227Z"
   }
 }

@@ -4555,5 +4555,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8116390.7568443185!2d-71.11080141948122!3d6.636810085583464!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c2853cb36cbd801%3A0xdca0f2587cd54dd3!2sVenezuela!5e0!3m2!1sen!2ses!4v1647080728904!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-07-24T16:33:57.227Z"
+  },
+  "2026-07-26": {
+    "gameNumber": 1350,
+    "date": "2026-07-26",
+    "apiDate": "26/07/2026",
+    "country": {
+      "id": 116,
+      "country": "Mauritius",
+      "continent": "AFRICA",
+      "hemisphere": "South Hemisphere",
+      "population": 1266060,
+      "avgTemperature": 23.69,
+      "surface": 2030,
+      "coordinates": "-20.348404, 57.552152",
+      "density": 623.67,
+      "PIB": 8812.11,
+      "percentOfRenewableE": 8.94,
+      "co2Total": 4170,
+      "coastlineLength": 177,
+      "maxAltitude": 915,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1917103.2334964136!2d56.55430301529859!3d-20.20309408752493!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x217c504df94474c9%3A0x4203d9c2116bd031!2sMauritius!5e0!3m2!1sen!2ses!4v1647079928402!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-07-25T15:59:43.544Z"
   }
 }

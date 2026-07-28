@@ -4601,5 +4601,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1510540.9936875917!2d42.236650029569795!3d42.31532488890293!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40440cd7e64f626b%3A0x4f907964122d4ac2!2sGeorgia!5e0!3m2!1sen!2ses!4v1647079566503!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-07-27T16:53:56.430Z"
+  },
+  "2026-07-29": {
+    "gameNumber": 1353,
+    "date": "2026-07-29",
+    "apiDate": "29/07/2026",
+    "country": {
+      "id": 194,
+      "country": "Djibouti",
+      "continent": "AFRICA",
+      "hemisphere": "North Hemisphere",
+      "population": 1002197,
+      "avgTemperature": 28.38,
+      "surface": 23180,
+      "coordinates": "11.825138, 42.590275",
+      "density": 43.24,
+      "PIB": 3363.71,
+      "percentOfRenewableE": 27.92,
+      "co2Total": 420,
+      "coastlineLength": 314,
+      "maxAltitude": 2028,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d999762.1795393492!2d42.066920267963674!3d11.812775820201221!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1622d46734f9f601%3A0x1472bba7ef0f5b88!2sDjibouti!5e0!3m2!1sen!2ses!4v1647080751081!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-07-28T16:29:55.123Z"
   }
 }

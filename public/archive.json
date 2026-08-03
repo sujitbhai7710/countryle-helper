@@ -4716,5 +4716,51 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4050984.81097847!2d-7.792160925661643!3d7.460843121428211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xf961387b049a067%3A0x1f91e627cb9ee40!2sC%C3%B4te%20d'Ivoire!5e0!3m2!1sen!2suk!4v1654785010145!5m2!1sen!2suk\\ width=\\600\\ height=\\450\\ style=\\border:0;\\ allowfullscreen=\\\\ loading=\\lazy\\ referrerpolicy=\\no-referrer-when-downgrade"
     },
     "scrapedAt": "2026-08-01T15:57:16.972Z"
+  },
+  "2026-08-03": {
+    "gameNumber": 1358,
+    "date": "2026-08-03",
+    "apiDate": "03/08/2026",
+    "country": {
+      "id": 83,
+      "country": "Iran",
+      "continent": "ASIA",
+      "hemisphere": "North Hemisphere",
+      "population": 85028760,
+      "avgTemperature": 17.86,
+      "surface": 1628760,
+      "coordinates": "32.427908, 53.688046",
+      "density": 52.2,
+      "PIB": 2756.75,
+      "percentOfRenewableE": 0.98,
+      "co2Total": 630010.01,
+      "coastlineLength": 2440,
+      "maxAltitude": 5610,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6913240.018430463!2d49.19203690470369!3d32.21485984229707!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ef7ec2ec16b1df1%3A0x40b095d39e51face!2sIran!5e0!3m2!1sen!2ses!4v1647079684381!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-08-03T17:06:03.570Z"
+  },
+  "2026-08-04": {
+    "gameNumber": 1359,
+    "date": "2026-08-04",
+    "apiDate": "04/08/2026",
+    "country": {
+      "id": 177,
+      "country": "Tajikistan",
+      "continent": "ASIA",
+      "hemisphere": "North Hemisphere",
+      "population": 9749625,
+      "avgTemperature": 3.75,
+      "surface": 139960,
+      "coordinates": "38.861034, 71.276093",
+      "density": 69.66,
+      "PIB": 897.09,
+      "percentOfRenewableE": 38.56,
+      "co2Total": 9420,
+      "coastlineLength": 0,
+      "maxAltitude": 7495,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3182401.2546577137!2d69.00506453758082!3d38.83672667735311!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38b176737abcb3cd%3A0x25c331844f1988b5!2sTajikistan!5e0!3m2!1sen!2ses!4v1647080624104!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-08-03T17:06:05.506Z"
   }
 }

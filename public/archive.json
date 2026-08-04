@@ -4762,5 +4762,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3182401.2546577137!2d69.00506453758082!3d38.83672667735311!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38b176737abcb3cd%3A0x25c331844f1988b5!2sTajikistan!5e0!3m2!1sen!2ses!4v1647080624104!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-08-03T17:06:05.506Z"
+  },
+  "2026-08-05": {
+    "gameNumber": 1360,
+    "date": "2026-08-05",
+    "apiDate": "05/08/2026",
+    "country": {
+      "id": 112,
+      "country": "Maldives",
+      "continent": "ASIA",
+      "hemisphere": "North Hemisphere",
+      "population": 543620,
+      "avgTemperature": 27.8,
+      "surface": 300,
+      "coordinates": "3.202778, 73.22068",
+      "density": 1812.07,
+      "PIB": 8994.64,
+      "percentOfRenewableE": 1.11,
+      "co2Total": 2110,
+      "coastlineLength": 644,
+      "maxAltitude": 2,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4079557.8924133824!2d70.99625159852167!3d3.109716176026007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x24b599bfaafb7bbd%3A0x414509e181956289!2sMaldives!5e0!3m2!1sen!2ses!4v1647079898412!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-08-04T16:48:37.990Z"
   }
 }

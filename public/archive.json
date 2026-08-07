@@ -4785,5 +4785,51 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4079557.8924133824!2d70.99625159852167!3d3.109716176026007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x24b599bfaafb7bbd%3A0x414509e181956289!2sMaldives!5e0!3m2!1sen!2ses!4v1647079898412!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-08-04T16:48:37.990Z"
+  },
+  "2026-08-06": {
+    "gameNumber": 1361,
+    "date": "2026-08-06",
+    "apiDate": "06/08/2026",
+    "country": {
+      "id": 92,
+      "country": "Jordan",
+      "continent": "ASIA",
+      "hemisphere": "North Hemisphere",
+      "population": 10269022,
+      "avgTemperature": 19.42,
+      "surface": 88780,
+      "coordinates": "31.5487, 36.74705",
+      "density": 115.67,
+      "PIB": 4405.84,
+      "percentOfRenewableE": 8.17,
+      "co2Total": 24630,
+      "coastlineLength": 26,
+      "maxAltitude": 1854,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3492421.038619641!2d34.879316978883445!3d31.260396319158513!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15006f476664de99%3A0x8d285b0751264e99!2sJordan!5e0!3m2!1sen!2ses!4v1647079750387!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-08-07T15:51:05.105Z"
+  },
+  "2026-08-07": {
+    "gameNumber": 1362,
+    "date": "2026-08-07",
+    "apiDate": "07/08/2026",
+    "country": {
+      "id": 35,
+      "country": "Cameroon",
+      "continent": "AFRICA",
+      "hemisphere": "North Hemisphere",
+      "population": 27224262,
+      "avgTemperature": 24.87,
+      "surface": 472710,
+      "coordinates": "6.0, 12.0",
+      "density": 57.59,
+      "PIB": 1661.7,
+      "percentOfRenewableE": 79.41,
+      "co2Total": 9430,
+      "coastlineLength": 402,
+      "maxAltitude": 4040,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8104058.378117436!2d7.797929286209418!3d7.347187193392554!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10613753703e0f21%3A0x2b03c44599829b53!2sCameroon!5e0!3m2!1sen!2ses!4v1647079336903!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-08-07T15:51:07.047Z"
   }
 }

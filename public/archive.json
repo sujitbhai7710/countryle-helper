@@ -4946,5 +4946,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7455625.5004867995!2d40.58087753419506!3d24.15622198243252!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15e7b33fe7952a41%3A0x5960504bc21ab69b!2sSaudi%20Arabia!5e0!3m2!1sen!2ses!4v1647079127994!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-08-12T15:54:36.354Z"
+  },
+  "2026-08-14": {
+    "gameNumber": 1369,
+    "date": "2026-08-14",
+    "apiDate": "14/08/2026",
+    "country": {
+      "id": 160,
+      "country": "Senegal",
+      "continent": "AFRICA",
+      "hemisphere": "North Hemisphere",
+      "population": 17196308,
+      "avgTemperature": 28.65,
+      "surface": 192530,
+      "coordinates": "14.497401, -14.452362",
+      "density": 89.32,
+      "PIB": 1606.47,
+      "percentOfRenewableE": 37.2,
+      "co2Total": 10620,
+      "coastlineLength": 531,
+      "maxAltitude": 581,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1977931.0342232133!2d-15.63811061649793!3d14.47627288351701!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xec172f5b3c5bb71%3A0x5a46a55099615940!2sSenegal!5e0!3m2!1sen!2ses!4v1647080497205!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-08-13T15:54:05.600Z"
   }
 }

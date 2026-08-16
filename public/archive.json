@@ -4992,5 +4992,51 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29614728.187283624!2d115.21681053142235!3d-25.031388721602095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2b2bfd076787c5df%3A0x538267a1955b1352!2sAustralia!5e0!3m2!1sen!2ses!4v1647079165414!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-08-14T15:45:18.755Z"
+  },
+  "2026-08-16": {
+    "gameNumber": 1371,
+    "date": "2026-08-16",
+    "apiDate": "16/08/2026",
+    "country": {
+      "id": 135,
+      "country": "Palau",
+      "continent": "OCEANIA",
+      "hemisphere": "North Hemisphere",
+      "population": 18174,
+      "avgTemperature": 28.04,
+      "surface": 460,
+      "coordinates": "7.51498, 134.58252",
+      "density": 39.51,
+      "PIB": 14243.86,
+      "percentOfRenewableE": 0.29,
+      "co2Total": 250,
+      "coastlineLength": 1519,
+      "maxAltitude": 242,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4067207.148122281!2d130.80011266562153!3d5.434890692705333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x328445b4a2af0399%3A0x12ed1edd39a1ebbb!2sPalau!5e0!3m2!1sen!2ses!4v1647080070581!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-08-16T15:15:58.406Z"
+  },
+  "2026-08-17": {
+    "gameNumber": 1372,
+    "date": "2026-08-17",
+    "apiDate": "17/08/2026",
+    "country": {
+      "id": 129,
+      "country": "Nigeria",
+      "continent": "AFRICA",
+      "hemisphere": "North Hemisphere",
+      "population": 211400704,
+      "avgTemperature": 27.24,
+      "surface": 910770,
+      "coordinates": "9.42372, 8.17682",
+      "density": 232.11,
+      "PIB": 2085.03,
+      "percentOfRenewableE": 81.4,
+      "co2Total": 115280,
+      "coastlineLength": 853,
+      "maxAltitude": 2419,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8070401.776290583!2d4.181534824532928!3d9.006530858332049!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e0baf7da48d0d%3A0x99a8fe4168c50bc8!2sNigeria!5e0!3m2!1sen!2ses!4v1647080025476!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-08-16T15:16:00.585Z"
   }
 }

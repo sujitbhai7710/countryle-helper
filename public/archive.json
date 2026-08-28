@@ -5245,5 +5245,51 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7745098.068610952!2d31.311552239904657!3d-18.583676735176674!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x18d4aceae6fd4ac5%3A0x12bbbfb9ae16a115!2sMozambique!5e0!3m2!1sen!2ses!4v1647079980529!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-08-25T15:36:36.852Z"
+  },
+  "2026-08-27": {
+    "gameNumber": 1382,
+    "date": "2026-08-27",
+    "apiDate": "27/08/2026",
+    "country": {
+      "id": 175,
+      "country": "Thailand",
+      "continent": "ASIA",
+      "hemisphere": "North Hemisphere",
+      "population": 69950844,
+      "avgTemperature": 26.79,
+      "surface": 510890,
+      "coordinates": "15.870032, 100.992541",
+      "density": 136.92,
+      "PIB": 7233.39,
+      "percentOfRenewableE": 23.96,
+      "co2Total": 267090,
+      "coastlineLength": 3219,
+      "maxAltitude": 2565,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7961710.9721222045!2d96.99467131373383!3d13.000341509402473!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x304d8df747424db1%3A0x9ed72c880757e802!2sThailand!5e0!3m2!1sen!2ses!4v1647080609225!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-08-28T00:12:10.392Z"
+  },
+  "2026-08-28": {
+    "gameNumber": 1383,
+    "date": "2026-08-28",
+    "apiDate": "28/08/2026",
+    "country": {
+      "id": 60,
+      "country": "Ethiopia",
+      "continent": "AFRICA",
+      "hemisphere": "North Hemisphere",
+      "population": 117876226,
+      "avgTemperature": 23.04,
+      "surface": 1129304.04,
+      "coordinates": "9.145, 40.489673",
+      "density": 104.38,
+      "PIB": 943.97,
+      "percentOfRenewableE": 88.92,
+      "co2Total": 18360,
+      "coastlineLength": 0,
+      "maxAltitude": 4550,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8067818.834102201!2d36.00348456777149!3d9.121496843384717!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1635d0cedd6cfd2b%3A0x7bf6a67f5348c55a!2sEthiopia!5e0!3m2!1sen!2ses!4v1647079515280!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-08-28T00:12:12.365Z"
   }
 }

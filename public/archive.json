@@ -5314,5 +5314,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3441879.790716665!2d-58.02788970522463!3d-32.600567049475025!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9575073afb5fde09%3A0x4a5596616016524a!2sUruguay!5e0!3m2!1sen!2ses!4v1647080706670!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-08-28T23:49:05.160Z"
+  },
+  "2026-08-30": {
+    "gameNumber": 1385,
+    "date": "2026-08-30",
+    "apiDate": "30/08/2026",
+    "country": {
+      "id": 196,
+      "country": "Zimbabwe",
+      "continent": "AFRICA",
+      "hemisphere": "South Hemisphere",
+      "population": 15092171,
+      "avgTemperature": 21.83,
+      "surface": 386850,
+      "coordinates": "-19.17951, 29.94505",
+      "density": 39.01,
+      "PIB": 1737.17,
+      "percentOfRenewableE": 81.5,
+      "co2Total": 11760,
+      "coastlineLength": 0,
+      "maxAltitude": 2592,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3862937.741411282!2d26.9089988765847!3d-19.002081706859038!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1931a4e706b17161%3A0xa1c0385fc5cbbfee!2sZimbabwe!5e0!3m2!1sen!2ses!4v1647080766102!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-08-29T18:07:52.766Z"
   }
 }

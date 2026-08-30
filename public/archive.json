@@ -5337,5 +5337,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3862937.741411282!2d26.9089988765847!3d-19.002081706859038!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1931a4e706b17161%3A0xa1c0385fc5cbbfee!2sZimbabwe!5e0!3m2!1sen!2ses!4v1647080766102!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-08-29T18:07:52.766Z"
+  },
+  "2026-08-31": {
+    "gameNumber": 1386,
+    "date": "2026-08-31",
+    "apiDate": "31/08/2026",
+    "country": {
+      "id": 108,
+      "country": "North Macedonia",
+      "continent": "EUROPE",
+      "hemisphere": "North Hemisphere",
+      "population": 2065092,
+      "avgTemperature": 10.64,
+      "surface": 25220,
+      "coordinates": "41.608635, 21.745275",
+      "density": 81.88,
+      "PIB": 6720.9,
+      "percentOfRenewableE": 16.32,
+      "co2Total": 8300,
+      "coastlineLength": 0,
+      "maxAltitude": 2764,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1539028.0301988514!2d21.11497794972745!3d41.1145665917061!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1354159f70bc4809%3A0xe0f25ad6c81fc5b1!2sNorth%20Macedonia!5e0!3m2!1sen!2ses!4v1647079868691!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-08-30T18:22:14.877Z"
   }
 }

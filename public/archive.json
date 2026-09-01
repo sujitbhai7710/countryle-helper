@@ -5383,5 +5383,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d848044.5643771335!2d35.28698611211632!3d33.8722894468072!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151f17028422aaad%3A0xcc7d34096c00f970!2sLebanon!5e0!3m2!1sen!2ses!4v1647079823838!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-08-31T20:35:20.793Z"
+  },
+  "2026-09-02": {
+    "gameNumber": 1388,
+    "date": "2026-09-02",
+    "apiDate": "02/09/2026",
+    "country": {
+      "id": 28,
+      "country": "Brunei",
+      "continent": "ASIA",
+      "hemisphere": "North Hemisphere",
+      "population": 441532,
+      "avgTemperature": 26.56,
+      "surface": 5270,
+      "coordinates": "4.535277, 114.727669",
+      "density": 83.78,
+      "PIB": 31722.66,
+      "percentOfRenewableE": 0.01,
+      "co2Total": 6990,
+      "coastlineLength": 161,
+      "maxAltitude": 1850,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d509087.2228897157!2d114.43938894611577!3d4.550076372203474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3218994b04b8b9d1%3A0x5dfe3580dd09dad6!2sBrunei!5e0!3m2!1sen!2ses!4v1647079284638!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-09-01T18:06:13.667Z"
   }
 }

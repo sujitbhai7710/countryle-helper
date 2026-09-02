@@ -5406,5 +5406,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d509087.2228897157!2d114.43938894611577!3d4.550076372203474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3218994b04b8b9d1%3A0x5dfe3580dd09dad6!2sBrunei!5e0!3m2!1sen!2ses!4v1647079284638!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-09-01T18:06:13.667Z"
+  },
+  "2026-09-03": {
+    "gameNumber": 1389,
+    "date": "2026-09-03",
+    "apiDate": "03/09/2026",
+    "country": {
+      "id": 52,
+      "country": "El Salvador",
+      "continent": "AMERICA",
+      "hemisphere": "North Hemisphere",
+      "population": 6518500,
+      "avgTemperature": 25.24,
+      "surface": 20720,
+      "coordinates": "13.794185, -88.89653",
+      "density": 314.6,
+      "PIB": 4408.52,
+      "percentOfRenewableE": 19.39,
+      "co2Total": 7800,
+      "coastlineLength": 307,
+      "maxAltitude": 2730,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d992129.4766303083!2d-89.49070125500967!3d13.748345499776308!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f6327a659640657%3A0x6f9a16eb98854832!2sEl%20Salvador!5e0!3m2!1sen!2ses!4v1647079456391!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-09-02T18:26:35.377Z"
   }
 }

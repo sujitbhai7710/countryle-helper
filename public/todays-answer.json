@@ -1,22 +1,22 @@
 {
-  "date": "2026-09-05",
-  "gameNumber": 1391,
-  "updated": "2026-09-04T17:59:53.911Z",
+  "date": "2026-09-06",
+  "gameNumber": 1392,
+  "updated": "2026-09-05T17:03:53.738Z",
   "country": {
-    "id": 189,
-    "country": "Uzbekistan",
+    "id": 136,
+    "country": "Palestine State",
     "continent": "ASIA",
     "hemisphere": "North Hemisphere",
-    "population": 34915100,
-    "avgTemperature": 13.34,
-    "surface": 440591,
-    "coordinates": "41.377491, 64.585262",
-    "density": 79.25,
-    "PIB": 1983.06,
-    "percentOfRenewableE": 1.57,
-    "co2Total": 116710,
-    "coastlineLength": 0,
-    "maxAltitude": 4643,
-    "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6139263.794998224!2d60.08558283374456!3d41.29390738728788!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8b20a5d676b1%3A0xca0a6dad7e841e20!2sUzbekistan!5e0!3m2!1sen!2ses!4v1647080714165!5m2!1sen!2ses"
+    "population": 4803000,
+    "avgTemperature": 19.58,
+    "surface": 6020,
+    "coordinates": "32.0, 35.25",
+    "density": 797.84,
+    "PIB": 3239.73,
+    "percentOfRenewableE": 22,
+    "co2Total": 2900,
+    "coastlineLength": 50,
+    "maxAltitude": 1030,
+    "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d867278.5737146032!2d34.33164857760178!3d31.884666113261826!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151cf2d28866bdd9%3A0xee17a001d166f686!2sPalestine!5e0!3m2!1sen!2ses!4v1647080077882!5m2!1sen!2ses"
   }
 }

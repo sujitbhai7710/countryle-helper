@@ -5498,5 +5498,51 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d867278.5737146032!2d34.33164857760178!3d31.884666113261826!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151cf2d28866bdd9%3A0xee17a001d166f686!2sPalestine!5e0!3m2!1sen!2ses!4v1647080077882!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-09-05T17:03:53.723Z"
+  },
+  "2026-09-07": {
+    "gameNumber": 1393,
+    "date": "2026-09-07",
+    "apiDate": "07/09/2026",
+    "country": {
+      "id": 142,
+      "country": "Portugal",
+      "continent": "EUROPE",
+      "hemisphere": "North Hemisphere",
+      "population": 10299423,
+      "avgTemperature": 15.62,
+      "surface": 91605.6,
+      "coordinates": "39.399872, -8.224454",
+      "density": 112.43,
+      "PIB": 24262.18,
+      "percentOfRenewableE": 28.19,
+      "co2Total": 44640,
+      "coastlineLength": 1793,
+      "maxAltitude": 2351,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6513980.472373267!2d-23.31638887096909!3d37.13713338356952!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xb32242dbf4226d5%3A0x2ab84b091c4ef041!2sPortugal!5e0!3m2!1sen!2ses!4v1647080121836!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-09-07T18:57:20.386Z"
+  },
+  "2026-09-08": {
+    "gameNumber": 1394,
+    "date": "2026-09-08",
+    "apiDate": "08/09/2026",
+    "country": {
+      "id": 194,
+      "country": "Djibouti",
+      "continent": "AFRICA",
+      "hemisphere": "North Hemisphere",
+      "population": 1002197,
+      "avgTemperature": 28.38,
+      "surface": 23180,
+      "coordinates": "11.825138, 42.590275",
+      "density": 43.24,
+      "PIB": 3363.71,
+      "percentOfRenewableE": 27.92,
+      "co2Total": 420,
+      "coastlineLength": 314,
+      "maxAltitude": 2028,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d999762.1795393492!2d42.066920267963674!3d11.812775820201221!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1622d46734f9f601%3A0x1472bba7ef0f5b88!2sDjibouti!5e0!3m2!1sen!2ses!4v1647080751081!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-09-07T18:57:22.305Z"
   }
 }

@@ -5682,5 +5682,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29614728.187283624!2d115.21681053142235!3d-25.031388721602095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2b2bfd076787c5df%3A0x538267a1955b1352!2sAustralia!5e0!3m2!1sen!2ses!4v1647079165414!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-09-13T17:51:40.414Z"
+  },
+  "2026-09-15": {
+    "gameNumber": 1401,
+    "date": "2026-09-15",
+    "apiDate": "15/09/2026",
+    "country": {
+      "id": 62,
+      "country": "Philippines",
+      "continent": "ASIA",
+      "hemisphere": "North Hemisphere",
+      "population": 111046910,
+      "avgTemperature": 25.82,
+      "surface": 298170,
+      "coordinates": "11.40604, 123.57998",
+      "density": 372.43,
+      "PIB": 3548.83,
+      "percentOfRenewableE": 26.73,
+      "co2Total": 145420,
+      "coastlineLength": 36289,
+      "maxAltitude": 2954,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8002447.647504355!2d118.1261387214688!3d11.662832238557685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x324053215f87de63%3A0x784790ef7a29da57!2sPhilippines!5e0!3m2!1sen!2ses!4v1647079529944!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-09-14T19:42:24.381Z"
   }
 }

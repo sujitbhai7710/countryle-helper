@@ -5705,5 +5705,51 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8002447.647504355!2d118.1261387214688!3d11.662832238557685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x324053215f87de63%3A0x784790ef7a29da57!2sPhilippines!5e0!3m2!1sen!2ses!4v1647079529944!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-09-14T19:42:24.381Z"
+  },
+  "2026-09-16": {
+    "gameNumber": 1402,
+    "date": "2026-09-16",
+    "apiDate": "16/09/2026",
+    "country": {
+      "id": 56,
+      "country": "Slovenia",
+      "continent": "EUROPE",
+      "hemisphere": "North Hemisphere",
+      "population": 2107007,
+      "avgTemperature": 9.58,
+      "surface": 20145.7,
+      "coordinates": "46.05686, 14.89026",
+      "density": 104.59,
+      "PIB": 29200.82,
+      "percentOfRenewableE": 20.86,
+      "co2Total": 13600,
+      "coastlineLength": 47,
+      "maxAltitude": 2864,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d707620.8704341236!2d14.43262130272662!3d46.14787809380276!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476524e75e968361%3A0xe740451e25e2d465!2sSlovenia!5e0!3m2!1sen!2ses!4v1647079485793!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-09-16T18:36:42.398Z"
+  },
+  "2026-09-17": {
+    "gameNumber": 1403,
+    "date": "2026-09-17",
+    "apiDate": "17/09/2026",
+    "country": {
+      "id": 35,
+      "country": "Cameroon",
+      "continent": "AFRICA",
+      "hemisphere": "North Hemisphere",
+      "population": 27224262,
+      "avgTemperature": 24.87,
+      "surface": 472710,
+      "coordinates": "6.0, 12.0",
+      "density": 57.59,
+      "PIB": 1661.7,
+      "percentOfRenewableE": 79.41,
+      "co2Total": 9430,
+      "coastlineLength": 402,
+      "maxAltitude": 4040,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8104058.378117436!2d7.797929286209418!3d7.347187193392554!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10613753703e0f21%3A0x2b03c44599829b53!2sCameroon!5e0!3m2!1sen!2ses!4v1647079336903!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-09-16T18:36:44.428Z"
   }
 }

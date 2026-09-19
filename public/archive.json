@@ -5797,5 +5797,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7958458.952064481!2d23.358772628302155!3d-13.10132241281702!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1940f4a5fcfc0b71%3A0xf19ff9ac7e583e45!2sZambia!5e0!3m2!1sen!2ses!4v1647080758633!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-09-18T18:01:03.943Z"
+  },
+  "2026-09-20": {
+    "gameNumber": 1406,
+    "date": "2026-09-20",
+    "apiDate": "20/09/2026",
+    "country": {
+      "id": 41,
+      "country": "Cyprus",
+      "continent": "EUROPE",
+      "hemisphere": "North Hemisphere",
+      "population": 1215588,
+      "avgTemperature": 19.63,
+      "surface": 9240,
+      "coordinates": "35.126413, 33.429859",
+      "density": 131.56,
+      "PIB": 30798.48,
+      "percentOfRenewableE": 12.05,
+      "co2Total": 7190,
+      "coastlineLength": 648,
+      "maxAltitude": 1951,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d834960.2136608994!2d32.864778489632705!3d35.16750949682931!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14de1767ca494d55%3A0x324c3c807fc4146e!2sCyprus!5e0!3m2!1sen!2ses!4v1647079373852!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-09-19T17:42:02.024Z"
   }
 }

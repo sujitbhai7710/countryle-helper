@@ -5958,5 +5958,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4085043.8002193184!2d9.229849129696651!3d-0.9230371699644782!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x107f3b8a5438f3ed%3A0x7b0cc30e36786b15!2sGabon!5e0!3m2!1sen!2ses!4v1647079551844!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-09-25T19:05:26.499Z"
+  },
+  "2026-09-27": {
+    "gameNumber": 1413,
+    "date": "2026-09-27",
+    "apiDate": "27/09/2026",
+    "country": {
+      "id": 132,
+      "country": "Oman",
+      "continent": "ASIA",
+      "hemisphere": "North Hemisphere",
+      "population": 5223376,
+      "avgTemperature": 26.04,
+      "surface": 309500,
+      "coordinates": "21.0, 57.0",
+      "density": 16.88,
+      "PIB": 16439.3,
+      "percentOfRenewableE": 1,
+      "co2Total": 76030,
+      "coastlineLength": 2092,
+      "maxAltitude": 2980,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7608487.683139182!2d51.65812282101421!3d21.38668054710774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3dd69f66a9d59bbf%3A0x3a064c7665b1a817!2sOman!5e0!3m2!1sen!2ses!4v1647080048042!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-09-26T18:13:56.654Z"
   }
 }

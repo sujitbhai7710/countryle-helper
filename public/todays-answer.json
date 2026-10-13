@@ -1,22 +1,22 @@
 {
-  "date": "2026-10-13",
-  "gameNumber": 1429,
-  "updated": "2026-10-12T22:21:38.465Z",
+  "date": "2026-10-14",
+  "gameNumber": 1430,
+  "updated": "2026-10-13T20:28:12.905Z",
   "country": {
-    "id": 189,
-    "country": "Uzbekistan",
+    "id": 83,
+    "country": "Iran",
     "continent": "ASIA",
     "hemisphere": "North Hemisphere",
-    "population": 34915100,
-    "avgTemperature": 13.34,
-    "surface": 440591,
-    "coordinates": "41.377491, 64.585262",
-    "density": 79.25,
-    "PIB": 1983.06,
-    "percentOfRenewableE": 1.57,
-    "co2Total": 116710,
-    "coastlineLength": 0,
-    "maxAltitude": 4643,
-    "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6139263.794998224!2d60.08558283374456!3d41.29390738728788!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8b20a5d676b1%3A0xca0a6dad7e841e20!2sUzbekistan!5e0!3m2!1sen!2ses!4v1647080714165!5m2!1sen!2ses"
+    "population": 85028760,
+    "avgTemperature": 17.86,
+    "surface": 1628760,
+    "coordinates": "32.427908, 53.688046",
+    "density": 52.2,
+    "PIB": 2756.75,
+    "percentOfRenewableE": 0.98,
+    "co2Total": 630010.01,
+    "coastlineLength": 2440,
+    "maxAltitude": 5610,
+    "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6913240.018430463!2d49.19203690470369!3d32.21485984229707!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ef7ec2ec16b1df1%3A0x40b095d39e51face!2sIran!5e0!3m2!1sen!2ses!4v1647079684381!5m2!1sen!2ses"
   }
 }

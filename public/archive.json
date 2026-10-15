@@ -6395,5 +6395,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8116390.7568443185!2d-71.11080141948122!3d6.636810085583464!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c2853cb36cbd801%3A0xdca0f2587cd54dd3!2sVenezuela!5e0!3m2!1sen!2ses!4v1647080728904!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-10-14T19:07:32.809Z"
+  },
+  "2026-10-16": {
+    "gameNumber": 1432,
+    "date": "2026-10-16",
+    "apiDate": "16/10/2026",
+    "country": {
+      "id": 86,
+      "country": "Marshall Islands",
+      "continent": "OCEANIA",
+      "hemisphere": "North Hemisphere",
+      "population": 59618,
+      "avgTemperature": 27.93,
+      "surface": 180,
+      "coordinates": "7.131474, 171.184478",
+      "density": 331.21,
+      "PIB": 4170.98,
+      "percentOfRenewableE": 11.7,
+      "co2Total": 180,
+      "coastlineLength": 370,
+      "maxAltitude": 10,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8057653.332950543!2d161.73277315917588!3d9.560654799816556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x650119b22129ca2b%3A0x8b3e03e8aa09b776!2sMarshall%20Islands!5e0!3m2!1sen!2ses!4v1647079706444!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-10-15T18:50:16.404Z"
   }
 }

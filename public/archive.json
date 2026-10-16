@@ -6418,5 +6418,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8057653.332950543!2d161.73277315917588!3d9.560654799816556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x650119b22129ca2b%3A0x8b3e03e8aa09b776!2sMarshall%20Islands!5e0!3m2!1sen!2ses!4v1647079706444!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-10-15T18:50:16.404Z"
+  },
+  "2026-10-17": {
+    "gameNumber": 1433,
+    "date": "2026-10-17",
+    "apiDate": "17/10/2026",
+    "country": {
+      "id": 178,
+      "country": "Timor-Leste",
+      "continent": "ASIA",
+      "hemisphere": "South Hemisphere",
+      "population": 1343875,
+      "avgTemperature": 24.99,
+      "surface": 14870,
+      "coordinates": "-8.874217, 125.727539",
+      "density": 90.37,
+      "PIB": 1457.83,
+      "percentOfRenewableE": 11.67,
+      "co2Total": 620,
+      "coastlineLength": 706,
+      "maxAltitude": 2963,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1009400.1903648105!2d125.16859539857931!3d-8.788936122257418!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2cfde50986e4a129%3A0x3e5c68387e85b3c!2sTimor-Leste!5e0!3m2!1sen!2ses!4v1647080631627!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-10-16T18:34:28.591Z"
   }
 }

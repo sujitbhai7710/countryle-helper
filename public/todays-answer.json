@@ -1,22 +1,22 @@
 {
-  "date": "2026-10-20",
-  "gameNumber": 1436,
-  "updated": "2026-10-19T20:19:29.575Z",
+  "date": "2026-10-21",
+  "gameNumber": 1437,
+  "updated": "2026-10-20T18:52:07.494Z",
   "country": {
-    "id": 4,
-    "country": "Andorra",
+    "id": 133,
+    "country": "Netherlands",
     "continent": "EUROPE",
     "hemisphere": "North Hemisphere",
-    "population": 77354,
-    "avgTemperature": 9.18,
-    "surface": 470,
-    "coordinates": "42.546245, 1.601554",
-    "density": 164.58,
-    "PIB": 43047.69,
-    "percentOfRenewableE": 18.4,
-    "co2Total": 500,
-    "coastlineLength": 0,
-    "maxAltitude": 2942,
-    "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d188135.46424250645!2d1.4576107821004833!3d42.54219784308796!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a5f52e989ef095%3A0x7c93ed778ea7f92!2sAndorra!5e0!3m2!1sen!2ses!4v1647079105598!5m2!1sen!2ses"
+    "population": 17533405,
+    "avgTemperature": 10.4,
+    "surface": 33720,
+    "coordinates": "52.32879, 5.60996",
+    "density": 519.97,
+    "PIB": 58061,
+    "percentOfRenewableE": 8.54,
+    "co2Total": 146340,
+    "coastlineLength": 451,
+    "maxAltitude": 877,
+    "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1251822.1204774154!2d4.158471178899413!3d52.207682091756446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c609c3db87e4bb%3A0xb3a175ceffbd0a9f!2sNetherlands!5e0!3m2!1sen!2ses!4v1647080055497!5m2!1sen!2ses"
   }
 }

@@ -6533,5 +6533,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1251822.1204774154!2d4.158471178899413!3d52.207682091756446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c609c3db87e4bb%3A0xb3a175ceffbd0a9f!2sNetherlands!5e0!3m2!1sen!2ses!4v1647080055497!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-10-20T18:52:07.478Z"
+  },
+  "2026-10-22": {
+    "gameNumber": 1438,
+    "date": "2026-10-22",
+    "apiDate": "22/10/2026",
+    "country": {
+      "id": 133,
+      "country": "Netherlands",
+      "continent": "EUROPE",
+      "hemisphere": "North Hemisphere",
+      "population": 17533405,
+      "avgTemperature": 10.4,
+      "surface": 33720,
+      "coordinates": "52.32879, 5.60996",
+      "density": 519.97,
+      "PIB": 58061,
+      "percentOfRenewableE": 8.54,
+      "co2Total": 146340,
+      "coastlineLength": 451,
+      "maxAltitude": 877,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1251822.1204774154!2d4.158471178899413!3d52.207682091756446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c609c3db87e4bb%3A0xb3a175ceffbd0a9f!2sNetherlands!5e0!3m2!1sen!2ses!4v1647080055497!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-10-21T19:04:24.414Z"
   }
 }

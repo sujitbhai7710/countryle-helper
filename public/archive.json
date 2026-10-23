@@ -6579,5 +6579,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13007091.428135525!2d-104.65547132645155!3d37.258159203388786!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54eab584e432360b%3A0x1c3bb99243deb742!2sUnited%20States!5e0!3m2!1sen!2ses!4v1647079500614!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-10-22T19:00:56.001Z"
+  },
+  "2026-10-24": {
+    "gameNumber": 1440,
+    "date": "2026-10-24",
+    "apiDate": "24/10/2026",
+    "country": {
+      "id": 95,
+      "country": "Kyrgyzstan",
+      "continent": "ASIA",
+      "hemisphere": "North Hemisphere",
+      "population": 6694200,
+      "avgTemperature": 2.22,
+      "surface": 191800,
+      "coordinates": "41.20438, 74.766098",
+      "density": 34.9,
+      "PIB": 1276.24,
+      "percentOfRenewableE": 27.88,
+      "co2Total": 10050,
+      "coastlineLength": 0,
+      "maxAltitude": 7439,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3073997.744206078!2d72.49678672486455!3d41.20104354415323!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3897381dfce927f3%3A0x281058b74e88c433!2sKyrgyzstan!5e0!3m2!1sen!2ses!4v1647079772325!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-10-23T18:49:58.488Z"
   }
 }

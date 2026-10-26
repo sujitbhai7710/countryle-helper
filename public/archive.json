@@ -6648,5 +6648,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4031868.0680384752!2d0.06534011580199442!3d9.300342705810872!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1023542b047a5695%3A0xecb277f8cb622ef5!2sBenin!5e0!3m2!1sen!2ses!4v1647079232542!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-10-25T18:02:12.990Z"
+  },
+  "2026-10-27": {
+    "gameNumber": 1443,
+    "date": "2026-10-27",
+    "apiDate": "27/10/2026",
+    "country": {
+      "id": 48,
+      "country": "Denmark",
+      "continent": "EUROPE",
+      "hemisphere": "North Hemisphere",
+      "population": 5856733,
+      "avgTemperature": 8.76,
+      "surface": 40000,
+      "coordinates": "56.26392, 9.501785",
+      "density": 146.42,
+      "PIB": 67803.05,
+      "percentOfRenewableE": 37.52,
+      "co2Total": 29700,
+      "coastlineLength": 7314,
+      "maxAltitude": 170,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2272205.8506523613!2d9.300610183277165!3d56.209805063652375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x464b27b6ee945ffb%3A0x528743d0c3e092cd!2sDenmark!5e0!3m2!1sen!2ses!4v1647079427088!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-10-26T20:16:06.327Z"
   }
 }

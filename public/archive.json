@@ -6694,5 +6694,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6350036.9979659235!2d30.68898757706823!3d39.00153322569409!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14b0155c964f2671%3A0x40d9dbd42a625f2a!2sTurkey!5e0!3m2!1sen!2ses!4v1647080676600!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-10-27T19:46:33.913Z"
+  },
+  "2026-10-29": {
+    "gameNumber": 1445,
+    "date": "2026-10-29",
+    "apiDate": "29/10/2026",
+    "country": {
+      "id": 35,
+      "country": "Cameroon",
+      "continent": "AFRICA",
+      "hemisphere": "North Hemisphere",
+      "population": 27224262,
+      "avgTemperature": 24.87,
+      "surface": 472710,
+      "coordinates": "6.0, 12.0",
+      "density": 57.59,
+      "PIB": 1661.7,
+      "percentOfRenewableE": 79.41,
+      "co2Total": 9430,
+      "coastlineLength": 402,
+      "maxAltitude": 4040,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8104058.378117436!2d7.797929286209418!3d7.347187193392554!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10613753703e0f21%3A0x2b03c44599829b53!2sCameroon!5e0!3m2!1sen!2ses!4v1647079336903!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-10-28T20:01:38.853Z"
   }
 }

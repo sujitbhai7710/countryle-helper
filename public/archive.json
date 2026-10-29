@@ -6717,5 +6717,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8104058.378117436!2d7.797929286209418!3d7.347187193392554!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10613753703e0f21%3A0x2b03c44599829b53!2sCameroon!5e0!3m2!1sen!2ses!4v1647079336903!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-10-28T20:01:38.853Z"
+  },
+  "2026-10-30": {
+    "gameNumber": 1446,
+    "date": "2026-10-30",
+    "apiDate": "30/10/2026",
+    "country": {
+      "id": 91,
+      "country": "Japan",
+      "continent": "ASIA",
+      "hemisphere": "North Hemisphere",
+      "population": 125681593,
+      "avgTemperature": 11.13,
+      "surface": 364500,
+      "coordinates": "36.204824, 138.252924",
+      "density": 344.81,
+      "PIB": 39285.16,
+      "percentOfRenewableE": 7.69,
+      "co2Total": 1081569.95,
+      "coastlineLength": 29751,
+      "maxAltitude": 3776,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13678656.741661692!2d128.15430874591294!3d33.17433627147314!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34674e0fd77f192f%3A0xf54275d47c665244!2sJapan!5e0!3m2!1sen!2ses!4v1647079743099!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-10-29T20:01:09.391Z"
   }
 }

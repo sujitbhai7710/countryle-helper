@@ -6832,5 +6832,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8070401.776290583!2d4.181534824532928!3d9.006530858332049!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e0baf7da48d0d%3A0x99a8fe4168c50bc8!2sNigeria!5e0!3m2!1sen!2ses!4v1647080025476!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-11-02T22:57:51.686Z"
+  },
+  "2026-11-04": {
+    "gameNumber": 1451,
+    "date": "2026-11-04",
+    "apiDate": "04/11/2026",
+    "country": {
+      "id": 7,
+      "country": "Saudi Arabia",
+      "continent": "ASIA",
+      "hemisphere": "North Hemisphere",
+      "population": 35340680,
+      "avgTemperature": 25.47,
+      "surface": 2149690,
+      "coordinates": "23.885942, 45.079162",
+      "density": 16.44,
+      "PIB": 23585.89,
+      "percentOfRenewableE": 0.03,
+      "co2Total": 523780.03,
+      "coastlineLength": 2640,
+      "maxAltitude": 3000,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7455625.5004867995!2d40.58087753419506!3d24.15622198243252!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15e7b33fe7952a41%3A0x5960504bc21ab69b!2sSaudi%20Arabia!5e0!3m2!1sen!2ses!4v1647079127994!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-11-03T20:44:15.874Z"
   }
 }

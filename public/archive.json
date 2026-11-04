@@ -6855,5 +6855,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7455625.5004867995!2d40.58087753419506!3d24.15622198243252!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15e7b33fe7952a41%3A0x5960504bc21ab69b!2sSaudi%20Arabia!5e0!3m2!1sen!2ses!4v1647079127994!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-11-03T20:44:15.874Z"
+  },
+  "2026-11-05": {
+    "gameNumber": 1452,
+    "date": "2026-11-05",
+    "apiDate": "05/11/2026",
+    "country": {
+      "id": 129,
+      "country": "Nigeria",
+      "continent": "AFRICA",
+      "hemisphere": "North Hemisphere",
+      "population": 211400704,
+      "avgTemperature": 27.24,
+      "surface": 910770,
+      "coordinates": "9.42372, 8.17682",
+      "density": 232.11,
+      "PIB": 2085.03,
+      "percentOfRenewableE": 81.4,
+      "co2Total": 115280,
+      "coastlineLength": 853,
+      "maxAltitude": 2419,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8070401.776290583!2d4.181534824532928!3d9.006530858332049!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e0baf7da48d0d%3A0x99a8fe4168c50bc8!2sNigeria!5e0!3m2!1sen!2ses!4v1647080025476!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-11-04T21:01:19.611Z"
   }
 }

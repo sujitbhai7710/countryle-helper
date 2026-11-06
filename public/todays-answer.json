@@ -1,22 +1,22 @@
 {
-  "date": "2026-11-06",
-  "gameNumber": 1453,
-  "updated": "2026-11-05T21:18:16.775Z",
+  "date": "2026-11-07",
+  "gameNumber": 1454,
+  "updated": "2026-11-06T20:40:21.179Z",
   "country": {
-    "id": 46,
-    "country": "Costa Rica",
+    "id": 58,
+    "country": "United States of America",
     "continent": "AMERICA",
     "hemisphere": "North Hemisphere",
-    "population": 5139053,
-    "avgTemperature": 24.85,
-    "surface": 51060,
-    "coordinates": "9.748917, -83.753428",
-    "density": 100.65,
-    "PIB": 12508.62,
-    "percentOfRenewableE": 35.76,
-    "co2Total": 8240,
-    "coastlineLength": 1290,
-    "maxAltitude": 3820,
-    "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4042248.308209839!2d-87.05270218473153!3d8.351571125077315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f92e56221acc925%3A0x6254f72535819a2b!2sCosta%20Rica!5e0!3m2!1sen!2ses!4v1647079412261!5m2!1sen!2ses"
+    "population": 331893745,
+    "avgTemperature": 7.63,
+    "surface": 9147420,
+    "coordinates": "38.0, -97.0",
+    "density": 36.28,
+    "PIB": 69287.54,
+    "percentOfRenewableE": 10.42,
+    "co2Total": 4817720.21,
+    "coastlineLength": 19924,
+    "maxAltitude": 6194,
+    "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13007091.428135525!2d-104.65547132645155!3d37.258159203388786!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54eab584e432360b%3A0x1c3bb99243deb742!2sUnited%20States!5e0!3m2!1sen!2ses!4v1647079500614!5m2!1sen!2ses"
   }
 }

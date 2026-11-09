@@ -6970,5 +6970,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4070399.6797278402!2d-61.19710434633829!3d4.9396895221982495!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8dafefaf60d8c2b3%3A0x48e38867b6e54440!2sGuyana!5e0!3m2!1sen!2ses!4v1647079625546!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-11-08T19:17:27.586Z"
+  },
+  "2026-11-10": {
+    "gameNumber": 1457,
+    "date": "2026-11-10",
+    "apiDate": "10/11/2026",
+    "country": {
+      "id": 99,
+      "country": "Laos",
+      "continent": "ASIA",
+      "hemisphere": "North Hemisphere",
+      "population": 7379358,
+      "avgTemperature": 23.74,
+      "surface": 230800,
+      "coordinates": "18.0, 105.0",
+      "density": 31.97,
+      "PIB": 2551.33,
+      "percentOfRenewableE": 48.43,
+      "co2Total": 18710,
+      "coastlineLength": 0,
+      "maxAltitude": 2817,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3881262.563783534!2d101.61532569024925!3d18.196340841556687!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31149057b0824589%3A0xec592481f99cd81!2sLaos!5e0!3m2!1sen!2ses!4v1647079801766!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-11-09T23:40:09.404Z"
   }
 }

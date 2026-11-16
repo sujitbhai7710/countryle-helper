@@ -7131,5 +7131,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4070399.6797278402!2d-61.19710434633829!3d4.9396895221982495!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8dafefaf60d8c2b3%3A0x48e38867b6e54440!2sGuyana!5e0!3m2!1sen!2ses!4v1647079625546!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-11-15T20:05:28.142Z"
+  },
+  "2026-11-17": {
+    "gameNumber": 1464,
+    "date": "2026-11-17",
+    "apiDate": "17/11/2026",
+    "country": {
+      "id": 21,
+      "country": "Benin",
+      "continent": "AFRICA",
+      "hemisphere": "North Hemisphere",
+      "population": 12451031,
+      "avgTemperature": 27.93,
+      "surface": 112760,
+      "coordinates": "9.5, 2.31583",
+      "density": 110.42,
+      "PIB": 1428.45,
+      "percentOfRenewableE": 46.47,
+      "co2Total": 7300,
+      "coastlineLength": 121,
+      "maxAltitude": 658,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4031868.0680384752!2d0.06534011580199442!3d9.300342705810872!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1023542b047a5695%3A0xecb277f8cb622ef5!2sBenin!5e0!3m2!1sen!2ses!4v1647079232542!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-11-16T23:36:53.657Z"
   }
 }

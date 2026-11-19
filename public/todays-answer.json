@@ -1,22 +1,22 @@
 {
-  "date": "2026-11-19",
-  "gameNumber": 1466,
-  "updated": "2026-11-18T22:27:06.596Z",
+  "date": "2026-11-20",
+  "gameNumber": 1467,
+  "updated": "2026-11-19T22:32:03.205Z",
   "country": {
-    "id": 177,
-    "country": "Tajikistan",
+    "id": 1,
+    "country": "Afghanistan",
     "continent": "ASIA",
     "hemisphere": "North Hemisphere",
-    "population": 9749625,
-    "avgTemperature": 3.75,
-    "surface": 139960,
-    "coordinates": "38.861034, 71.276093",
-    "density": 69.66,
-    "PIB": 897.09,
-    "percentOfRenewableE": 38.56,
-    "co2Total": 9420,
+    "population": 39835428,
+    "avgTemperature": 13.57,
+    "surface": 652860,
+    "coordinates": "33.93911, 67.709953",
+    "density": 61.02,
+    "PIB": 516.75,
+    "percentOfRenewableE": 18.51,
+    "co2Total": 6080,
     "coastlineLength": 0,
-    "maxAltitude": 7495,
-    "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3182401.2546577137!2d69.00506453758082!3d38.83672667735311!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38b176737abcb3cd%3A0x25c331844f1988b5!2sTajikistan!5e0!3m2!1sen!2ses!4v1647080624104!5m2!1sen!2ses"
+    "maxAltitude": 7492,
+    "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6785928.96038457!2d63.212960353101806!3d33.852501358536244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38d16eb6f8ff026d%3A0xf3b5460dbe96da78!2sAfghanistan!5e0!3m2!1sen!2ses!4v1647079083264!5m2!1sen!2ses"
   }
 }

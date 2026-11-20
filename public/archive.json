@@ -7223,5 +7223,28 @@
       "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6785928.96038457!2d63.212960353101806!3d33.852501358536244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38d16eb6f8ff026d%3A0xf3b5460dbe96da78!2sAfghanistan!5e0!3m2!1sen!2ses!4v1647079083264!5m2!1sen!2ses"
     },
     "scrapedAt": "2026-11-19T22:32:03.194Z"
+  },
+  "2026-11-21": {
+    "gameNumber": 1468,
+    "date": "2026-11-21",
+    "apiDate": "21/11/2026",
+    "country": {
+      "id": 93,
+      "country": "Kazakhstan",
+      "continent": "ASIA",
+      "hemisphere": "North Hemisphere",
+      "population": 19002586,
+      "avgTemperature": 6.91,
+      "surface": 2699700,
+      "coordinates": "48.019573, 66.923684",
+      "density": 7.04,
+      "PIB": 10041.49,
+      "percentOfRenewableE": 1.7,
+      "co2Total": 212110,
+      "coastlineLength": 0,
+      "maxAltitude": 7010,
+      "mapsUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11008101.330821404!2d57.938583798931504!3d47.654801697913655!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38a91007ecfca947%3A0x5f7b842fe4b30e1b!2sKazakhstan!5e0!3m2!1sen!2ses!4v1647079757725!5m2!1sen!2ses"
+    },
+    "scrapedAt": "2026-11-20T22:04:58.194Z"
   }
 }
